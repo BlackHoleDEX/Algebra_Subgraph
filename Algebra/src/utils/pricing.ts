@@ -4,17 +4,14 @@ import { Bundle, Pool, Token } from './../types/schema'
 import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
-const WEth_ADDRESS = '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f'
-const USDC_WEth_03_POOL = '0x3cb104f044db23d6513f2a6100a1997fa5e3f587'
+const WEth_ADDRESS = '0x4200000000000000000000000000000000000006'
+const USDC_WEth_03_POOL = '0x49ea80305fb7633ac0dfd4e4e6c782790719ed5e'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
-  '0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f', // WETH
-  '0x176211869ca2b568f2a7d4ee941e073a821ee1ff', // USDC
-  '0xa219439258ca9da29e9cc4ce5596924745e12b93', // USDT 
-  '0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4', // WBTC
-  '0x1a51b19ce03dbe0cb44c1528e34a7edd7771e9af', // LYNEX
+  '0x4200000000000000000000000000000000000006', // WMATIC
+  '0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34', // USDC 
 ]
 
 let MINIMUM_Eth_LOCKED = BigDecimal.fromString('0')
@@ -22,8 +19,7 @@ let MINIMUM_Eth_LOCKED = BigDecimal.fromString('0')
 let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
-  '0x176211869ca2b568f2a7d4ee941e073a821ee1ff', // USDC
-  '0xa219439258ca9da29e9cc4ce5596924745e12b93', // USDT
+  '0x0cbe0df132a6c6b4a2974fa1b7fb953cf0cc798a', // USDC
 ]
 
 
@@ -42,7 +38,7 @@ export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token):
 export function getEthPriceInUSD(): BigDecimal {
   let usdcPool = Pool.load(USDC_WEth_03_POOL) // dai is token0
   if (usdcPool !== null) {
-    return usdcPool.token0Price
+    return usdcPool.token1Price
   } else {
     return ZERO_BD
   }
