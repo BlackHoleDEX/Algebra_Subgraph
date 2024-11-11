@@ -644,7 +644,7 @@ function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
 export function handleSetTickSpacing(event: TickSpacing): void {
   let pool = Pool.load(event.address.toHexString())!
   pool.tickSpacing = BigInt.fromI32(event.params.newTickSpacing as i32)
-  pool.save
+  pool.save()
 }
 
 export function handleChangeFee(event: ChangeFee): void {
