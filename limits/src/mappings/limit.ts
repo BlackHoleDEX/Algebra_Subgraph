@@ -1,5 +1,4 @@
-import { ethereum, Address, crypto, store, BigInt, BigDecimal } from '@graphprotocol/graph-ts';
-import { ZERO_BI, stakerAddress, vaultAddress, ADDRESS_ZERO, oldVaultAddress } from './utils/constants'
+import { BigInt} from '@graphprotocol/graph-ts';
 import {
     Fill,
     Kill,
@@ -29,9 +28,13 @@ export function PlaceHandler(event: Place): void{
         limit.tickUpper = BigInt.fromI32(event.params.tickUpper);
         limit.zeroToOne = event.params.zeroForOne;
         limit.epoch = epoch.id;   
+        limit.killed = false;
+        limit.killedLiquidity = BigInt.fromI32(0);
+        limit.initialLiquidity = event.params.liquidity;
     }
 
     limit.liquidity += event.params.liquidity;
+    limit.initialLiquidity += event.params.liquidity;
     limit.save();
 
 }
@@ -54,6 +57,10 @@ export function KillHandler(event: Kill): void{
     let limit = LimitOrder.load(event.params.owner.toHexString() + "#" + event.params.epoch.toString())
     if( limit != null){
         limit.liquidity -= event.params.liquidity;
+        limit.killedLiquidity += event.params.liquidity;
+        if(limit.killedLiquidity == limit.initialLiquidity){
+            limit.killed = true;
+        } 
         limit.save();
     }
 
