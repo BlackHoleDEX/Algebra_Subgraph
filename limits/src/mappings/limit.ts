@@ -12,9 +12,9 @@ export function PlaceHandler(event: Place): void{
     if (epoch == null){
         epoch = new Epoch(event.params.epoch.toString());
         epoch.pool =  event.params.pool;
+        epoch.totalLiquidity = BigInt.fromI32(0);
         epoch.filled = false;
     }
-
 
     epoch.totalLiquidity += event.params.liquidity;
     epoch.save();
@@ -28,13 +28,14 @@ export function PlaceHandler(event: Place): void{
         limit.tickUpper = BigInt.fromI32(event.params.tickUpper);
         limit.zeroToOne = event.params.zeroForOne;
         limit.epoch = epoch.id;   
-        limit.killed = false;
         limit.killedLiquidity = BigInt.fromI32(0);
-        limit.initialLiquidity = event.params.liquidity;
+        limit.initialLiquidity = BigInt.fromI32(0);
+        limit.liquidity = BigInt.fromI32(0);
     }
 
     limit.liquidity += event.params.liquidity;
     limit.initialLiquidity += event.params.liquidity;
+    limit.killed = false;
     limit.save();
 
 }
