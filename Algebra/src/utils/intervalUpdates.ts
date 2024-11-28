@@ -13,7 +13,7 @@ import {
   FeeHourData
 } from './../types/schema'
 import { FACTORY_ADDRESS } from './constants'
-import { ethereum, BigInt, Bytes } from '@graphprotocol/graph-ts'
+import { ethereum, BigInt } from '@graphprotocol/graph-ts'
 
 
 /**
@@ -25,9 +25,9 @@ export function updateFusionDayData(event: ethereum.Event): FusionDayData {
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400 // rounded
   let dayStartTimestamp = dayID * 86400
-  let fusionDayData = FusionDayData.load(Bytes.fromI32(dayID))
+  let fusionDayData = FusionDayData.load(dayID.toString())
   if (fusionDayData === null) {
-    fusionDayData = new FusionDayData(Bytes.fromI32(dayID))
+    fusionDayData = new FusionDayData(dayID.toString())
     fusionDayData.date = dayStartTimestamp
     fusionDayData.volumeBnb = ZERO_BD
     fusionDayData.volumeUSD = ZERO_BD
@@ -45,7 +45,10 @@ export function updatePoolDayData(event: ethereum.Event): PoolDayData {
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400
   let dayStartTimestamp = dayID * 86400
-  let dayPoolID = event.address.concatI32(dayID)
+  let dayPoolID = event.address
+    .toHexString()
+    .concat('-')
+    .concat(dayID.toString())
   let pool = Pool.load(event.address.toHexString())!
   let poolDayData = PoolDayData.load(dayPoolID)
   if (poolDayData === null) {
@@ -94,7 +97,10 @@ export function updateFeeHourData(event: ethereum.Event, Fee: BigInt): void{
   let timestamp = event.block.timestamp.toI32()
   let hourIndex = timestamp / 3600 
   let hourStartUnix = hourIndex * 3600
-  let hourFeeID = event.address.concatI32(hourIndex)
+  let hourFeeID = event.address
+    .toHexString()
+    .concat('-')
+    .concat(hourIndex.toString())
   let FeeHourDataEntity = FeeHourData.load(hourFeeID)
   if(FeeHourDataEntity){
     FeeHourDataEntity.timestamp = BigInt.fromI32(hourStartUnix)
@@ -125,7 +131,10 @@ export function updatePoolHourData(event: ethereum.Event): PoolHourData {
   let timestamp = event.block.timestamp.toI32()
   let hourIndex = timestamp / 3600 // get unique hour within unix history
   let hourStartUnix = hourIndex * 3600 // want the rounded effect
-  let hourPoolID = event.address.concatI32(hourIndex)
+  let hourPoolID = event.address
+    .toHexString()
+    .concat('-')
+    .concat(hourIndex.toString())
   let pool = Pool.load(event.address.toHexString())!
   let poolHourData = PoolHourData.load(hourPoolID)
   if (poolHourData === null) {
@@ -171,11 +180,14 @@ export function updatePoolHourData(event: ethereum.Event): PoolHourData {
 }
 
 export function updateTokenDayData(token: Token, event: ethereum.Event): TokenDayData {
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400
   let dayStartTimestamp = dayID * 86400
-  let tokenDayID = Bytes.fromHexString(token.id).concatI32(dayID)
+  let tokenDayID = token.id
+    .toString()
+    .concat('-')
+    .concat(dayID.toString())
   let tokenPrice = token.derivedBnb.times(bundle.bnbPriceUSD)
 
   let tokenDayData = TokenDayData.load(tokenDayID)
@@ -212,11 +224,14 @@ export function updateTokenDayData(token: Token, event: ethereum.Event): TokenDa
 
 
 export function updateTokenHourData(token: Token, event: ethereum.Event): TokenHourData {
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   let timestamp = event.block.timestamp.toI32()
   let hourIndex = timestamp / 3600 // get unique hour within unix history
   let hourStartUnix = hourIndex * 3600 // want the rounded effect
-  let tokenHourID = Bytes.fromHexString(token.id).concatI32(hourIndex)
+  let tokenHourID = token.id
+    .toString()
+    .concat('-')
+    .concat(hourIndex.toString())
   let tokenHourData = TokenHourData.load(tokenHourID)
   let tokenPrice = token.derivedBnb.times(bundle.bnbPriceUSD)
 

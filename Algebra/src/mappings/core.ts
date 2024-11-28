@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { Bundle, Burn, Factory, Mint, Pool, Swap, Tick, Token,PoolFeeData } from '../types/schema'
 import { Pool as PoolABI } from '../types/Factory/Pool'
-import { BigDecimal, BigInt, ethereum, log, Bytes} from '@graphprotocol/graph-ts'
+import { BigDecimal, BigInt, ethereum, log} from '@graphprotocol/graph-ts'
 
 import {
   Burn as BurnEvent,
@@ -37,7 +37,7 @@ export function handleInitialize(event: Initialize): void {
   let token1 = Token.load(pool.token1)!
 
   // update Bnb price now that prices could have changed
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   bundle.bnbPriceUSD = getEthPriceInUSD()
   bundle.save()
   updatePoolDayData(event)
@@ -51,7 +51,7 @@ export function handleInitialize(event: Initialize): void {
 }
 
 export function handleMint(event: MintEvent): void {
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   let poolAddress = event.address.toHexString()
   let pool = Pool.load(poolAddress)!
   let factory = Factory.load(FACTORY_ADDRESS)!
@@ -107,7 +107,7 @@ export function handleMint(event: MintEvent): void {
   factory.totalValueLockedUSD = factory.totalValueLockedBnb.times(bundle.bnbPriceUSD)
 
   let transaction = loadTransaction(event)
-  let mint = new Mint(transaction.id.concatI32(pool.txCount.toI32()))
+  let mint = new Mint(transaction.id.toString() + '#' + pool.txCount.toString())
   mint.transaction = transaction.id
   mint.timestamp = transaction.timestamp
   mint.pool = pool.id
@@ -127,8 +127,8 @@ export function handleMint(event: MintEvent): void {
   let lowerTickIdx = event.params.bottomTick
   let upperTickIdx = event.params.topTick
 
-  let lowerTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.bottomTick)
-  let upperTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.topTick)
+  let lowerTickId = poolAddress + '#' + BigInt.fromI32(event.params.bottomTick).toString()
+  let upperTickId = poolAddress + '#' + BigInt.fromI32(event.params.topTick).toString()
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
@@ -168,7 +168,7 @@ export function handleMint(event: MintEvent): void {
 
 export function handleBurn(event: BurnEvent): void {
   
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   let poolAddress = event.address.toHexString()
   let pool = Pool.load(poolAddress)!
   let factory = Factory.load(FACTORY_ADDRESS)!
@@ -224,7 +224,7 @@ export function handleBurn(event: BurnEvent): void {
 
   // burn entity
   let transaction = loadTransaction(event)
-  let burn = new Burn(transaction.id.concatI32(pool.txCount.toI32()))
+  let burn = new Burn(transaction.id + '#' + pool.txCount.toString())
   burn.transaction = transaction.id
   burn.timestamp = transaction.timestamp
   burn.pool = pool.id
@@ -241,8 +241,8 @@ export function handleBurn(event: BurnEvent): void {
 
 
   // tick entities
-  let lowerTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.bottomTick)
-  let upperTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.topTick)
+  let lowerTickId = poolAddress + '#' + BigInt.fromI32(event.params.bottomTick).toString()
+  let upperTickId = poolAddress + '#' + BigInt.fromI32(event.params.topTick).toString()
   let lowerTick = Tick.load(lowerTickId)!
   let upperTick = Tick.load(upperTickId)!
   let amount = event.params.liquidityAmount
@@ -270,7 +270,7 @@ export function handleSwap(event: SwapEvent): void {
 
   let currentTick = BigInt.fromI32(event.params.tick)
 
-  let bundle = Bundle.load(Bytes.fromI32(1))!
+  let bundle = Bundle.load('1')!
   let factory = Factory.load(FACTORY_ADDRESS)!
   let pool = Pool.load(event.address.toHexString())!
 
@@ -411,7 +411,7 @@ export function handleSwap(event: SwapEvent): void {
 
   // create Swap event
   let transaction = loadTransaction(event)
-  let swap = new Swap(transaction.id.concatI32(pool.txCount.toI32()))
+  let swap = new Swap(transaction.id + '#' + pool.txCount.toString())
   swap.transaction = transaction.id
   swap.timestamp = transaction.timestamp
   swap.pool = pool.id
@@ -549,9 +549,9 @@ export function handleChangeFee(event: ChangeFee): void {
   pool.fee = BigInt.fromI32(event.params.fee as i32)
   pool.save()
 
-  let fee = PoolFeeData.load(event.address.concatI32(event.block.timestamp.toI32()))
+  let fee = PoolFeeData.load(event.address.toHexString() + event.block.timestamp.toString())
   if (fee == null){
-    fee = new PoolFeeData(event.address.concatI32(event.block.timestamp.toI32()))
+    fee = new PoolFeeData(event.block.timestamp.toString() + event.address.toHexString())
     fee.pool = event.address.toHexString()
     fee.fee = BigInt.fromI32(event.params.fee)
     fee.timestamp = event.block.timestamp

@@ -1,6 +1,6 @@
 type Factory @entity {
   # factory address
-  id: Bytes!
+  id: ID!
   # amount of pools created
   poolCount: BigInt!
   # amoutn of transactions all time
@@ -29,7 +29,7 @@ type Factory @entity {
 
 # stores for USD calculations
 type Bundle @entity {
-  id: Bytes!
+  id: ID!
   # price of Bnb in usd
   bnbPriceUSD: BigDecimal!
 }
@@ -150,7 +150,7 @@ type Pool @entity {
 
 type Tick @entity {
   # format: <pool address>#<tick index>
-  id: Bytes!
+  id: ID!
   # pool address
   poolAddress: String
   # tick index
@@ -173,7 +173,7 @@ type Tick @entity {
 
 type Transaction @entity {
   # txn hash
-  id: Bytes!
+  id: ID!
   # block txn was included in
   blockNumber: BigInt!
   # timestamp txn was confirmed
@@ -190,7 +190,7 @@ type Transaction @entity {
 
 type Mint @entity(immutable: true) {
   # transaction hash + "#" + index in mints Transaction array
-  id: Bytes!
+  id: ID!
   # which txn the mint was included in
   transaction: Transaction!
   # time of txn
@@ -225,7 +225,7 @@ type Mint @entity(immutable: true) {
 
 type Burn @entity(immutable: true) {
   # transaction hash + "#" + index in mints Transaction array
-  id: Bytes!
+  id: ID!
   # txn burn was included in
   transaction: Transaction!
   # pool position is within
@@ -258,7 +258,7 @@ type Burn @entity(immutable: true) {
 
 type Swap @entity(immutable: true) {
   # transaction hash + "#" + index in swaps Transaction array
-  id: Bytes!
+  id: ID!
   # pointer to transaction
   transaction: Transaction!
   # timestamp of transaction
@@ -293,7 +293,7 @@ type Swap @entity(immutable: true) {
 
 type Collect @entity(immutable: true) {
   # transaction hash + "#" + index in collect Transaction array
-  id: Bytes!
+  id: ID!
   # pointer to txn
   transaction: Transaction!
   # timestamp of event
@@ -319,7 +319,7 @@ type Collect @entity(immutable: true) {
 # Data accumulated and condensed into day stats for all of Fusion
 type FusionDayData @entity {
   # timestamp rounded to current day by dividing by 86400
-  id: Bytes!
+  id: ID!
   # timestamp rounded to current day by dividing by 86400
   date: Int!
   # total daily volume in Fusion derived in terms of Bnb
@@ -339,7 +339,7 @@ type FusionDayData @entity {
 # Data accumulated and condensed into day stats for each pool
 type PoolDayData @entity {
   # timestamp rounded to current day by dividing by 86400
-  id: Bytes!
+  id: ID!
   # timestamp rounded to current day by dividing by 86400
   date: Int!
   # pointer to pool
@@ -385,7 +385,7 @@ type PoolDayData @entity {
 }
 
 type PoolFeeData @entity(immutable: true){
-  id: Bytes!
+  id: ID!
 
   pool: String
 
@@ -398,7 +398,7 @@ type PoolFeeData @entity(immutable: true){
 # hourly stats tracker for pool
 type PoolHourData @entity {
   # format: <pool address>-<timestamp>
-  id: Bytes!
+  id: ID!
   # unix timestamp for start of hour
   periodStartUnix: Int!
   # pointer to pool
@@ -442,7 +442,7 @@ type PoolHourData @entity {
 
 type TokenDayData @entity {
   # token address concatendated with date
-  id: Bytes!
+  id: ID!
   # timestamp rounded to current day by dividing by 86400
   date: Int!
   # pointer to token
@@ -473,7 +473,7 @@ type TokenDayData @entity {
 
 type TokenHourData @entity {
   # token address concatendated with date
-  id: Bytes!
+  id: ID!
   # unix timestamp for start of hour
   periodStartUnix: Int!
   # pointer to token
@@ -504,7 +504,7 @@ type TokenHourData @entity {
 
 type FeeHourData @entity {
   #
-  id: Bytes!
+  id: ID!
   #
   pool: String!
   #
