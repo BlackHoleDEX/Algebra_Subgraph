@@ -274,14 +274,11 @@ export function handleSwap(event: SwapEvent): void {
   let factory = Factory.load(FACTORY_ADDRESS)!
   let pool = Pool.load(event.address.toHexString())!
 
-  let oldTick = pool.tick
-  let flag = false 
-
-  if(event.block.number == BigInt.fromString("41695633") && pool.id == USDT_WBNB_POOL) {
+  if(event.block.number == BigInt.fromString("44221236") && pool.id == USDT_WBNB_POOL) {
     syncTokenBalances(pool)
   }
 
-  if( (currentTick < BigInt.fromI32(-70000) || currentTick > BigInt.fromI32(-53000)) && pool.id == USDT_WBNB_POOL) {
+  if((currentTick < BigInt.fromI32(-75000) || currentTick > BigInt.fromI32(-53000)) && pool.id == USDT_WBNB_POOL) {
     syncTokenBalances(pool)
     return
   }
