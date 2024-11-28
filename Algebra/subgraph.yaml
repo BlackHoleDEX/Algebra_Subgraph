@@ -37,40 +37,6 @@ dataSources:
       eventHandlers:
         - event: Pool(indexed address,indexed address,address)
           handler: handlePoolCreated
-  - kind: ethereum/contract
-    name: NonfungiblePositionManager
-    network: bsc
-    source:
-      address: '0xa51ADb08Cbe6Ae398046A23bec013979816B77Ab'
-      abi: NonfungiblePositionManager
-      startBlock: 26030210 
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      file: ./src/mappings/position-manager.ts
-      entities:
-        - Pool
-        - Token
-        - Deposit
-      abis:
-        - name: NonfungiblePositionManager
-          file: ./abis/NonfungiblePositionManager.json
-        - name: Pool
-          file: ./abis/pool.json
-        - name: Factory
-          file: ./abis/factory.json
-        - name: ERC20
-          file: ./abis/ERC20.json
-      eventHandlers:
-        - event: Collect(indexed uint256,address,uint256,uint256)
-          handler: handleCollect
-        - event: DecreaseLiquidity(indexed uint256,uint128,uint256,uint256)
-          handler: handleDecreaseLiquidity
-        - event: IncreaseLiquidity(indexed uint256,uint128,uint128,uint256,uint256,address)
-          handler: handleIncreaseLiquidity
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
 templates:
   - kind: ethereum/contract
     name: Pool

@@ -165,111 +165,10 @@ type Tick @entity {
   price0: BigDecimal!
   # calculated price of token1 of tick within this pool - constant
   price1: BigDecimal!
-  # lifetime volume of token0 with this tick in range
-  volumeToken0: BigDecimal!
-  # lifetime volume of token1 with this tick in range
-  volumeToken1: BigDecimal!
-  # lifetime volume in derived USD with this tick in range
-  volumeUSD: BigDecimal!
-  # lifetime volume in untracked USD with this tick in range
-  untrackedVolumeUSD: BigDecimal!
-  # fees in USD
-  feesUSD: BigDecimal!
-  # all time collected fees in token0
-  collectedFeesToken0: BigDecimal!
-  # all time collected fees in token1
-  collectedFeesToken1: BigDecimal!
-  # all time collected fees in USD
-  collectedFeesUSD: BigDecimal!
   # created time
   createdAtTimestamp: BigInt!
   # created block
   createdAtBlockNumber: BigInt!
-  # Fields used to help derived relationship
-  liquidityProviderCount: BigInt! # used to detect new exchanges
-  # derived fields
-  # swaps: [Swap!]! @derivedFrom(field: "tick")
-  # vars needed for fee computation
-  feeGrowthOutside0X128: BigInt!
-  feeGrowthOutside1X128: BigInt!
-}
-
-type Position @entity {
-  # Positions created through NonfungiblePositionManager
-  # NFT token id
-  id: ID!
-  # owner of the NFT
-  owner: Bytes!
-  # pool position is within
-  pool: Pool!
-  # allow indexing by tokens
-  token0: Token!
-  # allow indexing by tokens
-  token1: Token!
-  # lower tick of the position
-  tickLower: Tick!
-  # upper tick of the position
-  tickUpper: Tick!
-  # total position liquidity
-  liquidity: BigInt!
-  # amount of token 0 ever deposited to position
-  depositedToken0: BigDecimal!
-  # amount of token 1 ever deposited to position
-  depositedToken1: BigDecimal!
-  # amount of token 0 ever withdrawn from position (without fees)
-  withdrawnToken0: BigDecimal!
-  # amount of token 1 ever withdrawn from position (without fees)
-  withdrawnToken1: BigDecimal!
-  # all time collected token0 (withdrawnToken0 + collectedFeesToken0)
-  collectedToken0: BigDecimal!
-  # all time collected token1 (withdrawnToken1 + collectedFeesToken1)
-  collectedToken1: BigDecimal!
-  # all time collected fees in token0
-  collectedFeesToken0: BigDecimal!
-  # all time collected fees in token1
-  collectedFeesToken1: BigDecimal!
-  # tx in which the position was initialized
-  transaction: Transaction!
-  # vars needed for fee computation
-  feeGrowthInside0LastX128: BigInt!
-  feeGrowthInside1LastX128: BigInt!
-
-  token0Tvl : BigDecimal
-  token1Tvl : BigDecimal 
-}
-
-type PositionSnapshot @entity(immutable: true) {
-  # <NFT token id>#<block number>
-  id: Bytes!
-  # owner of the NFT
-  owner: Bytes!
-  # pool the position is within
-  pool: Pool!
-  # position of which the snap was taken of
-  position: Position!
-  # block in which the snap was created
-  blockNumber: BigInt!
-  # timestamp of block in which the snap was created
-  timestamp: BigInt!
-  # total position liquidity
-  liquidity: BigInt!
-  # amount of token 0 ever deposited to position
-  depositedToken0: BigDecimal!
-  # amount of token 1 ever deposited to position
-  depositedToken1: BigDecimal!
-  # amount of token 0 ever withdrawn from position (without fees)
-  withdrawnToken0: BigDecimal!
-  # amount of token 1 ever withdrawn from position (without fees)
-  withdrawnToken1: BigDecimal!
-  # all time collected fees in token0
-  collectedFeesToken0: BigDecimal!
-  # all time collected fees in token1
-  collectedFeesToken1: BigDecimal!
-  # tx in which the snapshot was initialized
-  transaction: Transaction!
-  # internal vars needed for fee computation
-  feeGrowthInside0LastX128: BigInt!
-  feeGrowthInside1LastX128: BigInt!
 }
 
 type Transaction @entity {
@@ -286,7 +185,6 @@ type Transaction @entity {
   mints: [Mint!]! @derivedFrom(field: "transaction")
   burns: [Burn!]! @derivedFrom(field: "transaction")
   swaps: [Swap!]! @derivedFrom(field: "transaction")
-  flashed: [Flash!]! @derivedFrom(field: "transaction")
   collects: [Collect!]! @derivedFrom(field: "transaction")
 }
 
@@ -418,33 +316,6 @@ type Collect @entity(immutable: true) {
   logIndex: BigInt
 }
 
-type Flash @entity(immutable: true) {
-  # transaction hash + "-" + index in collect Transaction array
-  id: Bytes!
-  # pointer to txn
-  transaction: Transaction!
-  # timestamp of event
-  timestamp: BigInt!
-  # pool collect occured within
-  pool: Pool!
-  # sender of the flash
-  sender: Bytes!
-  # recipient of the flash
-  recipient: Bytes!
-  # amount of token0 flashed
-  amount0: BigDecimal!
-  # amount of token1 flashed
-  amount1: BigDecimal!
-  # derived amount based on available prices of tokens
-  amountUSD: BigDecimal!
-  # amount token0 paid for flash
-  amount0Paid: BigDecimal!
-  # amount token1 paid for flash
-  amount1Paid: BigDecimal!
-  # index within the txn
-  logIndex: BigInt
-}
-
 # Data accumulated and condensed into day stats for all of Fusion
 type FusionDayData @entity {
   # timestamp rounded to current day by dividing by 86400
@@ -513,7 +384,7 @@ type PoolDayData @entity {
   close: BigDecimal!
 }
 
-type PoolFeeData @entity{
+type PoolFeeData @entity(immutable: true){
   id: Bytes!
 
   pool: String
@@ -567,57 +438,6 @@ type PoolHourData @entity {
   low: BigDecimal!
   # close price of token0
   close: BigDecimal!
-}
-
-type TickHourData @entity {
-  # format: <pool address>-<tick index>-<timestamp>
-  id: Bytes!
-  # unix timestamp for start of hour
-  periodStartUnix: Int!
-  # pointer to pool
-  pool: Pool!
-  # pointer to tick
-  tick: Tick!
-  # total liquidity pool has as tick lower or upper at end of period
-  liquidityGross: BigInt!
-  # how much liquidity changes when tick crossed at end of period
-  liquidityNet: BigInt!
-  # hourly volume of token0 with this tick in range
-  volumeToken0: BigDecimal!
-  # hourly volume of token1 with this tick in range
-  volumeToken1: BigDecimal!
-  # hourly volume in derived USD with this tick in range
-  volumeUSD: BigDecimal!
-  # fees in USD
-  feesUSD: BigDecimal!
-}
-
-# Data accumulated and condensed into day stats for each exchange
-# Note: this entity gets saved only if there is a change during the day
-type TickDayData @entity {
-  # format: <pool address>-<tick index>-<timestamp>
-  id: Bytes!
-  # timestamp rounded to current day by dividing by 86400
-  date: Int!
-  # pointer to pool
-  pool: Pool!
-  # pointer to tick
-  tick: Tick!
-  # total liquidity pool has as tick lower or upper at end of period
-  liquidityGross: BigInt!
-  # how much liquidity changes when tick crossed at end of period
-  liquidityNet: BigInt!
-  # hourly volume of token0 with this tick in range
-  volumeToken0: BigDecimal!
-  # hourly volume of token1 with this tick in range
-  volumeToken1: BigDecimal!
-  # hourly volume in derived USD with this tick in range
-  volumeUSD: BigDecimal!
-  # fees in USD
-  feesUSD: BigDecimal!
-  # vars needed for fee computation
-  feeGrowthOutside0X128: BigInt!
-  feeGrowthOutside1X128: BigInt!
 }
 
 type TokenDayData @entity {

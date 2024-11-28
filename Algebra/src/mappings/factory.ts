@@ -1,6 +1,6 @@
 import { WHITELIST_TOKENS } from './../utils/pricing'
 /* eslint-disable prefer-const */
-import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ADDRESS_ZERO, pools_list} from './../utils/constants'
+import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ADDRESS_ZERO} from './../utils/constants'
 import { Factory } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { Pool, Token, Bundle } from '../types/schema'
@@ -43,14 +43,6 @@ export function handlePoolCreated(event: PoolEvent): void {
 
   let token0 = Token.load(token0_address.toHexString())
   let token1 = Token.load(token1_address.toHexString())
-
-
-  if(pools_list.includes(event.params.pool.toHexString())){
-    token0 = Token.load(event.params.token1.toHexString())
-    token1 = Token.load(event.params.token0.toHexString())
-    token0_address = event.params.token1
-    token1_address = event.params.token0  
-  }  
 
   // fetch info if null
   if (token0 === null) {
