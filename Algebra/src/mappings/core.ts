@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { Bundle, Burn, Factory, Mint, Pool, Swap, Tick, Token,PoolFeeData } from '../types/schema'
 import { Pool as PoolABI } from '../types/Factory/Pool'
-import { BigDecimal, BigInt, ethereum, log, Bytes} from '@graphprotocol/graph-ts'
+import { BigDecimal, BigInt, Bytes} from '@graphprotocol/graph-ts'
 
 import {
   Burn as BurnEvent,
@@ -13,7 +13,7 @@ import {
   CommunityFee
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, TICK_SPACING } from '../utils/constants'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD} from '../utils/constants'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices, USDT_WBNB_POOL } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -127,8 +127,8 @@ export function handleMint(event: MintEvent): void {
   let lowerTickIdx = event.params.bottomTick
   let upperTickIdx = event.params.topTick
 
-  let lowerTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.bottomTick)
-  let upperTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.topTick)
+  let lowerTickId = (Bytes.fromHexString(poolAddress)).concatI32(event.params.bottomTick)
+  let upperTickId = (Bytes.fromHexString(poolAddress)).concatI32(event.params.topTick)
 
   let lowerTick = Tick.load(lowerTickId)
   let upperTick = Tick.load(upperTickId)
@@ -136,7 +136,6 @@ export function handleMint(event: MintEvent): void {
   if (lowerTick === null) {
     lowerTick = createTick(lowerTickId, lowerTickIdx, pool.id, event)
   }
-
   if (upperTick === null) {
     upperTick = createTick(upperTickId, upperTickIdx, pool.id, event)
   }
@@ -162,7 +161,8 @@ export function handleMint(event: MintEvent): void {
   pool.save()
   factory.save()
   mint.save()
-
+  lowerTick.save()
+  upperTick.save()
 
 }
 
@@ -239,10 +239,10 @@ export function handleBurn(event: BurnEvent): void {
   burn.tickLower = BigInt.fromI32(event.params.bottomTick)
   burn.tickUpper = BigInt.fromI32(event.params.topTick)
 
-
+  
   // tick entities
-  let lowerTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.bottomTick)
-  let upperTickId = Bytes.fromHexString(poolAddress).concatI32(event.params.topTick)
+  let lowerTickId = (Bytes.fromHexString(poolAddress)).concatI32(event.params.bottomTick)
+  let upperTickId = (Bytes.fromHexString(poolAddress)).concatI32(event.params.topTick)
   let lowerTick = Tick.load(lowerTickId)!
   let upperTick = Tick.load(upperTickId)!
   let amount = event.params.liquidityAmount
