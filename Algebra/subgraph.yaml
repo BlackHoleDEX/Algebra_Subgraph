@@ -2,11 +2,6 @@ specVersion: 0.0.4
 description: THENA is a decentralized Exchange on the BNB chain. It is based on the ve(3,3) model
 schema:
   file: ./schema.graphql
-features:
-  - grafting
-graft:
-  base: QmXJF8ptng63aan78aoARrgAv6XEHPVVWKqNzg7im19NaM
-  block: 44221199
 dataSources:
   - kind: ethereum/contract
     name: Factory
