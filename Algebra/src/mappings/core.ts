@@ -162,7 +162,8 @@ export function handleMint(event: MintEvent): void {
   pool.save()
   factory.save()
   mint.save()
-
+  lowerTick.save()
+  upperTick.save()
 
 }
 
