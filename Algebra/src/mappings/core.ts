@@ -428,14 +428,6 @@ export function handleSwap(event: SwapEvent): void {
   swap.tick = BigInt.fromI32(event.params.tick as i32)
   swap.price = event.params.price
 
-
-  // update fee growth
-  let poolContract = PoolABI.bind(event.address)
-  let feeGrowthGlobal0X128 = poolContract.totalFeeGrowth0Token()
-  let feeGrowthGlobal1X128 = poolContract.totalFeeGrowth1Token()
-  pool.feeGrowthGlobal0X128 = feeGrowthGlobal0X128 as BigInt
-  pool.feeGrowthGlobal1X128 = feeGrowthGlobal1X128 as BigInt
-
   // interval data
   let fusionDayData = updateFusionDayData(event)
   let poolDayData = updatePoolDayData(event)
