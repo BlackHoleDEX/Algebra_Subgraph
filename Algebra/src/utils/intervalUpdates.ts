@@ -64,8 +64,7 @@ export function updatePoolDayData(event: ethereum.Event): PoolDayData {
     poolDayData.feesToken1 = ZERO_BD
     poolDayData.feesUSD = ZERO_BD
     poolDayData.txCount = ZERO_BI
-    poolDayData.feeGrowthGlobal0X128 = ZERO_BI
-    poolDayData.feeGrowthGlobal1X128 = ZERO_BI
+
     poolDayData.open = pool.token0Price
     poolDayData.high = pool.token0Price
     poolDayData.low = pool.token0Price
@@ -81,8 +80,6 @@ export function updatePoolDayData(event: ethereum.Event): PoolDayData {
 
   poolDayData.liquidity = pool.liquidity
   poolDayData.sqrtPrice = pool.sqrtPrice
-  poolDayData.feeGrowthGlobal0X128 = pool.feeGrowthGlobal0X128
-  poolDayData.feeGrowthGlobal1X128 = pool.feeGrowthGlobal1X128
   poolDayData.token0Price = pool.token0Price
   poolDayData.token1Price = pool.token1Price
   poolDayData.tick = pool.tick
@@ -148,8 +145,6 @@ export function updatePoolHourData(event: ethereum.Event): PoolHourData {
     poolHourData.untrackedVolumeUSD = ZERO_BD
     poolHourData.txCount = ZERO_BI
     poolHourData.feesUSD = ZERO_BD
-    poolHourData.feeGrowthGlobal0X128 = ZERO_BI
-    poolHourData.feeGrowthGlobal1X128 = ZERO_BI
     poolHourData.open = pool.token0Price
     poolHourData.high = pool.token0Price
     poolHourData.low = pool.token0Price
@@ -167,8 +162,6 @@ export function updatePoolHourData(event: ethereum.Event): PoolHourData {
   poolHourData.sqrtPrice = pool.sqrtPrice
   poolHourData.token0Price = pool.token0Price
   poolHourData.token1Price = pool.token1Price
-  poolHourData.feeGrowthGlobal0X128 = pool.feeGrowthGlobal0X128
-  poolHourData.feeGrowthGlobal1X128 = pool.feeGrowthGlobal1X128
   poolHourData.close = pool.token0Price
   poolHourData.tick = pool.tick
   poolHourData.tvlUSD = pool.totalValueLockedUSD

@@ -119,8 +119,6 @@ export function handlePoolCreated(event: PoolEvent): void {
   pool.txCount = ZERO_BI
   pool.liquidity = ZERO_BI
   pool.sqrtPrice = ZERO_BI
-  pool.feeGrowthGlobal0X128 = ZERO_BI
-  pool.feeGrowthGlobal1X128 = ZERO_BI
   pool.communityFee0 = BigInt.fromI32(1000)
   pool.communityFee1 = BigInt.fromI32(1000)
   pool.token0Price = ZERO_BD
