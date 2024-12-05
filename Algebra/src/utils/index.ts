@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, ethereum, log } from '@graphprotocol/graph-ts'
 import { Transaction } from '../types/schema'
-import { ONE_BI, ZERO_BI, ZERO_BD, ONE_BD} from '../utils/constants'
+import { ONE_BI, ZERO_BI, ZERO_BD, ONE_BD, MIN_SQRT_PRICE, MAX_SQRT_PRICE, Q96 } from '../utils/constants'
 
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
   let bd = BigDecimal.fromString('1')
@@ -93,30 +93,25 @@ export function loadTransaction(event: ethereum.Event): Transaction {
   return transaction as Transaction
 }
 
-export function tickToSqrtPrice(tick: BigInt): BigDecimal{
-    return bigDecimalExponated(BigDecimal.fromString('1.0001'), tick.div(BigInt.fromI32(2)))
-}
 
-export function getAmounts(liquidity: BigInt, tickLower: BigInt, tickUpper: BigInt, tick: BigInt, token0: boolean): BigDecimal{
-  if(tickLower < BigInt.fromI32(-887272) || tickUpper > BigInt.fromI32(887272))
+
+export function getAmounts(liquidity: BigInt, lowerPrice: BigInt, upperPrice: BigInt, currentPrice: BigInt, token0: boolean): BigDecimal{
+  if(lowerPrice < MIN_SQRT_PRICE || upperPrice > MAX_SQRT_PRICE)
     return ZERO_BD
-  let lowerPrice = tickToSqrtPrice(tickLower)
-  let upperPrice = tickToSqrtPrice(tickUpper)
-  let currentPrice = tickToSqrtPrice(tick)
-  let amount0 = ZERO_BD
-  let amount1 = ZERO_BD
+  let amount0 = ZERO_BI
+  let amount1 = ZERO_BI
   if (currentPrice < lowerPrice){
-      amount0 = liquidity.toBigDecimal().times(ONE_BD.div(lowerPrice).minus(ONE_BD.div(upperPrice)))
+      amount0 = (liquidity.times(Q96).times(upperPrice.minus(lowerPrice))).div(lowerPrice.times(upperPrice))
   } else {
       if (lowerPrice <= currentPrice && currentPrice <= upperPrice){
-        amount1 = liquidity.toBigDecimal().times(currentPrice - lowerPrice)
-        amount0 = liquidity.toBigDecimal().times(ONE_BD.div(currentPrice) - ONE_BD.div(upperPrice))
+        amount1 = (liquidity.times(currentPrice.minus(lowerPrice))).div(Q96)
+        amount0 = (liquidity.times(Q96).times(upperPrice.minus(currentPrice))).div(currentPrice.times(upperPrice))
       }
       else{
-        amount1 = liquidity.toBigDecimal().times(upperPrice - lowerPrice)
+        amount1 = (liquidity.times(upperPrice.minus(lowerPrice))).div(Q96)
 
       }
     }
   
-  return token0 ? amount0 : amount1
+  return token0 ? amount0.toBigDecimal() : amount1.toBigDecimal()
 }

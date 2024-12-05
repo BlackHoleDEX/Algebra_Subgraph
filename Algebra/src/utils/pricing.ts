@@ -92,12 +92,12 @@ export function findEthPerToken(token: Token): BigDecimal {
         // whitelist token is token1
         let token1 = Token.load(pool.token1)!
 
-        let amount = getAmounts(pool.liquidity, pool.tick.minus(BigInt.fromI32(61)), pool.tick.minus(ONE_BI),  pool.tick, false)
+        let amount = getAmounts(pool.liquidity, pool.sqrtPrice.times(BigInt.fromI32(997)).div(BigInt.fromI32(1000)), pool.sqrtPrice, pool.sqrtPrice, false)
         let liquidityConcentration = amount.div(token1.decimals.toBigDecimal()).times(token1.derivedBnb)
 
         // get the derived Bnb in pool
         let bnbLocked = pool.totalValueLockedToken1.times(token1.derivedBnb)
-        if ( liquidityConcentration.gt(largestliquidityConcentration) && bnbLocked.gt(MINIMUM_BNB_LOCKED)) {
+        if (liquidityConcentration.gt(largestliquidityConcentration) && bnbLocked.gt(MINIMUM_BNB_LOCKED)) {
           largestliquidityConcentration = liquidityConcentration
           // token1 per our token * Eth per token1
           priceSoFar = pool.token1Price.times(token1.derivedBnb as BigDecimal)
@@ -107,7 +107,7 @@ export function findEthPerToken(token: Token): BigDecimal {
         let token0 = Token.load(pool.token0)!
 
 
-        let amount = getAmounts(pool.liquidity, pool.tick.plus(ONE_BI), pool.tick.plus(BigInt.fromI32(61)), pool.tick, true)
+        let amount = getAmounts(pool.liquidity, pool.sqrtPrice, pool.sqrtPrice.times(BigInt.fromI32(1003)).div(BigInt.fromI32(1000)), pool.sqrtPrice, true)
         let liquidityConcentration = amount.div(token0.decimals.toBigDecimal()).times(token0.derivedBnb)
 
         // get the derived Bnb in pool
