@@ -5,9 +5,9 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ --access-token iliaazhel/goerli-blocks subgraph.yaml",
-    "create-local": "graph create --node http://localhost:8020/ iliaazhel/ethereum-blocks",
-    "remove-local": "graph remove --node http://localhost:8020/ iliaazhel/ethereum-blocks",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 iliaazhel/ethereum-blocks",
+    "create-local": "graph create --node https://fchain-graph.algebra.finance/create cryptoalgebra/blocks",
+    "remove-local": "graph remove --node http://localhost:8030/ iliaazhel/ethereum-blocks",
+    "deploy-local": "graph deploy --node https://fchain-graph.algebra.finance/create --ipfs https://fchain-graph.algebra.finance cryptoalgebra/blocks",
     "deploy-rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ blocklytics/rinkeby-blocks",
     "deploy-kovan": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ blocklytics/kovan-blocks",
     "deploy-goerli": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ blocklytics/goerli-blocks",
@@ -15,7 +15,7 @@
     "deploy-poa": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ blocklytics/poa-core-blocks"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.64.0",
-    "@graphprotocol/graph-ts": "0.32.0"
+    "@graphprotocol/graph-cli": "0.91.0",
+    "@graphprotocol/graph-ts": "0.36.0"
   }
 }
