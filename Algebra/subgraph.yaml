@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: holesky
+    network: mainnet
     source:
-      address: '0xDfCC62B3eE40EE453Cb2788576B56e746FC79827'
+      address: '0xd7cB0E0692f2D55A17bA81c1fE5501D66774fC4A'
       abi: Factory
-      startBlock: 2418516 
+      startBlock: 5062133 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: holesky
+    network: mainnet
     source:
-      address: '0xDE4da840d2c602abC583eF7558251Ff188d27A1D'
+      address: '0xB4F9b6b019E75CBe51af4425b2Fc12797e2Ee2a1'
       abi: NonfungiblePositionManager
-      startBlock: 2418516 
+      startBlock: 5062133 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: holesky
+    network: mainnet
     source:
       abi: Pool
     mapping:
