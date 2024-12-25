@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Limit
-    network: holesky
+    network: base
     source:
-      address: "0x8e99b3D8C477fa7a1Cb7f2286c8074dB423A6B58"
+      address: "0x21c2304493dE7037fb854B605625E09bae2BB937"
       abi: Limit
-      startBlock: 2691935 
+      startBlock: 24167000 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
