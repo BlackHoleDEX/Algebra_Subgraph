@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Limit
-    network: base
+    network: sonic
     source:
       address: "0x21c2304493dE7037fb854B605625E09bae2BB937"
       abi: Limit
