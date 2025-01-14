@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, ethereum } from '@graphprotocol/graph-ts'
 import { Transaction } from '../types/schema'
-import { ONE_BI, ZERO_BI, ZERO_BD, ONE_BD } from '../utils/constants'
+import { ONE_BI, ZERO_BI, ZERO_BD, ONE_BD, Q96 } from '../utils/constants'
 
 export function exponentToBigDecimal(decimals: BigInt): BigDecimal {
   let bd = BigDecimal.fromString('1')
@@ -78,6 +78,21 @@ export function convertTokenToDecimal(tokenAmount: BigInt, exchangeDecimals: Big
 
 export function convertEthToDecimal(matic: BigInt): BigDecimal {
   return matic.toBigDecimal().div(exponentToBigDecimal(18))
+}
+
+export function getToken0Delta(priceLower: BigDecimal, priceUpper: BigDecimal, liquidity: BigDecimal): BigDecimal {
+    let priceDelta = priceUpper - priceLower;
+    let liquidityShifted = liquidity * Q96;
+
+    let token0Delta = (priceDelta * liquidityShifted) / (priceUpper * priceLower);
+
+    return token0Delta;
+}
+
+export function getToken1Delta(priceLower: BigDecimal, priceUpper: BigDecimal, liquidity: BigDecimal): BigDecimal {
+  let priceDelta = priceUpper - priceLower;
+  let token1Delta = priceDelta * liquidity / Q96; 
+  return token1Delta;
 }
 
 export function loadTransaction(event: ethereum.Event): Transaction {

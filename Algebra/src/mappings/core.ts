@@ -14,7 +14,8 @@ import {
   TickSpacing
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list} from '../utils/constants'
+import { getToken0Delta, getToken1Delta, bigDecimalExponated} from '../utils/index'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, Q128, FEE_DENOMINATOR, pools_list} from '../utils/constants'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -143,10 +144,20 @@ export function handleMint(event: MintEvent): void {
 
   if (lowerTick === null) {
     lowerTick = createTick(lowerTickId, lowerTickIdx, pool.id, event)
+
+    if(BigInt.fromI32(lowerTickIdx) < pool.tick ) {
+      lowerTick.feeGrowthOutside0X128 = pool.feeGrowthGlobal0X128
+      lowerTick.feeGrowthOutside1X128 = pool.feeGrowthGlobal1X128
+    }
   }
 
   if (upperTick === null) {
     upperTick = createTick(upperTickId, upperTickIdx, pool.id, event)
+
+    if(BigInt.fromI32(upperTickIdx) < pool.tick ) {
+      upperTick.feeGrowthOutside0X128 = pool.feeGrowthGlobal0X128
+      upperTick.feeGrowthOutside1X128 = pool.feeGrowthGlobal1X128
+    }
   }
 
   let amount = event.params.liquidityAmount
@@ -281,6 +292,7 @@ export function handleBurn(event: BurnEvent): void {
   let amount = event.params.liquidityAmount
   lowerTick.liquidityGross = lowerTick.liquidityGross.minus(amount)
   lowerTick.liquidityNet = lowerTick.liquidityNet.minus(amount)
+
   upperTick.liquidityGross = upperTick.liquidityGross.minus(amount)
   upperTick.liquidityNet = upperTick.liquidityNet.plus(amount)
 
@@ -314,6 +326,7 @@ export function handleSwap(event: SwapEvent): void {
   let pool = Pool.load(event.address.toHexString())!
 
   let oldTick = pool.tick
+  let oldLiquidity = pool.liquidity
   let flag = false 
 
 
@@ -479,13 +492,6 @@ export function handleSwap(event: SwapEvent): void {
   swap.price = event.params.price
 
 
-  // update fee growth
-  let poolContract = PoolABI.bind(event.address)
-  let feeGrowthGlobal0X128 = poolContract.totalFeeGrowth0Token()
-  let feeGrowthGlobal1X128 = poolContract.totalFeeGrowth1Token()
-  pool.feeGrowthGlobal0X128 = feeGrowthGlobal0X128 as BigInt
-  pool.feeGrowthGlobal1X128 = feeGrowthGlobal1X128 as BigInt
-
   // interval data
   let algebraDayData = updateAlgebraDayData(event)
   let poolDayData = updatePoolDayData(event)
@@ -550,7 +556,7 @@ export function handleSwap(event: SwapEvent): void {
   poolHourData.save()
   poolDayData.save()
   factory.save()
-  pool.save()
+
   token0.save()
   token1.save()
   
@@ -562,28 +568,68 @@ export function handleSwap(event: SwapEvent): void {
     loadTickUpdateFeeVarsAndSave(newTick.toI32(), event)
   }
 
-  let numIters = oldTick
-    .minus(newTick)
-    .abs()
-    .div(pool.tickSpacing)
+  let feeGrowthGlobal0X128 = pool.feeGrowthGlobal0X128
+  let feeGrowthGlobal1X128 = pool.feeGrowthGlobal1X128
 
-  if (numIters.gt(BigInt.fromI32(100))) {
-    // In case more than 100 ticks need to be updated ignore the update in
-    // order to avoid timeouts. From testing this behavior occurs only upon
-    // pool initialization. This should not be a big issue as the ticks get
-    // updated later. For early users this error also disappears when calling
-    // collect
-  } else if (newTick.gt(oldTick)) {
+  if (newTick.gt(oldTick)) {
     let firstInitialized = oldTick.plus(pool.tickSpacing.minus(modulo))
-    for (let i = firstInitialized; i.le(newTick); i = i.plus(pool.tickSpacing)) {
-      loadTickUpdateFeeVarsAndSave(i.toI32(), event)
+    let liquidity = oldLiquidity.toBigDecimal()
+    // TODO calculate fees between oldPrice and firstInitialized tick' price
+    // increase totalFeeGrowths and update liqudity
+    // check if start index is correct
+    for (let i = firstInitialized; i.lt(newTick); i = i.plus(pool.tickSpacing)) {
+      // convert tick to sqrtPrice, TODO optimize, handle odd ticks
+      let lowerSqrtPrice = bigDecimalExponated(BigDecimal.fromString('1.0001'), i / BigInt.fromI32(2))
+      let upperSqrtPrice = bigDecimalExponated(BigDecimal.fromString('1.0001'), i.plus(pool.tickSpacing) / BigInt.fromI32(2))
+      // calculate step fee amount
+      let tokenDelta = getToken0Delta(lowerSqrtPrice, upperSqrtPrice, liquidity)
+      let fees = tokenDelta * pool.fee.toBigDecimal() / FEE_DENOMINATOR
+      // increase global fee growth
+      // TODO convert to BigInt
+      feeGrowthGlobal0X128 += fees * Q128 / liquidity
+
+      // update tick data
+      let tick = Tick.load(event.address.toHexString().concat('#').concat(i.plus(pool.tickSpacing).toString()))
+      if (tick != null) {
+        liquidity += tick.liquidityNet.toBigDecimal()
+        tick.feeGrowthOutside0X128 = feeGrowthGlobal0X128 - tick.feeGrowthOutside0X128
+        tick.save()
+      }
     }
+    // TODO calculate fees between lastInitialized tick' price and final price
+    // increase totalFeeGrowths
   } else if (newTick.lt(oldTick)) {
     let firstInitialized = oldTick.minus(modulo)
-    for (let i = firstInitialized; i.ge(newTick); i = i.minus(pool.tickSpacing)) {
-      loadTickUpdateFeeVarsAndSave(i.toI32(), event)
+    let liquidity = oldLiquidity.toBigDecimal()
+    // TODO calculate fees between oldPrice and firstInitialized tick' price
+    // increase totalFeeGrowths and update liqudity
+    // check if start index is correct
+    for (let i = firstInitialized; i.gt(newTick); i = i.minus(pool.tickSpacing)) {
+      // convert tick to sqrtPrice, TODO optimize, handle odd ticks
+      let upperSqrtPrice = bigDecimalExponated(BigDecimal.fromString('1.0001'), i / BigInt.fromI32(2))
+      let lowerSqrtPrice = bigDecimalExponated(BigDecimal.fromString('1.0001'), i.minus(pool.tickSpacing) / BigInt.fromI32(2))
+      // calculate step fee amount
+      let tokenDelta = getToken1Delta(lowerSqrtPrice, upperSqrtPrice, liquidity)
+      let fees = tokenDelta * pool.fee.toBigDecimal() / FEE_DENOMINATOR
+      // increase global fee growth
+      // TODO convert to BigInt
+      feeGrowthGlobal1X128 += fees * Q128 / liquidity
+
+      // update tick data
+      let tick = Tick.load(event.address.toHexString().concat('#').concat(i.minus(pool.tickSpacing).toString()))
+      if (tick != null) {
+        liquidity += tick.liquidityNet.toBigDecimal()
+        tick.feeGrowthOutside1X128 = feeGrowthGlobal1X128 - tick.feeGrowthOutside1X128
+        tick.save()
+      }
     }
+    // TODO calculate fees between lastInitialized tick' price and final price
+    // increase totalFeeGrowths
   }
+
+  pool.feeGrowthGlobal0X128 = feeGrowthGlobal0X128;
+  pool.feeGrowthGlobal1X128 = feeGrowthGlobal1X128
+  pool.save()
 }
 
 export function handleSetCommunityFee(event: CommunityFee): void {
@@ -626,13 +672,6 @@ export function handleCollect(event: Collect): void {
 
 
 function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
-  let poolAddress = event.address
-  // not all ticks are initialized so obtaining null is expected behavior
-  let poolContract = PoolABI.bind(poolAddress)
-
-  let tickResult = poolContract.ticks(tick.tickIdx.toI32())
-  tick.feeGrowthOutside0X128 = tickResult.value4
-  tick.feeGrowthOutside1X128 = tickResult.value5
   tick.save()
   updateTickDayData(tick, event)
 }
