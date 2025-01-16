@@ -5,14 +5,14 @@ import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
 const WMatic_ADDRESS = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
-const USDC_WMatic_03_POOL = '0xc855279394223bef22a9db7a27f8c2bb6c6c0c34'
+const USDC_WMatic_03_POOL = '0x702d3438B2c6DE6911a6A43A673cE5593c797F74'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
   '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', // WMATIC
   '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467', // USDT 
+  '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', // USDT 
   '0x49a390a3dfd2d01389f799965f3af5961f87d228'
 ]
 
@@ -22,7 +22,7 @@ let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
   '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467' // SUDT
+  '0xc2132D05D31c914a87C6611C10748AEb04B58e8F' // SUDT
 ]
 
 
