@@ -4,25 +4,29 @@ import { Bundle, Pool, Token } from './../types/schema'
 import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
-const WMatic_ADDRESS = '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6'
-const USDC_WMatic_03_POOL = '0xb104f0535a35a69880dab51008756c31d47dbf0f'
+const WMatic_ADDRESS = '0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38'
+const USDC_WMatic_03_POOL = '0x5c4b7d607aaf7b5cde9f09b5f03cf3b5c923aeea'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
-  '0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6', // WMATIC
-  '0xf2a0bc44debd394076c67962bb4869fd43c78018', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467', // USDT 
-  '0x49a390a3dfd2d01389f799965f3af5961f87d228'
+  '0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38', // wS
+  '0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae', // scUSD
+  '0xa04bc7140c26fc9bb1f36b1a604c7a5a88fb0e70', // SWPx
+  '0x29219dd400f2bf60e5a23d13be72b486d4038894', // USDC.e
+  '0x50c42deacd8fc9773493ed674b675be577f2634b', // WETH
+  '0x3bce5cb273f0f148010bbea2470e7b5df84c7812', // SONIC ETH
+  '0xe5da20f15420ad15de0fa650600afc998bbe3955', // stS
+  '0x7ad5935ea295c4e743e4f2f5b4cda951f41223c2' // Sacra
 ]
 
-let MINIMUM_Matic_LOCKED = BigDecimal.fromString('0')
+let MINIMUM_Matic_LOCKED = BigDecimal.fromString('1500')
 
 let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
-  '0xf2a0bc44debd394076c67962bb4869fd43c78018', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467' // SUDT
+  '0x29219dd400f2bf60e5a23d13be72b486d4038894', // USDC.e
+  '0xd3dce716f3ef535c5ff8d041c1a41c3bd89b97ae' // $scUSD
 ]
 
 
@@ -41,7 +45,7 @@ export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token):
 export function getEthPriceInUSD(): BigDecimal {
   let usdcPool = Pool.load(USDC_WMatic_03_POOL) // dai is token0
   if (usdcPool !== null) {
-    return usdcPool.token0Price
+    return usdcPool.token1Price
   } else {
     return ZERO_BD
   }
