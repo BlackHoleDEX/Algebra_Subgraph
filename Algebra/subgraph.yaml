@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: mainnet
+    network: 1swap-bitfinity
     source:
-      address: '0xd7cB0E0692f2D55A17bA81c1fE5501D66774fC4A'
+      address: '0x7C10f996cB62af1357cb9600834fD7863A3C2d8f'
       abi: Factory
-      startBlock: 5062133 
+      startBlock: 5640326 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: mainnet
+    network: 1swap-bitfinity
     source:
-      address: '0xB4F9b6b019E75CBe51af4425b2Fc12797e2Ee2a1'
+      address: '0x0d04A27Bb6428a199379394B8EE6e3781121efa0'
       abi: NonfungiblePositionManager
-      startBlock: 5062133 
+      startBlock: 5640326 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: mainnet
+    network: 1swap-bitfinity
     source:
       abi: Pool
     mapping:
