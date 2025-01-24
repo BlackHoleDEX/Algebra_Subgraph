@@ -692,9 +692,11 @@ export function handleChangeFee(event: ChangeFee): void {
 }
 
 export function handlePlugin(event: PluginEvent): void {
-  let pool = Pool.load(event.address.toHexString())!
-  pool.plugin = event.params.newPluginAddress
-  pool.save()
+  let pool = Pool.load(event.address.toHexString())
+  if (pool != null) {
+    pool.plugin = event.params.newPluginAddress
+    pool.save()
+  }
 
   let plugin = Plugin.load(event.params.newPluginAddress.toHexString())
   if (plugin === null) {
