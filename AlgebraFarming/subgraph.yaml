@@ -5,11 +5,11 @@ schema:
 dataSources:
 - kind: ethereum/contract
   name: NonfungiblePositionManager
-  network: holesky
+  network: mainnet
   source:
-      address: '0xDE4da840d2c602abC583eF7558251Ff188d27A1D'
+      address: '0x15240EB8D7Af66CBc68733Ab8b1b7dF3cA478724'
       abi: NonfungiblePositionManager
-      startBlock: 2418516
+      startBlock: 8570080
   mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -36,11 +36,11 @@ dataSources:
           handler: handleDecreaseLiquidity
 - kind: ethereum/contract
   name: EternalFarming
-  network: holesky
+  network: mainnet
   source:
-      address: '0x6155F87733088567b8107127801ff67409C11582'
+      address: '0x39644f4BfbB8201B747517F10Cd5fb1e1581ca09'
       abi: EternalFarming
-      startBlock: 2418516
+      startBlock: 8570080
   mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
