@@ -5,14 +5,14 @@ import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
 const WMatic_ADDRESS = '0x760afe86e5de5fa0ee542fc7b7b713e1c5425701'
-const USDC_WMatic_03_POOL = '0x8e0adea40c7c4e810a8348f86c50a4c9eec159ab'
+const USDC_WMatic_03_POOL = '0x5630e18b629e06d1124e1da0e78f8e56c99f06b7'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
   '0x760afe86e5de5fa0ee542fc7b7b713e1c5425701', // WMATIC
   '0x38a5c36fa8c8c9e4649b51fcd61810b14e7ce047', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467', // USDT 
+  '0xf817257fed379853cde0fa4f97ab987181b1e5ea', // USDT 
   '0x49a390a3dfd2d01389f799965f3af5961f87d228'
 ]
 
@@ -22,7 +22,7 @@ let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
   '0x38a5c36fa8c8c9e4649b51fcd61810b14e7ce047', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467' // SUDT
+  '0xf817257fed379853cde0fa4f97ab987181b1e5ea' // SUDT
 ]
 
 
@@ -41,7 +41,7 @@ export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token):
 export function getEthPriceInUSD(): BigDecimal {
   let usdcPool = Pool.load(USDC_WMatic_03_POOL) // dai is token0
   if (usdcPool !== null) {
-    return usdcPool.token0Price
+    return usdcPool.token1Price
   } else {
     return ZERO_BD
   }

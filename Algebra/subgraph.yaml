@@ -7,7 +7,7 @@ dataSources:
     name: Factory
     network: monad-testnet
     source:
-      address: '0xDfCC62B3eE40EE453Cb2788576B56e746FC79827'
+      address: '0x10253594A832f967994b44f33411940533302ACb'
       abi: Factory
       startBlock: 2597112 
     mapping:
@@ -40,7 +40,7 @@ dataSources:
     name: NonfungiblePositionManager
     network: monad-testnet
     source:
-      address: '0xDE4da840d2c602abC583eF7558251Ff188d27A1D'
+      address: '0x69D57B9D705eaD73a5d2f2476C30c55bD755cc2F'
       abi: NonfungiblePositionManager
       startBlock: 2597112 
     mapping:
