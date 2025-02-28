@@ -244,13 +244,20 @@ export function handleBurn(event: BurnEvent): void {
   // tick entities
   let lowerTickId = poolAddress + '#' + BigInt.fromI32(event.params.bottomTick).toString()
   let upperTickId = poolAddress + '#' + BigInt.fromI32(event.params.topTick).toString()
-  let lowerTick = Tick.load(lowerTickId)!
-  let upperTick = Tick.load(upperTickId)!
+  let lowerTick = Tick.load(lowerTickId)
+  let upperTick = Tick.load(upperTickId)
   let amount = event.params.liquidityAmount
-  lowerTick.liquidityGross = lowerTick.liquidityGross.minus(amount)
-  lowerTick.liquidityNet = lowerTick.liquidityNet.minus(amount)
-  upperTick.liquidityGross = upperTick.liquidityGross.minus(amount)
-  upperTick.liquidityNet = upperTick.liquidityNet.plus(amount)
+  if(lowerTick != null){
+    lowerTick.liquidityGross = lowerTick.liquidityGross.minus(amount)
+    lowerTick.liquidityNet = lowerTick.liquidityNet.minus(amount)
+    lowerTick.save()
+  }
+  
+  if(upperTick != null){
+    upperTick.liquidityGross = upperTick.liquidityGross.minus(amount)
+    upperTick.liquidityNet = upperTick.liquidityNet.plus(amount)
+    upperTick.save()
+  }
 
   updateFusionDayData(event)
   updatePoolDayData(event)
