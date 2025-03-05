@@ -148,6 +148,7 @@ type Pool @entity {
   swaps: [Swap!]! @derivedFrom(field: "pool")
   collects: [Collect!]! @derivedFrom(field: "pool")
   ticks: [Tick!]! @derivedFrom(field: "pool")
+  lastMintIndex: BigInt!
 }
 
 type Tick @entity {

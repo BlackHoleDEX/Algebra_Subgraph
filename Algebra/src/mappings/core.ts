@@ -131,6 +131,7 @@ export function handleMint(event: MintEvent): void {
   mint.amountUSD = amountUSD
   mint.tickLower = BigInt.fromI32(event.params.bottomTick)
   mint.tickUpper = BigInt.fromI32(event.params.topTick)
+  pool.lastMintIndex = pool.txCount
   
   // tick entities
   let lowerTickIdx = event.params.bottomTick
