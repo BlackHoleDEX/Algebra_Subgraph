@@ -52,8 +52,6 @@ function getPosition(event: ethereum.Event, tokenId: BigInt): Position | null {
       position.collectedFeesToken0 = ZERO_BD
       position.collectedFeesToken1 = ZERO_BD
       position.transaction = loadTransaction(event).id
-      position.feeGrowthInside0LastX128 = positionResult.value8
-      position.feeGrowthInside1LastX128 = positionResult.value9
     }
   }
 
@@ -62,17 +60,6 @@ function getPosition(event: ethereum.Event, tokenId: BigInt): Position | null {
   return null 
 }
 
-
-function updateFeeVars(position: Position, event: ethereum.Event, tokenId: BigInt): Position {
-
-  let positionManagerContract = NonfungiblePositionManager.bind(event.address)
-  let positionResult = positionManagerContract.try_positions(tokenId)
-  if (!positionResult.reverted) {
-    position.feeGrowthInside0LastX128 = positionResult.value.value8
-    position.feeGrowthInside1LastX128 = positionResult.value.value9
-  }
-  return position
-}
 
 function savePositionSnapshot(position: Position, event: ethereum.Event): void {
   
@@ -92,8 +79,6 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
     positionSnapshot.collectedFeesToken0 = position.collectedFeesToken1
     positionSnapshot.collectedFeesToken1 = position.collectedFeesToken0
     positionSnapshot.transaction = loadTransaction(event).id
-    positionSnapshot.feeGrowthInside0LastX128 = position.feeGrowthInside1LastX128
-    positionSnapshot.feeGrowthInside1LastX128 = position.feeGrowthInside0LastX128
   }
   else{
     positionSnapshot.depositedToken0 = position.depositedToken0
@@ -103,8 +88,6 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
     positionSnapshot.collectedFeesToken0 = position.collectedFeesToken0
     positionSnapshot.collectedFeesToken1 = position.collectedFeesToken1
     positionSnapshot.transaction = loadTransaction(event).id
-    positionSnapshot.feeGrowthInside0LastX128 = position.feeGrowthInside0LastX128
-    positionSnapshot.feeGrowthInside1LastX128 = position.feeGrowthInside1LastX128
   }
 
   positionSnapshot.save()
@@ -181,8 +164,6 @@ export function handleDecreaseLiquidity(event: DecreaseLiquidity): void {
   position.liquidity = position.liquidity.minus(event.params.liquidity)
   position.withdrawnToken0 = position.withdrawnToken0.plus(amount0)
   position.withdrawnToken1 = position.withdrawnToken1.plus(amount1)
-
-  position = updateFeeVars(position, event, event.params.tokenId)
   // recalculatePosition(position)
 
   position.save()
@@ -224,8 +205,6 @@ export function handleCollect(event: Collect): void {
 
   position.collectedFeesToken0 = position.collectedToken0.minus(position.withdrawnToken0)
   position.collectedFeesToken1 = position.collectedToken1.minus(position.withdrawnToken1)
-
-  position = updateFeeVars(position, event, event.params.tokenId)
 
   // recalculatePosition(position)
 

@@ -506,14 +506,6 @@ export function handleSwap(event: SwapEvent): void {
   swap.tick = BigInt.fromI32(event.params.tick as i32)
   swap.price = event.params.price
 
-
-  // update fee growth
-  let poolContract = PoolABI.bind(event.address)
-  let feeGrowthGlobal0X128 = poolContract.totalFeeGrowth0Token()
-  let feeGrowthGlobal1X128 = poolContract.totalFeeGrowth1Token()
-  pool.feeGrowthGlobal0X128 = feeGrowthGlobal0X128 as BigInt
-  pool.feeGrowthGlobal1X128 = feeGrowthGlobal1X128 as BigInt
-
   // interval data
   let algebraDayData = updateAlgebraDayData(event)
   let poolDayData = updatePoolDayData(event)
@@ -654,13 +646,6 @@ export function handleCollect(event: Collect): void {
 
 
 function updateTickFeeVarsAndSave(tick: Tick, event: ethereum.Event): void {
-  let poolAddress = event.address
-  // not all ticks are initialized so obtaining null is expected behavior
-  let poolContract = PoolABI.bind(poolAddress)
-
-  let tickResult = poolContract.ticks(tick.tickIdx.toI32())
-  tick.feeGrowthOutside0X128 = tickResult.value4
-  tick.feeGrowthOutside1X128 = tickResult.value5
   tick.save()
   updateTickDayData(tick, event)
 }
