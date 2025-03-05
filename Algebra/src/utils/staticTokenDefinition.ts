@@ -11,10 +11,52 @@ export class StaticTokenDefinition {
   static getStaticDefinitions(): Array<StaticTokenDefinition> {
     const staticDefinitions: Array<StaticTokenDefinition> = [
       {
-        address: Address.fromString('0xe0b7927c4af23765cb51314a0e0521a9645f0e2a'),
-        symbol: 'DGD',
-        name: 'DGD',
-        decimals: BigInt.fromI32(9)
+        address: Address.fromString('0x1ea9099e3026e0b3f8dd6fbacaa45f30fce67431'),
+        symbol: 'ATL',
+        name: 'Atlantis',
+        decimals: BigInt.fromI32(18)
+      },
+      {
+        address: Address.fromString('0x3f23d172e0b0497b6aab290b4207b58c1b4ad8e0'),
+        symbol: 'USDC.a',
+        name: 'USDC Atlantis',
+        decimals: BigInt.fromI32(6)
+      },
+      {
+        address: Address.fromString('0x7777b6562950c7ad54d0e707aac1f4dca8a8e95a'),
+        symbol: 'USDT.a',
+        name: 'USDT Atlantis',
+        decimals: BigInt.fromI32(6)
+      },
+      {
+        address: Address.fromString('0xce111b02d20ad2250dcec6b71531d404fabef3e7'),
+        symbol: 'WETH.a',
+        name: 'WETH Atlantis',
+        decimals: BigInt.fromI32(18)
+      },
+      {
+        address: Address.fromString('0x617e6c7697cff44f2545025a8fc0199dfa6939d0'),
+        symbol: 'WBTC.a',
+        name: 'WBTC Atlantis',
+        decimals: BigInt.fromI32(8)
+      },
+      {
+        address: Address.fromString('0x760AfE86e5de5fa0Ee542fc7B7B713e1c5425701'),
+        symbol: 'WMON',
+        name: 'Wrapped Monad',
+        decimals: BigInt.fromI32(18)
+      },
+      {
+        address: Address.fromString('0xb5a30b0fdc5ea94a52fdc42e3e9760cb8449fb37'),
+        symbol: 'WETH',
+        name: 'Wrapped ETH',
+        decimals: BigInt.fromI32(18)
+      },
+      {
+        address: Address.fromString('0xf817257fed379853cDe0fa4F97AB987181B1E5Ea'),
+        symbol: 'USDC',
+        name: 'USD Coin',
+        decimals: BigInt.fromI32(6)
       },
     ]
     return staticDefinitions
