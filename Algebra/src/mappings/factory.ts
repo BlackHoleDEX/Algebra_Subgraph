@@ -129,10 +129,10 @@ export function handlePoolCreated(event: PoolEvent): void {
   pool.tickSpacing = BigInt.fromI32(60)
   pool.tick = ZERO_BI
   pool.txCount = ZERO_BI
+  pool.lastMintIndex = ZERO_BI
   pool.liquidity = ZERO_BI
   pool.sqrtPrice = ZERO_BI
-  pool.feeGrowthGlobal0X128 = ZERO_BI
-  pool.feeGrowthGlobal1X128 = ZERO_BI
+
   pool.communityFee = factory.defaultCommunityFee
   pool.token0Price = ZERO_BD
   pool.token1Price = ZERO_BD
@@ -284,10 +284,9 @@ export function handleCustomPoolCreated(event: CustomPool): void {
   pool.tickSpacing = BigInt.fromI32(60)
   pool.tick = ZERO_BI
   pool.txCount = ZERO_BI
+  pool.lastMintIndex = ZERO_BI
   pool.liquidity = ZERO_BI
   pool.sqrtPrice = ZERO_BI
-  pool.feeGrowthGlobal0X128 = ZERO_BI
-  pool.feeGrowthGlobal1X128 = ZERO_BI
   pool.communityFee = factory.defaultCommunityFee
   pool.token0Price = ZERO_BD
   pool.token1Price = ZERO_BD

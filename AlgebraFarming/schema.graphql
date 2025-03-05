@@ -19,7 +19,6 @@ type Deposit @entity {
   pool: Bytes!
   eternalFarming: Bytes 
   liquidity: BigInt!
-  rangeLength: BigInt!
 }
 
 type Reward @entity{
