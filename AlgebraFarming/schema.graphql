@@ -27,13 +27,3 @@ type Reward @entity{
   amount: BigInt!
   owner: Bytes!
 }
-
-type Token @entity{
-  id: ID!
-  # token symbol
-  symbol: String!
-  # token name
-  name: String!
-  # token decimals
-  decimals: BigInt!
-}
