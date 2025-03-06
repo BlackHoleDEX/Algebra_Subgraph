@@ -41,7 +41,7 @@ export class StaticTokenDefinition {
         decimals: BigInt.fromI32(8)
       },
       {
-        address: Address.fromString('0x760AfE86e5de5fa0Ee542fc7B7B713e1c5425701'),
+        address: Address.fromString('0x760afe86e5de5fa0ee542fc7b7b713e1c5425701'),
         symbol: 'WMON',
         name: 'Wrapped Monad',
         decimals: BigInt.fromI32(18)
@@ -53,10 +53,16 @@ export class StaticTokenDefinition {
         decimals: BigInt.fromI32(18)
       },
       {
-        address: Address.fromString('0xf817257fed379853cDe0fa4F97AB987181B1E5Ea'),
+        address: Address.fromString('0xf817257fed379853cde0fa4f97ab987181b1e5ea'),
         symbol: 'USDC',
         name: 'USD Coin',
         decimals: BigInt.fromI32(6)
+      },
+      {
+        address: Address.fromString('0x38a5c36fa8c8c9e4649b51fcd61810b14e7ce047'),
+        symbol: 'USDC',
+        name: 'USDC',
+        decimals: BigInt.fromI32(18)
       },
     ]
     return staticDefinitions
