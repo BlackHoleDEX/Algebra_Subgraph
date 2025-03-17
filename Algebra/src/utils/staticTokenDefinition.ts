@@ -11,6 +11,42 @@ export class StaticTokenDefinition {
   static getStaticDefinitions(): Array<StaticTokenDefinition> {
     const staticDefinitions: Array<StaticTokenDefinition> = [
       {
+        address: Address.fromString("0x0f0bdebf0f83cd1ee3974779bcb7315f9808c714"),
+        symbol: "DAK",
+        decimals: BigInt.fromI32(18),
+        name: "Molandak"
+      },
+      {
+        address: Address.fromString("0x6593f49ca8d3038ca002314c187b63dd348c2f94"),
+        symbol: "USDT",
+        decimals: BigInt.fromI32(18),
+        name: "MockUSDT"
+      },
+      {
+        address: Address.fromString("0xa504d654ae9b08dc9c7ef9c563d90de13ac06daa"),
+        symbol: "MDOG",
+        decimals: BigInt.fromI32(18),
+        name: "MonadDog"
+      },
+      {
+        address: Address.fromString("0xb820bf0dede889662675a09c4fd2a6998e3c8310"),
+        symbol: "USDT",
+        decimals: BigInt.fromI32(6),
+        name: "peg usd for kiloex"
+      },
+      {
+        address: Address.fromString("0xe0590015a873bf326bd645c3e1266d4db41c4e6b"),
+        symbol: "CHOG",
+        decimals: BigInt.fromI32(18),
+        name: "Chog"
+      },
+      {
+        address: Address.fromString("0xfe140e1dce99be9f4f15d657cd9b7bf622270c50"),
+        symbol: "YAKI",
+        decimals: BigInt.fromI32(18),
+        name: "Moyaki"
+      },
+      {
         address: Address.fromString('0x1ea9099e3026e0b3f8dd6fbacaa45f30fce67431'),
         symbol: 'ATL',
         name: 'Atlantis',

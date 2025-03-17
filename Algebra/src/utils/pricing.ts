@@ -13,7 +13,7 @@ export let WHITELIST_TOKENS: string[] = [
   '0x760afe86e5de5fa0ee542fc7b7b713e1c5425701', // WMATIC
   '0x38a5c36fa8c8c9e4649b51fcd61810b14e7ce047', // USDC
   '0xf817257fed379853cde0fa4f97ab987181b1e5ea', // USDT 
-  '0x49a390a3dfd2d01389f799965f3af5961f87d228'
+  '0x1ea9099e3026e0b3f8dd6fbacaa45f30fce67431'
 ]
 
 let MINIMUM_Matic_LOCKED = BigDecimal.fromString('0')
