@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: sei-testnet
+    network: moonbeam
     source:
-      address: '0x38A5C36FA8c8c9E4649b51FCD61810B14e7ce047'
+      address: '0x90dD87C994959A36d725bB98F9008B0b3C3504A0'
       abi: Factory
-      startBlock: 153536764 
+      startBlock: 9521226 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: sei-testnet
+    network: moonbeam
     source:
-      address: '0xc27754e939213fab4f68A5B4E75adf9568174355'
+      address: '0x26c48519bBCf6df3E39d4C724ff82B6F060D3Bbe'
       abi: NonfungiblePositionManager
-      startBlock: 153536764 
+      startBlock: 9521226 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: sei-testnet
+    network: moonbeam
     source:
       abi: Pool
     mapping:
