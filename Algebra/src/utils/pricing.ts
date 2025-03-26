@@ -4,13 +4,13 @@ import { Bundle, Pool, Token } from './../types/schema'
 import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
-const WMatic_ADDRESS = '0xacc15dc74880c9944775448304b263d191c6077f'
-const USDC_WMatic_03_POOL = '0x8b86404faa0269fc18c6abb091e551454b29bc30'
+const WMatic_ADDRESS = '0xca01a1d0993565291051daff390892518acfad3a'
+const USDC_WMatic_03_POOL = '0x28137d36ad945b0c1b35f2bf90cfe6ff6cb87511'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
-  '0xacc15dc74880c9944775448304b263d191c6077f', // WMATIC
+  '0xca01a1d0993565291051daff390892518acfad3a', // WMATIC
   '0xffffffff7d2b0b761af01ca8e25242976ac0ad7d', // USDC
   '0xffffffffea09fb06d082fd1275cd48b191cbcd1d', // USDT 
   '0xffffffff1fcacbd218edc0eba20fc2308c778080'
