@@ -5,7 +5,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: sei-testnet
+    network: sei-atlantic
     source:
       address: '0x38A5C36FA8c8c9E4649b51FCD61810B14e7ce047'
       abi: Factory
@@ -38,7 +38,7 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: sei-testnet
+    network: sei-atlantic
     source:
       address: '0xc27754e939213fab4f68A5B4E75adf9568174355'
       abi: NonfungiblePositionManager
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: sei-testnet
+    network: sei-atlantic
     source:
       abi: Pool
     mapping:
