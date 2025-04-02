@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: base
+    network: monad-testnet
     source:
-      address: '0x51a744E9FEdb15842c3080d0937C99A365C6c358'
+      address: '0x7D465CBCDdA70120e120c2dE32F7e3Dcfb829752'
       abi: Factory
-      startBlock: 26801612 
+      startBlock: 10508719 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: base
+    network: monad-testnet
     source:
-      address: '0x8aD26dc9f724c9A7319E0E25b907d15626D9a056'
+      address: '0xE67f7D26a563335DE7f3BF1Fae99E5c594DE28b4'
       abi: NonfungiblePositionManager
-      startBlock: 26801612 
+      startBlock: 10508719 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: base
+    network: monad-testnet
     source:
       abi: Pool
     mapping:
