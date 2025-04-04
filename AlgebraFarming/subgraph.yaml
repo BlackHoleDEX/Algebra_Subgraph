@@ -5,7 +5,7 @@ schema:
 dataSources:
 - kind: ethereum/contract
   name: NonfungiblePositionManager
-  network: "8453"
+  network: base
   source:
       address: '0x457225b7A8310C2e0300686916c74B158183976e'
       abi: NonfungiblePositionManager
@@ -36,7 +36,7 @@ dataSources:
           handler: handleDecreaseLiquidity
 - kind: ethereum/contract
   name: EternalFarming
-  network: "8453"
+  network: base
   source:
       address: '0x06D634C0EdFc6787ec71AcB99191225d5b4Fe7b4'
       abi: EternalFarming

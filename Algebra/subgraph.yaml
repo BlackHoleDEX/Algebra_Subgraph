@@ -5,7 +5,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: "8453"
+    network: base
     source:
       address: '0xAC900f12fB25d514e3ccFE8572B153A9991cA4e7'
       abi: Factory
@@ -38,7 +38,7 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: "8453"
+    network: base
     source:
       address: '0x457225b7A8310C2e0300686916c74B158183976e'
       abi: NonfungiblePositionManager
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: "8453"
+    network: base
     source:
       abi: Pool
     mapping:
