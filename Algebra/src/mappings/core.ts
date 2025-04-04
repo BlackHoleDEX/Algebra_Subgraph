@@ -369,9 +369,9 @@ export function handleSwap(event: SwapEvent): void {
       xtreb.whitelistPools = []
       xtreb.save()
     }
-    updateXTrebPrice()
   }
 
+  updateXTrebPrice()
 
   let swapFee = pool.fee
   if(event.params.overrideFee > 0){
