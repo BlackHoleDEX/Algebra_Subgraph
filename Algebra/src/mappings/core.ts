@@ -15,7 +15,7 @@ import {
   Plugin as PluginEvent
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list, FEE_DENOMINATOR} from '../utils/constants'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list, FEE_DENOMINATOR, XTREB_ADDRESS, TREB_ADDRESS} from '../utils/constants'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -336,12 +336,42 @@ export function handleSwap(event: SwapEvent): void {
   let amount1 = convertTokenToDecimal(event.params.amount1, token1.decimals)
 
   if(pools_list.includes(event.address.toHexString())){
-
     amount0 = convertTokenToDecimal(event.params.amount1, token0.decimals)
     amount1 = convertTokenToDecimal(event.params.amount0, token1.decimals)
-
-  
   }
+
+  if(token0.id == TREB_ADDRESS || token1.id == TREB_ADDRESS){
+    let xtreb = Token.load(XTREB_ADDRESS.toHexString())
+    if(xtreb === null){
+      xtreb = new Token(XTREB_ADDRESS.toHexString())
+      xtreb.symbol = "xTREB"
+      xtreb.name = "xTREB"
+      xtreb.totalSupply = BigInt.fromI32(0)
+      let decimals = BigInt.fromI32(18)
+    
+      // bail if we couldn't figure out the decimals
+      if (decimals === null) {
+        log.debug('mybug the decimal on token 0 was null', [])
+        return
+      }
+    
+      xtreb.decimals = decimals
+      xtreb.derivedMatic = ZERO_BD
+      xtreb.volume = ZERO_BD
+      xtreb.volumeUSD = ZERO_BD
+      xtreb.feesUSD = ZERO_BD
+      xtreb.untrackedVolumeUSD = ZERO_BD
+      xtreb.totalValueLocked = ZERO_BD
+      xtreb.totalValueLockedUSD = ZERO_BD
+      xtreb.totalValueLockedUSDUntracked = ZERO_BD
+      xtreb.txCount = ZERO_BI
+      xtreb.poolCount = ZERO_BI
+      xtreb.whitelistPools = []
+      xtreb.save()
+    }
+    updateXTrebPrice()
+  }
+
 
   let swapFee = pool.fee
   if(event.params.overrideFee > 0){
@@ -727,3 +757,14 @@ function loadTickUpdateFeeVarsAndSave(tickId: i32, event: ethereum.Event): void 
     updateTickFeeVarsAndSave(tick, event)
   }
 }
+
+
+function updateXTrebPrice(): void {
+  let xtreb = Token.load(XTREB_ADDRESS.toHexString())
+  let treb = Token.load(TREB_ADDRESS)
+  if(xtreb != null && treb != null){
+    xtreb.derivedMatic = treb.derivedMatic
+    xtreb.save()
+  }
+}
+
