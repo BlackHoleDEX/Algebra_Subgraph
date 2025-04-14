@@ -3,76 +3,51 @@ import {
   Collect,
   IncreaseLiquidity,
   DecreaseLiquidity,
-  NonfungiblePositionManager,
   Transfer
 } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
-import { Position, PositionSnapshot, Token} from '../types/schema'
-import { ADDRESS_ZERO, factoryContract, ZERO_BD, ZERO_BI, pools_list} from '../utils/constants'
+import { Pool, Position, PositionSnapshot, Token, Mint} from '../types/schema'
+import { ADDRESS_ZERO, ZERO_BD, ZERO_BI, pools_list} from '../utils/constants'
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
 import { convertTokenToDecimal, loadTransaction } from '../utils'
 
 
 
 function getPosition(event: ethereum.Event, tokenId: BigInt): Position | null {
-
-
   let position = Position.load(tokenId.toString())
-  if (position === null) {
-    let contract = NonfungiblePositionManager.bind(event.address)
-    let positionCall = contract.try_positions(tokenId)
-
-    // the following call reverts in situations where the position is minted
-    // and deleted in the same block 
-    const stringBoolean = `${positionCall.reverted}`;
-    if (!positionCall.reverted) {
-      let positionResult = positionCall.value
-      let poolAddress = factoryContract.poolByPair(positionResult.value2, positionResult.value3)
-
-      position = new Position(tokenId.toString())
-      // The owner gets correctly updated in the Transfer handler
-      position.owner = Address.fromString(ADDRESS_ZERO)
-      position.pool = poolAddress.toHexString()
-      if(pools_list.includes(position.pool)){
-        position.token0 = positionResult.value3.toHexString()
-        position.token1 = positionResult.value2.toHexString()
-      }
-      else{
-        position.token0 = positionResult.value2.toHexString()
-        position.token1 = positionResult.value3.toHexString()
-      } 
-      position.tickLower = position.pool.concat('#').concat(positionResult.value5.toString())
-      position.tickUpper = position.pool.concat('#').concat(positionResult.value6.toString())
-      position.liquidity = ZERO_BI
-      position.depositedToken0 = ZERO_BD
-      position.depositedToken1 = ZERO_BD
-      position.withdrawnToken0 = ZERO_BD
-      position.withdrawnToken1 = ZERO_BD
-      position.collectedToken0 = ZERO_BD
-      position.collectedToken1 = ZERO_BD
-      position.collectedFeesToken0 = ZERO_BD
-      position.collectedFeesToken1 = ZERO_BD
-      position.transaction = loadTransaction(event).id
-      position.feeGrowthInside0LastX128 = positionResult.value8
-      position.feeGrowthInside1LastX128 = positionResult.value9
-    }
-  }
-
   return position
-  
-  return null 
+
 }
 
+function createPositionIfNeccessary(event: ethereum.Event, tokenId: BigInt, poolAddress: string): Position{
+  let position = Position.load(tokenId.toString())
+  if (position === null ) {
 
-function updateFeeVars(position: Position, event: ethereum.Event, tokenId: BigInt): Position {
+    position = new Position(tokenId.toString())
+    // The owner gets correctly updated in the Transfer handler
+    position.owner = Address.fromString(ADDRESS_ZERO)
+    position.pool = poolAddress
+    let pool = Pool.load(poolAddress)!
+    position.token0 = pool.token0
+    position.token1 = pool.token1
+    let transaction = loadTransaction(event)
+    let mint = Mint.load(transaction.id.toString() + '#' + pool.txCount.toString())!
+    position.tickLower = position.pool.concat('#').concat(mint.tickLower.toString())
+    position.tickUpper = position.pool.concat('#').concat(mint.tickUpper.toString())
+    position.liquidity = ZERO_BI
+    position.depositedToken0 = ZERO_BD
+    position.depositedToken1 = ZERO_BD
+    position.withdrawnToken0 = ZERO_BD
+    position.withdrawnToken1 = ZERO_BD
+    position.collectedToken0 = ZERO_BD
+    position.collectedToken1 = ZERO_BD
+    position.collectedFeesToken0 = ZERO_BD
+    position.collectedFeesToken1 = ZERO_BD
+    position.transaction = transaction.id
 
-  let positionManagerContract = NonfungiblePositionManager.bind(event.address)
-  let positionResult = positionManagerContract.try_positions(tokenId)
-  if (!positionResult.reverted) {
-    position.feeGrowthInside0LastX128 = positionResult.value.value8
-    position.feeGrowthInside1LastX128 = positionResult.value.value9
   }
   return position
 }
+
 
 function savePositionSnapshot(position: Position, event: ethereum.Event): void {
   
@@ -92,8 +67,6 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
     positionSnapshot.collectedFeesToken0 = position.collectedFeesToken1
     positionSnapshot.collectedFeesToken1 = position.collectedFeesToken0
     positionSnapshot.transaction = loadTransaction(event).id
-    positionSnapshot.feeGrowthInside0LastX128 = position.feeGrowthInside1LastX128
-    positionSnapshot.feeGrowthInside1LastX128 = position.feeGrowthInside0LastX128
   }
   else{
     positionSnapshot.depositedToken0 = position.depositedToken0
@@ -103,8 +76,6 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
     positionSnapshot.collectedFeesToken0 = position.collectedFeesToken0
     positionSnapshot.collectedFeesToken1 = position.collectedFeesToken1
     positionSnapshot.transaction = loadTransaction(event).id
-    positionSnapshot.feeGrowthInside0LastX128 = position.feeGrowthInside0LastX128
-    positionSnapshot.feeGrowthInside1LastX128 = position.feeGrowthInside1LastX128
   }
 
   positionSnapshot.save()
@@ -112,7 +83,7 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
 
 export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
   
-  let position = getPosition(event, event.params.tokenId)
+  let position = createPositionIfNeccessary(event, event.params.tokenId, event.params.pool.toHexString())
 
   // position was not able to be fetched
   if (position == null) {
@@ -121,8 +92,6 @@ export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
 
   let token0 = Token.load(position.token0)
   let token1 = Token.load(position.token1)
-
-
 
   let amount1 = ZERO_BD
   let amount0 = ZERO_BD
@@ -140,11 +109,6 @@ export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
   position.liquidity = position.liquidity.plus(event.params.actualLiquidity)
   position.depositedToken0 = position.depositedToken0.plus(amount0)
   position.depositedToken1 = position.depositedToken1.plus(amount1)
-  
-
-  // recalculatePosition(position)
-  
-  
   position.save()
 
   savePositionSnapshot(position, event)
@@ -181,8 +145,6 @@ export function handleDecreaseLiquidity(event: DecreaseLiquidity): void {
   position.liquidity = position.liquidity.minus(event.params.liquidity)
   position.withdrawnToken0 = position.withdrawnToken0.plus(amount0)
   position.withdrawnToken1 = position.withdrawnToken1.plus(amount1)
-
-  position = updateFeeVars(position, event, event.params.tokenId)
   // recalculatePosition(position)
 
   position.save()
@@ -224,8 +186,6 @@ export function handleCollect(event: Collect): void {
 
   position.collectedFeesToken0 = position.collectedToken0.minus(position.withdrawnToken0)
   position.collectedFeesToken1 = position.collectedToken1.minus(position.withdrawnToken1)
-
-  position = updateFeeVars(position, event, event.params.tokenId)
 
   // recalculatePosition(position)
 
