@@ -11,9 +11,8 @@ const USDC_WMatic_03_POOL = '0x702d3438b2c6de6911a6a43a673ce5593c797f74'
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
   '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', // WMATIC
-  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // USDC
-  '0xc2132D05D31c914a87C6611C10748AEb04B58e8F', // USDT 
-  '0x49a390a3dfd2d01389f799965f3af5961f87d228'
+  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // DAI
+  '0xc2132d05d31c914a87c6611c10748aeb04b58e8f' // USDT
 ]
 
 let MINIMUM_Matic_LOCKED = BigDecimal.fromString('5')
@@ -21,8 +20,8 @@ let MINIMUM_Matic_LOCKED = BigDecimal.fromString('5')
 let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
-  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // USDC
-  '0xc2132D05D31c914a87C6611C10748AEb04B58e8F' // SUDT
+  '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063', // DAI
+  '0xc2132d05d31c914a87c6611c10748aeb04b58e8f' // SUDT
 ]
 
 
