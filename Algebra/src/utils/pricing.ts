@@ -5,13 +5,13 @@ import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
 
 const WMatic_ADDRESS = '0x4200000000000000000000000000000000000006'
-const USDC_WMatic_03_POOL = '0x47e8ca40666102ac217286e51660a4e6e6d7f9a3'
+const USDC_WMatic_03_POOL = '0x25161d286d7c51f23e29fcd926c08f9bf89816be'
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
   '0x4200000000000000000000000000000000000006', // WMATIC
-  '0xabac6f23fdf1313fc2e9c9244f666157ccd32990', // USDC
+  '0x036cbd53842c5426634e7929541ec2318f3dcf7e', // USDC
   '0x5aefba317baba46eaf98fd6f381d07673bca6467', // USDT 
   '0x49a390a3dfd2d01389f799965f3af5961f87d228'
 ]
@@ -21,7 +21,7 @@ let MINIMUM_Matic_LOCKED = BigDecimal.fromString('0')
 let Q192 = Math.pow(2, 192)
 
 let STABLE_COINS: string[] = [
-  '0x4200000000000000000000000000000000000006', // USDC
+  '0x036cbd53842c5426634e7929541ec2318f3dcf7e', // USDC
   '0xabac6f23fdf1313fc2e9c9244f666157ccd32990' // SUDT
 ]
 
@@ -41,7 +41,7 @@ export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token):
 export function getEthPriceInUSD(): BigDecimal {
   let usdcPool = Pool.load(USDC_WMatic_03_POOL) // dai is token0
   if (usdcPool !== null) {
-    return usdcPool.token1Price
+    return usdcPool.token0Price
   } else {
     return ZERO_BD
   }

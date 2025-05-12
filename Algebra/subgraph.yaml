@@ -7,9 +7,9 @@ dataSources:
     name: Factory
     network: base-sepolia
     source:
-      address: '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
+      address: '0x5eDf7192d8fE580ff00727B30DfC1AAF0d57B2f6'
       abi: Factory
-      startBlock: 23609151 
+      startBlock: 25636476 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -40,9 +40,9 @@ dataSources:
     name: NonfungiblePositionManager
     network: base-sepolia
     source:
-      address: '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
+      address: '0xb7875b8Dc8f49c2D6BBb658905dBF88843B54Da8'
       abi: NonfungiblePositionManager
-      startBlock: 23609151 
+      startBlock: 25636476 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
