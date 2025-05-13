@@ -20,10 +20,11 @@ $ yarn build
 ```
 
 ### Deploy
-
+[TheGraph guide](https://thegraph.com/docs/en/subgraphs/quick-start/)
 For deploy you need to run:
 ```
-$ yarn graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ --access-token <access-token> <graph-name> subgraph.yaml
+$ yarn graph auth <DEPLOY_KEY>
+$ yarn graph deploy <SUBGRAPH_SLUG>
 ```
 
 ## AlgebraFarming
