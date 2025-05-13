@@ -20,7 +20,8 @@ $ yarn build
 ```
 
 ### Deploy
-[TheGraph guide](https://thegraph.com/docs/en/subgraphs/quick-start/)
+[TheGraph Guide](https://thegraph.com/docs/en/subgraphs/quick-start/)
+
 For deploy you need to run:
 ```
 $ yarn graph auth <DEPLOY_KEY>
