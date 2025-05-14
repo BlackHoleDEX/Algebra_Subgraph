@@ -24,7 +24,7 @@ $ yarn build
 
 For deploy you need to run:
 ```
-$ yarn graph auth <DEPLOY_KEY>
+$ graph auth <DEPLOY_KEY>
 $ yarn graph deploy <SUBGRAPH_SLUG>
 ```
 
