@@ -11,7 +11,8 @@ const USDC_WMatic_03_POOL = '0x82e4c6da2d953f074329481ca3c770ba74a8961a'
 // usually tokens that many tokens are paired with s
 export let WHITELIST_TOKENS: string[] = [
   '0x4200000000000000000000000000000000000006', // WMATIC
-  '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913' // USDC
+  '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913', // USDC
+  '0xB96450dCB16e4a30b999Cb5F4087bae9c0ffAc4e' // TREB
 ]
 
 let MINIMUM_Matic_LOCKED = BigDecimal.fromString('0.05')
