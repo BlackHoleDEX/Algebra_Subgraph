@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: base-sepolia
+    network: hyperevm
     source:
-      address: '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
+      address: '0x10253594A832f967994b44f33411940533302ACb'
       abi: Factory
-      startBlock: 23609151 
+      startBlock: 4347251 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: base-sepolia
+    network: hyperevm
     source:
-      address: '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
+      address: '0x69D57B9D705eaD73a5d2f2476C30c55bD755cc2F'
       abi: NonfungiblePositionManager
-      startBlock: 23609151 
+      startBlock: 4347251 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: base-sepolia
+    network: hyperevm
     source:
       abi: Pool
     mapping:
