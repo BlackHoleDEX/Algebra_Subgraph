@@ -346,8 +346,10 @@ export function handleSwap(event: SwapEvent): void {
     const ethPrice = getEthPriceInUSD()
 
     let pgql = Token.load(PGLQ_ADDRESS)
-    pgql!.derivedMatic = BigDecimal.fromString("2").div(ethPrice)
-    pgql!.save() 
+    if(pgql != null && ethPrice.gt(ZERO_BD)){
+      pgql.derivedMatic = BigDecimal.fromString("2").div(ethPrice)
+      pgql.save() 
+    }
   }
 
   let swapFee = pool.fee
