@@ -32,26 +32,6 @@ export function handlePoolCreated(event: PoolEvent): void {
     let bundle = new Bundle('1')
     bundle.maticPriceUSD = ZERO_BD
     bundle.save()
-
-    let token = new Token(PGLQ_ADDRESS)
-
-    token.symbol = 'pGLQ'
-    token.name = 'preGLiquid'
-    token.decimals = BigInt.fromI32(18)
-    token.totalSupply = BigInt.fromI32(0)
-    token.derivedMatic = ZERO_BD
-    token.volume = ZERO_BD
-    token.volumeUSD = ZERO_BD
-    token.feesUSD = ZERO_BD
-    token.untrackedVolumeUSD = ZERO_BD
-    token.totalValueLocked = ZERO_BD
-    token.totalValueLockedUSD = ZERO_BD
-    token.totalValueLockedUSDUntracked = ZERO_BD
-    token.txCount = ZERO_BI
-    token.poolCount = ZERO_BI
-    token.whitelistPools = []
-
-    token.save()
   }
 
   factory.poolCount = factory.poolCount.plus(ONE_BI)
@@ -360,6 +340,26 @@ export function handleNewCommunityFee(event: DefaultCommunityFee): void{
     let bundle = new Bundle('1')
     bundle.maticPriceUSD = ZERO_BD
     bundle.save()
+
+    let token = new Token(PGLQ_ADDRESS)
+
+    token.symbol = 'pGLQ'
+    token.name = 'preGLiquid'
+    token.decimals = BigInt.fromI32(18)
+    token.totalSupply = BigInt.fromI32(0)
+    token.derivedMatic = ZERO_BD
+    token.volume = ZERO_BD
+    token.volumeUSD = ZERO_BD
+    token.feesUSD = ZERO_BD
+    token.untrackedVolumeUSD = ZERO_BD
+    token.totalValueLocked = ZERO_BD
+    token.totalValueLockedUSD = ZERO_BD
+    token.totalValueLockedUSDUntracked = ZERO_BD
+    token.txCount = ZERO_BI
+    token.poolCount = ZERO_BI
+    token.whitelistPools = []
+
+    token.save()
   }
   factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee as i32)
   factory.save()
