@@ -5,6 +5,7 @@ import { Factory as FactoryContract } from '../types/templates/Pool/Factory'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 export const FACTORY_ADDRESS = '0x10253594A832f967994b44f33411940533302ACb'
+export const PGLQ_ADDRESS = '0x9d90ba4e945fcc46f8941ddb9180f95a9d4d3053'
 export const FEE_DENOMINATOR = BigDecimal.fromString('1000000') 
 
 export let ZERO_BI = BigInt.fromI32(0)

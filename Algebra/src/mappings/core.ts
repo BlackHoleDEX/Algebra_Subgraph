@@ -15,8 +15,8 @@ import {
   Plugin as PluginEvent
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list, FEE_DENOMINATOR} from '../utils/constants'
-import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list, FEE_DENOMINATOR, PGLQ_ADDRESS} from '../utils/constants'
+import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices, getWnativeUSDPoolAddress } from '../utils/pricing'
 import {
   updatePoolDayData,
   updatePoolHourData,
@@ -340,7 +340,14 @@ export function handleSwap(event: SwapEvent): void {
     amount0 = convertTokenToDecimal(event.params.amount1, token0.decimals)
     amount1 = convertTokenToDecimal(event.params.amount0, token1.decimals)
 
-  
+  }
+
+  if(event.address.toHexString() == getWnativeUSDPoolAddress()){
+    const ethPrice = getEthPriceInUSD()
+
+    let pgql = Token.load(PGLQ_ADDRESS)
+    pgql!.derivedMatic = BigDecimal.fromString("2").div(ethPrice)
+    pgql!.save() 
   }
 
   let swapFee = pool.fee

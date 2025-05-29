@@ -1,6 +1,6 @@
 import { WHITELIST_TOKENS } from './../utils/pricing'
 /* eslint-disable prefer-const */
-import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ADDRESS_ZERO, pools_list} from './../utils/constants'
+import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ADDRESS_ZERO, PGLQ_ADDRESS, pools_list} from './../utils/constants'
 import { Factory } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { DefaultCommunityFee, CustomPool } from '../types/Factory/Factory'
@@ -32,6 +32,26 @@ export function handlePoolCreated(event: PoolEvent): void {
     let bundle = new Bundle('1')
     bundle.maticPriceUSD = ZERO_BD
     bundle.save()
+
+    let token = new Token(PGLQ_ADDRESS)
+
+    token.symbol = 'pGLQ'
+    token.name = 'preGLiquid'
+    token.decimals = BigInt.fromI32(18)
+    token.totalSupply = BigInt.fromI32(0)
+    token.derivedMatic = ZERO_BD
+    token.volume = ZERO_BD
+    token.volumeUSD = ZERO_BD
+    token.feesUSD = ZERO_BD
+    token.untrackedVolumeUSD = ZERO_BD
+    token.totalValueLocked = ZERO_BD
+    token.totalValueLockedUSD = ZERO_BD
+    token.totalValueLockedUSDUntracked = ZERO_BD
+    token.txCount = ZERO_BI
+    token.poolCount = ZERO_BI
+    token.whitelistPools = []
+
+    token.save()
   }
 
   factory.poolCount = factory.poolCount.plus(ONE_BI)

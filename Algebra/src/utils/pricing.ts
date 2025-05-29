@@ -47,6 +47,10 @@ export function getEthPriceInUSD(): BigDecimal {
   }
 } 
 
+export function getWnativeUSDPoolAddress(): string {
+  return USDC_WMatic_03_POOL
+}
+
 
 /**
  * Search through graph to find derived Eth per token.
