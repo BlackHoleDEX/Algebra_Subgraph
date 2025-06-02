@@ -2,6 +2,11 @@ specVersion: 0.0.4
 description: Algebra is a decentralized protocol for automated token exchange on Polygon.
 schema:
   file: ./schema.graphql
+features:
+  - grafting # feature name
+graft:
+  base: QmboV71AsK8d2Vj1HQ41kVoc3VPBczhd3xnmtF6kSbtDM5 # Subgraph ID of base Subgraph
+  block: 30295009 # block number
 dataSources:
   - kind: ethereum/contract
     name: Factory
@@ -68,6 +73,50 @@ dataSources:
           handler: handleIncreaseLiquidity
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
+  - kind: ethereum/contract
+    name: LiquidityHub
+    network: sonic
+    source:
+      address: '0x9B350b26B82F3c088e1C0C345a904ee5EB655E15'
+      abi: LiquidityHub
+      startBlock: 1440914 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/liquidity-hub.ts
+      entities:
+        - Pool
+        - Token
+      abis:
+        - name: LiquidityHub
+          file: ./abis/LiquidityHub.json
+        - name: Pool
+          file: ./abis/pool.json
+      eventHandlers:
+        - event: Resolved(indexed bytes32,indexed address,indexed address,address,address,uint256,uint256)
+          handler: handleResolved
+  - kind: ethereum/contract
+    name: Whitelist
+    network: sonic
+    source:
+      address: '0xab49321DF952315E208a2B7046A00d2015E39cba'
+      abi: Whitelist
+      startBlock: 1440914 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/whitelist.ts
+      entities:
+        - Pool
+        - Token
+      abis:
+        - name: Whitelist
+          file: ./abis/Whitelist.json
+      eventHandlers:
+        - event: Whitelisted(address)
+          handler: handleWhitelist
 templates:
   - kind: ethereum/contract
     name: Pool

@@ -714,3 +714,40 @@ type FeeHourData @entity {
   #
   endFee: BigInt! 
 }
+
+type WhitelistedUser @entity {
+  id: ID!
+  user: Bytes!
+  timestamp: BigInt!
+  transactionHash: Bytes!
+  blockNumber: BigInt!
+}
+
+type Order @entity {
+  # order hash as ID
+  id: ID!
+  # transaction hash where order was resolved
+  transactionHash: Bytes!
+  # block number where order was resolved
+  blockNumber: BigInt!
+  # timestamp when order was resolved
+  timestamp: BigInt!
+  # address that initiated the swap
+  swapper: Bytes!
+  # referrer address
+  ref: Bytes!
+  # input token address
+  inToken: Bytes!
+  # output token address
+  outToken: Bytes!
+  # amount of input token
+  inAmount: BigInt!
+  # amount of output token received
+  outAmount: BigInt!
+  # USD value of the output amount
+  outAmountUSD: BigDecimal!
+  # gas used for the transaction
+  gasUsed: BigInt!
+  # gas price for the transaction
+  gasPrice: BigInt!
+}
