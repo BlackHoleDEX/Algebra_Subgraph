@@ -3,9 +3,48 @@ import { ERC20 } from '../types/Factory/ERC20'
 import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
 import { StaticTokenDefinition } from './staticTokenDefinition'
-import { BigInt, Address } from '@graphprotocol/graph-ts'
+import {BigInt, Address, BigDecimal} from '@graphprotocol/graph-ts'
 import { isNullEthValue } from '.'
+import {Token} from "../types/schema";
 
+export function getOrCreateToken(address: Address): Token | null {
+  let token = Token.load(address.toHexString())
+
+  if (token == null) {
+    token = new Token(address.toHexString())
+    let contract = ERC20.bind(address)
+
+    let symbolResult = contract.try_symbol()
+    let nameResult = contract.try_name()
+    let decimalsResult = contract.try_decimals()
+
+    token.symbol = symbolResult.reverted ? '' : symbolResult.value
+    token.name = nameResult.reverted ? '' : nameResult.value
+    token.decimals = decimalsResult.reverted
+        ? BigInt.fromI32(18)
+        : BigInt.fromI32(decimalsResult.value)
+
+    token.totalSupply = BigInt.zero()
+
+    // 🔽 Initialize ALL required fields safely
+    token.volume = BigDecimal.zero()
+    token.volumeUSD = BigDecimal.zero()
+    token.untrackedVolumeUSD = BigDecimal.zero()
+    token.feesUSD = BigDecimal.zero()
+    token.txCount = BigInt.zero()
+    token.poolCount = BigInt.zero()
+    token.totalValueLocked = BigDecimal.zero()
+    token.totalValueLockedUSD = BigDecimal.zero()
+    token.totalValueLockedUSDUntracked = BigDecimal.zero()
+    token.derivedMatic = BigDecimal.zero()
+    token.whitelistPools = []
+
+    token.save()
+  }
+
+
+  return token
+}
 
 export function fetchTokenSymbol(tokenAddress: Address): string {
   let contract = ERC20.bind(tokenAddress)

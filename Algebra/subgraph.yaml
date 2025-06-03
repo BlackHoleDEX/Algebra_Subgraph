@@ -40,7 +40,7 @@ dataSources:
     name: NonfungiblePositionManager
     network: avalanche-testnet
     source:
-      address: '0x8a4179FEA7CC44a4B142Aa6f46c382a4279e0aAe'
+      address: '0x8a4179fea7cc44a4b142aa6f46c382a4279e0aae'
       abi: NonfungiblePositionManager
       startBlock: 41201109
     mapping:
