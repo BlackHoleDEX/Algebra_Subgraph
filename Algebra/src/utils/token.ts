@@ -6,42 +6,68 @@ import { StaticTokenDefinition } from './staticTokenDefinition'
 import {BigInt, Address, BigDecimal} from '@graphprotocol/graph-ts'
 import { isNullEthValue } from '.'
 import {Token} from "../types/schema";
+const ZERO_BI = BigInt.fromI32(0)
+const ZERO_BD = BigDecimal.fromString("0")
 
-export function getOrCreateToken(address: Address): Token | null {
-  let token = Token.load(address.toHexString())
+export function getOrCreateToken(tokenAddress: Address): Token | null {
+  let tokenId = tokenAddress.toHexString()
+  let token = Token.load(tokenId)
 
   if (token == null) {
-    token = new Token(address.toHexString())
-    let contract = ERC20.bind(address)
+    token = new Token(tokenId)
 
+    // Bind the contract to call methods
+    let contract = ERC20.bind(tokenAddress)
+
+    // Fetch symbol
+    let symbol = "unknown"
     let symbolResult = contract.try_symbol()
+    if (!symbolResult.reverted) {
+      symbol = symbolResult.value
+    }
+    token.symbol = symbol
+
+    // Fetch name
+    let name = "unknown"
     let nameResult = contract.try_name()
+    if (!nameResult.reverted) {
+      name = nameResult.value
+    }
+    token.name = name
+
+    // Fetch total supply
+    let totalSupply = ZERO_BI
+    let totalSupplyResult = contract.try_totalSupply()
+    if (!totalSupplyResult.reverted) {
+      totalSupply = totalSupplyResult.value
+    }
+    token.totalSupply = totalSupply
+
+    // Fetch decimals - bail if null
     let decimalsResult = contract.try_decimals()
+    if (decimalsResult.reverted) {
+      token.decimals = BigInt.fromI32(18);
+    }
+    else {
+      token.decimals = BigInt.fromI32(decimalsResult.value)
+    }
 
-    token.symbol = symbolResult.reverted ? '' : symbolResult.value
-    token.name = nameResult.reverted ? '' : nameResult.value
-    token.decimals = decimalsResult.reverted
-        ? BigInt.fromI32(18)
-        : BigInt.fromI32(decimalsResult.value)
-
-    token.totalSupply = BigInt.zero()
-
-    // 🔽 Initialize ALL required fields safely
-    token.volume = BigDecimal.zero()
-    token.volumeUSD = BigDecimal.zero()
-    token.untrackedVolumeUSD = BigDecimal.zero()
-    token.feesUSD = BigDecimal.zero()
-    token.txCount = BigInt.zero()
-    token.poolCount = BigInt.zero()
-    token.totalValueLocked = BigDecimal.zero()
-    token.totalValueLockedUSD = BigDecimal.zero()
-    token.totalValueLockedUSDUntracked = BigDecimal.zero()
-    token.derivedMatic = BigDecimal.zero()
+    // Initialize zero/default fields
+    token.derivedMatic = ZERO_BD
+    token.volume = ZERO_BD
+    token.volumeUSD = ZERO_BD
+    token.untrackedVolumeUSD = ZERO_BD
+    token.feesUSD = ZERO_BD
+    token.totalValueLocked = ZERO_BD
+    token.totalValueLockedUSD = ZERO_BD
+    token.totalValueLockedUSDUntracked = ZERO_BD
+    token.txCount = ZERO_BI
+    token.poolCount = ZERO_BI
     token.whitelistPools = []
 
+    // Save the new token entity
     token.save()
   }
-
 
   return token
 }
