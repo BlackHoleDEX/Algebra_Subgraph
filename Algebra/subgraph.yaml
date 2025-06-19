@@ -7,7 +7,7 @@ dataSources:
     name: Factory
     network: avalanche-testnet
     source:
-      address: '0xa06390382BC1aF10f2718b1928DdE596970F86BA'
+      address: '0x5FfF2E089FFf11c679b1306f0e51cb7c112CDD88'
       abi: Factory
       startBlock: 40995881
     mapping:
@@ -40,7 +40,7 @@ dataSources:
     name: NonfungiblePositionManager
     network: avalanche-testnet
     source:
-      address: '0x273fe2b1f6D621Da61690e64FD8A2b9684F55e7B'
+      address: '0x8F9BBD6f8657Ad06704791fc4626e985ec52E48A'
       abi: NonfungiblePositionManager
       startBlock: 40995881
     mapping:
