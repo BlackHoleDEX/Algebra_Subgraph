@@ -153,7 +153,7 @@ export function handleMint(event: MintEvent): void {
   let poolPosition = PoolPosition.load(poolPositionid)
   if (poolPosition){
     poolPosition.liquidity += event.params.liquidityAmount 
-  }``
+  }
   else{
     poolPosition = new PoolPosition(poolPositionid)
     poolPosition.pool = pool.id

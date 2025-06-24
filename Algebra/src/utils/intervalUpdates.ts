@@ -10,9 +10,7 @@ import {
   TokenHourData,
   Bundle,
   PoolHourData,
-  TickDayData,
-  FeeHourData,
-  Tick
+  FeeHourData
 } from './../types/schema'
 import { FACTORY_ADDRESS } from './constants'
 import { ethereum, BigInt } from '@graphprotocol/graph-ts'
