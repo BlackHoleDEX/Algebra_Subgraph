@@ -15,7 +15,7 @@ import {
   Plugin as PluginEvent
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, pools_list, FEE_DENOMINATOR} from '../utils/constants'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, FEE_DENOMINATOR} from '../utils/constants'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -64,13 +64,6 @@ export function handleMint(event: MintEvent): void {
 
   let amount0 = convertTokenToDecimal(event.params.amount0, token0.decimals)
   let amount1 = convertTokenToDecimal(event.params.amount1, token1.decimals)
-
-  if(pools_list.includes(event.address.toHexString())){
-
-    amount0 = convertTokenToDecimal(event.params.amount1, token0.decimals)
-    amount1 = convertTokenToDecimal(event.params.amount0, token1.decimals)
-  
-  }
 
   let amountUSD = amount0
     .times(token0.derivedMatic.times(bundle.maticPriceUSD))
@@ -207,13 +200,6 @@ export function handleBurn(event: BurnEvent): void {
   let amount0 = convertTokenToDecimal(event.params.amount0, token0.decimals)
   let amount1 = convertTokenToDecimal(event.params.amount1, token1.decimals)
 
-  if(pools_list.includes(event.address.toHexString())){
-
-    amount0 = convertTokenToDecimal(event.params.amount1, token0.decimals)
-    amount1 = convertTokenToDecimal(event.params.amount0, token1.decimals)
-  
-  }
-
   let amountUSD = amount0
     .times(token0.derivedMatic.times(bundle.maticPriceUSD))
     .plus(amount1.times(token1.derivedMatic.times(bundle.maticPriceUSD)))
@@ -327,21 +313,11 @@ export function handleSwap(event: SwapEvent): void {
   let oldTick = pool.tick
   let flag = false 
 
-
   let token0 = Token.load(pool.token0)!
   let token1 = Token.load(pool.token1)!
 
-
   let amount0 = convertTokenToDecimal(event.params.amount0, token0.decimals)
   let amount1 = convertTokenToDecimal(event.params.amount1, token1.decimals)
-
-  if(pools_list.includes(event.address.toHexString())){
-
-    amount0 = convertTokenToDecimal(event.params.amount1, token0.decimals)
-    amount1 = convertTokenToDecimal(event.params.amount0, token1.decimals)
-
-  
-  }
 
   let swapFee = pool.fee
   if(event.params.overrideFee > 0){
@@ -445,12 +421,6 @@ export function handleSwap(event: SwapEvent): void {
   let prices = priceToTokenPrices(pool.sqrtPrice, token0 as Token, token1 as Token)
   pool.token0Price = prices[0]
   pool.token1Price = prices[1]
-
-  if(pools_list.includes(event.address.toHexString())){
-    prices = priceToTokenPrices(pool.sqrtPrice, token1 as Token, token0 as Token)
-    pool.token0Price = prices[1]
-    pool.token1Price = prices[0]
-  }
 
   let plugin = Plugin.load(pool.plugin.toHexString())
 
