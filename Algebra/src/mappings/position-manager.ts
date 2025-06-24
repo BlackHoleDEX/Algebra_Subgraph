@@ -6,7 +6,7 @@ import {
   Transfer
 } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
 import { Pool, Position, PositionSnapshot, Token, Mint} from '../types/schema'
-import { ADDRESS_ZERO, ZERO_BD, ZERO_BI} from '../utils/constants'
+import { ZERO_ADDRESS, ZERO_BD, ZERO_BI} from '../utils/constants'
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
 import { convertTokenToDecimal, loadTransaction } from '../utils'
 
@@ -23,7 +23,7 @@ function createPositionIfNeccessary(event: ethereum.Event, tokenId: BigInt, pool
 
     position = new Position(tokenId.toString())
     // The owner gets correctly updated in the Transfer handler
-    position.owner = Address.fromString(ADDRESS_ZERO)
+    position.owner = Address.fromString(ZERO_ADDRESS)
     position.pool = poolAddress
     let pool = Pool.load(poolAddress)!
     position.token0 = pool.token0

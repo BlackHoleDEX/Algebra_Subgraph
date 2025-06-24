@@ -3,7 +3,7 @@ import { BigInt, BigDecimal, Address, bigDecimal } from '@graphprotocol/graph-ts
 import { Factory as FactoryContract } from '../types/templates/Pool/Factory'
 
 
-export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
+export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 export const FACTORY_ADDRESS = '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
 export const FEE_DENOMINATOR = BigDecimal.fromString('1000000') 
 
