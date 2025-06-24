@@ -304,9 +304,6 @@ export function handleSwap(event: SwapEvent): void {
   let factory = Factory.load(FACTORY_ADDRESS)!
   let pool = Pool.load(event.address.toHexString())!
 
-  let oldTick = pool.tick
-  let flag = false 
-
   let token0 = Token.load(pool.token0)!
   let token1 = Token.load(pool.token1)!
 

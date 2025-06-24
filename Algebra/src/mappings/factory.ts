@@ -1,5 +1,5 @@
-import { WHITELIST_TOKENS } from './../utils/pricing'
 /* eslint-disable prefer-const */
+import { WHITELIST_TOKENS } from './../utils/pricing'
 import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from './../utils/constants'
 import { Factory } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
