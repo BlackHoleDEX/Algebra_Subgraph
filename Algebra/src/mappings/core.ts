@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { Bundle, Burn, Factory, Mint, Pool, Swap, Tick, PoolPosition, Plugin, Token, PoolFeeData } from '../types/schema'
 import { PluginConfig, Pool as PoolABI } from '../types/Factory/Pool'
-import { BigDecimal, BigInt, ethereum, log} from '@graphprotocol/graph-ts'
+import { BigDecimal, BigInt} from '@graphprotocol/graph-ts'
 
 import {
   Burn as BurnEvent,
@@ -15,7 +15,7 @@ import {
   Plugin as PluginEvent
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI, FEE_DENOMINATOR} from '../utils/constants'
+import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, FEE_DENOMINATOR} from '../utils/constants'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -123,6 +123,7 @@ export function handleMint(event: MintEvent): void {
   mint.amountUSD = amountUSD
   mint.tickLower = BigInt.fromI32(event.params.bottomTick)
   mint.tickUpper = BigInt.fromI32(event.params.topTick)
+  pool.lastMintIndex = pool.txCount
   
   // tick entities
   let lowerTickIdx = event.params.bottomTick

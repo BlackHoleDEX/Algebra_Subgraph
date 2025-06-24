@@ -130,6 +130,7 @@ export function handlePoolCreated(event: PoolEvent): void {
   pool.totalValueLockedToken0 = ZERO_BD
   pool.totalValueLockedToken1 = ZERO_BD
   pool.totalValueLockedUSD = ZERO_BD
+  pool.lastMintIndex = ZERO_BI
   pool.totalValueLockedMatic = ZERO_BD
   pool.totalValueLockedUSDUntracked = ZERO_BD
   pool.volumeToken0 = ZERO_BD
@@ -283,9 +284,9 @@ export function handleCustomPoolCreated(event: CustomPool): void {
   pool.feesUSD = ZERO_BD
   pool.feesToken0 = ZERO_BD
   pool.feesToken1 = ZERO_BD
+  pool.lastMintIndex = ZERO_BI
   pool.untrackedVolumeUSD = ZERO_BD
   pool.untrackedFeesUSD = ZERO_BD
-
   pool.collectedFeesToken0 = ZERO_BD
   pool.collectedFeesToken1 = ZERO_BD
   pool.collectedFeesUSD = ZERO_BD

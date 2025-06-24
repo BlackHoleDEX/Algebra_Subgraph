@@ -124,6 +124,8 @@ type Pool @entity {
   collectedFeesToken1: BigDecimal!
   # all time fees collected derived USD
   collectedFeesUSD: BigDecimal!
+  #
+  lastMintIndex: BigInt! 
   # total token 0 across all ticks
   totalValueLockedToken0: BigDecimal!
   # total token 1 across all ticks
