@@ -44,14 +44,6 @@ export function handlePoolCreated(event: PoolEvent): void {
   let token0 = Token.load(token0_address.toHexString())
   let token1 = Token.load(token1_address.toHexString())
 
-
-  if(pools_list.includes(event.params.pool.toHexString())){
-    token0 = Token.load(event.params.token1.toHexString())
-    token1 = Token.load(event.params.token0.toHexString())
-    token0_address = event.params.token1
-    token1_address = event.params.token0  
-  }  
-
   // fetch info if null
   if (token0 === null) {
     token0 = new Token(token0_address.toHexString())
@@ -131,8 +123,6 @@ export function handlePoolCreated(event: PoolEvent): void {
   pool.txCount = ZERO_BI
   pool.liquidity = ZERO_BI
   pool.sqrtPrice = ZERO_BI
-  pool.feeGrowthGlobal0X128 = ZERO_BI
-  pool.feeGrowthGlobal1X128 = ZERO_BI
   pool.communityFee = factory.defaultCommunityFee
   pool.token0Price = ZERO_BD
   pool.token1Price = ZERO_BD
@@ -278,8 +268,6 @@ export function handleCustomPoolCreated(event: CustomPool): void {
   pool.txCount = ZERO_BI
   pool.liquidity = ZERO_BI
   pool.sqrtPrice = ZERO_BI
-  pool.feeGrowthGlobal0X128 = ZERO_BI
-  pool.feeGrowthGlobal1X128 = ZERO_BI
   pool.communityFee = factory.defaultCommunityFee
   pool.token0Price = ZERO_BD
   pool.token1Price = ZERO_BD

@@ -94,10 +94,6 @@ type Pool @entity {
   liquidity: BigInt!
   # current price tracker
   sqrtPrice: BigInt!
-  # tracker for global fee growth
-  feeGrowthGlobal0X128: BigInt!
-  # tracker for global fee growth
-  feeGrowthGlobal1X128: BigInt!
   # token0 per token1
   token0Price: BigDecimal!
   # token1 per token0
@@ -195,9 +191,6 @@ type Tick @entity {
   liquidityProviderCount: BigInt! # used to detect new exchanges
   # derived fields
   # swaps: [Swap!]! @derivedFrom(field: "tick")
-  # vars needed for fee computation
-  feeGrowthOutside0X128: BigInt!
-  feeGrowthOutside1X128: BigInt!
 }
 
 type PoolPosition @entity {
@@ -245,12 +238,6 @@ type Position @entity {
   collectedFeesToken1: BigDecimal!
   # tx in which the position was initialized
   transaction: Transaction!
-  # vars needed for fee computation
-  feeGrowthInside0LastX128: BigInt!
-  feeGrowthInside1LastX128: BigInt!
-
-  token0Tvl : BigDecimal
-  token1Tvl : BigDecimal 
 }
 
 type PositionSnapshot @entity {
@@ -282,9 +269,6 @@ type PositionSnapshot @entity {
   collectedFeesToken1: BigDecimal!
   # tx in which the snapshot was initialized
   transaction: Transaction!
-  # internal vars needed for fee computation
-  feeGrowthInside0LastX128: BigInt!
-  feeGrowthInside1LastX128: BigInt!
 }
 
 type Transaction @entity {
@@ -500,10 +484,6 @@ type PoolDayData @entity {
   token1Price: BigDecimal!
   # current tick at end of period
   tick: BigInt
-  # tracker for global fee growth
-  feeGrowthGlobal0X128: BigInt!
-  # tracker for global fee growth
-  feeGrowthGlobal1X128: BigInt!
   # tvl derived in USD at end of period
   tvlUSD: BigDecimal!
   feesToken0: BigDecimal!
@@ -557,10 +537,6 @@ type PoolHourData @entity {
   token1Price: BigDecimal!
   # current tick at end of period
   tick: BigInt
-  # tracker for global fee growth
-  feeGrowthGlobal0X128: BigInt!
-  # tracker for global fee growth
-  feeGrowthGlobal1X128: BigInt!
   # tvl derived in USD at end of period
   tvlUSD: BigDecimal!
   # volume in token0
@@ -630,9 +606,6 @@ type TickDayData @entity {
   volumeUSD: BigDecimal!
   # fees in USD
   feesUSD: BigDecimal!
-  # vars needed for fee computation
-  feeGrowthOutside0X128: BigInt!
-  feeGrowthOutside1X128: BigInt!
 }
 
 type TokenDayData @entity {
