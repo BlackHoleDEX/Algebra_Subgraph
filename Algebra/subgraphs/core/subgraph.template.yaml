@@ -1,15 +1,15 @@
 specVersion: 0.0.4
-description: Algebra is a decentralized protocol for automated token exchange on base-sepolia.
+description: Algebra is a decentralized protocol for automated token exchange on {{NETWORK_NAME}}.
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: base-sepolia
+    network: {{NETWORK}}
     source:
-      address: '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
+      address: '{{FACTORY_ADDRESS}}'
       abi: Factory
-      startBlock: 23609151
+      startBlock: {{START_BLOCK}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: base-sepolia
+    network: {{NETWORK}}
     source:
-      address: '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
+      address: '{{NONFUNGIBLE_POSITION_MANAGER_ADDRESS}}'
       abi: NonfungiblePositionManager
-      startBlock: 23609151
+      startBlock: {{START_BLOCK}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: base-sepolia
+    network: {{NETWORK}}
     source:
       abi: Pool
     mapping:

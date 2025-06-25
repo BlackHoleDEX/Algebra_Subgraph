@@ -15,7 +15,8 @@ import {
   Plugin as PluginEvent
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, FEE_DENOMINATOR} from '../utils/constants'
+import { ONE_BI, ZERO_BD, FEE_DENOMINATOR} from '../utils/constants'
+import { FACTORY_ADDRESS } from '../utils/chain'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,

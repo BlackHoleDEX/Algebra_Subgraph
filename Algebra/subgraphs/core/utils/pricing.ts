@@ -1,34 +1,19 @@
 /* eslint-disable prefer-const */
-import { ONE_BD, ZERO_BD, ZERO_BI } from './constants'
-import { Bundle, Pool, Token } from './../types/schema'
+import { Bundle, Pool, Token } from '../types/schema'
 import { BigDecimal, BigInt } from '@graphprotocol/graph-ts'
 import { exponentToBigDecimal, safeDiv } from '../utils/index'
-
-const WMatic_ADDRESS = '0x4200000000000000000000000000000000000006'
-const USDC_WMatic_03_POOL = '0x47e8ca40666102ac217286e51660a4e6e6d7f9a3'
-
-// token where amounts should contribute to tracked volume and liquidity
-// usually tokens that many tokens are paired with s
-export let WHITELIST_TOKENS: string[] = [
-  '0x4200000000000000000000000000000000000006', // WMATIC
-  '0xabac6f23fdf1313fc2e9c9244f666157ccd32990', // USDC
-  '0x5aefba317baba46eaf98fd6f381d07673bca6467', // USDT 
-  '0x49a390a3dfd2d01389f799965f3af5961f87d228'
-]
-
-let MINIMUM_Matic_LOCKED = BigDecimal.fromString('0')
-
-let Q192 = Math.pow(2, 192)
-
-let STABLE_COINS: string[] = [
-  '0x4200000000000000000000000000000000000006', // USDC
-  '0xabac6f23fdf1313fc2e9c9244f666157ccd32990' // SUDT
-]
-
+import { ZERO_BD, ONE_BD, ZERO_BI, Q192 } from './constants'
+import { 
+  REFERENCE_TOKEN, 
+  STABLE_TOKEN_POOL, 
+  MINIMUM_NATIVE_LOCKED,
+  WHITELIST_TOKENS,
+  STABLE_COINS
+} from './chain'
 
 export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token): BigDecimal[] {
   let num = price.times(price).toBigDecimal()
-  let denom = BigDecimal.fromString(Q192.toString())
+  let denom = Q192.toBigDecimal()
   let price1 = num
     .div(denom)
     .times(exponentToBigDecimal(token0.decimals))
@@ -39,27 +24,26 @@ export function priceToTokenPrices(price: BigInt, token0: Token, token1: Token):
 }
 
 export function getEthPriceInUSD(): BigDecimal {
-  let usdcPool = Pool.load(USDC_WMatic_03_POOL) // dai is token0
+  let usdcPool = Pool.load(STABLE_TOKEN_POOL)
   if (usdcPool !== null) {
-    return usdcPool.token1Price
+    if (usdcPool.token0 == REFERENCE_TOKEN) return usdcPool.token1Price
+    else return usdcPool.token0Price
   } else {
     return ZERO_BD
   }
 } 
 
-
 /**
- * Search through graph to find derived Eth per token.
- * @todo update to be derived Matic (add stablecoin estimates)
+ * Search through graph to find derived Native token per token.
  **/
 export function findEthPerToken(token: Token): BigDecimal {
-  if (token.id == WMatic_ADDRESS) {
+  if (token.id == REFERENCE_TOKEN) {
     return ONE_BD
   }
   let whiteList = token.whitelistPools
   // for now just take USD from pool with greatest TVL
   // need to update this to actually detect best rate based on liquidity distribution
-  let largestLiquidityMatic = ZERO_BD
+  let largestLiquidityNative = ZERO_BD
   let priceSoFar = ZERO_BD
   let bundle = Bundle.load('1')
 
@@ -76,21 +60,21 @@ export function findEthPerToken(token: Token): BigDecimal {
       if (pool.token0 == token.id) {
         // whitelist token is token1
         let token1 = Token.load(pool.token1)!
-        // get the derived Matic in pool
-        let maticLocked = pool.totalValueLockedToken1.times(token1.derivedMatic)
-        if (maticLocked.gt(largestLiquidityMatic) && maticLocked.gt(MINIMUM_Matic_LOCKED)) {
-          largestLiquidityMatic = maticLocked
-          // token1 per our token * Eth per token1
+        // get the derived Native in pool
+        let nativeLocked = pool.totalValueLockedToken1.times(token1.derivedMatic)
+        if (nativeLocked.gt(largestLiquidityNative) && nativeLocked.gt(MINIMUM_NATIVE_LOCKED)) {
+          largestLiquidityNative = nativeLocked
+          // token1 per our token * Native per token1
           priceSoFar = pool.token1Price.times(token1.derivedMatic as BigDecimal)
         }
       }
       if (pool.token1 == token.id) {
         let token0 = Token.load(pool.token0)!
-        // get the derived Matic in pool
-        let maticLocked = pool.totalValueLockedToken0.times(token0.derivedMatic)
-        if (maticLocked.gt(largestLiquidityMatic) && maticLocked.gt(MINIMUM_Matic_LOCKED)) {
-          largestLiquidityMatic = maticLocked
-          // token0 per our token * Matic per token0
+        // get the derived Native in pool
+        let nativeLocked = pool.totalValueLockedToken0.times(token0.derivedMatic)
+        if (nativeLocked.gt(largestLiquidityNative) && nativeLocked.gt(MINIMUM_NATIVE_LOCKED)) {
+          largestLiquidityNative = nativeLocked
+          // token0 per our token * Native per token0
           priceSoFar = pool.token0Price.times(token0.derivedMatic as BigDecimal)
         }
       }

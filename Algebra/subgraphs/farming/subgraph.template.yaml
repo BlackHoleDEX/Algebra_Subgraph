@@ -1,0 +1,77 @@
+specVersion: 0.0.4
+description: Algebra Farming subgraph for {{NETWORK_NAME}} network
+schema:
+  file: ./schema.graphql
+dataSources:
+- kind: ethereum/contract
+  name: NonfungiblePositionManager
+  network: {{NETWORK}}
+  source:
+      address: '{{NONFUNGIBLE_POSITION_MANAGER_ADDRESS}}'
+      abi: NonfungiblePositionManager
+      startBlock: {{START_BLOCK}}
+  mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./mappings/position-manager.ts
+      entities:
+        - Deposit
+        - Token
+        - Pool
+        - Position
+        - IncentiveReward
+        - TickReward
+        - FarmingPosition
+      abis:
+        - name: NonfungiblePositionManager
+          file: ../abis/NonfungiblePositionManager.json
+        - name: ERC20
+          file: ../abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ../abis/ERC20SymbolBytes.json  
+        - name: ERC20NameBytes
+          file: ../abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: IncreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleIncreaseLiquidity
+        - event: DecreaseLiquidity(indexed uint256,uint128,uint256,uint256)
+          handler: handleDecreaseLiquidity
+        - event: Collect(indexed uint256,address,uint256,uint256)
+          handler: handleCollect
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+- kind: ethereum/contract
+  name: EternalFarming
+  network: {{NETWORK}}
+  source:
+    address: '{{ETERNAL_FARMING_ADDRESS}}'
+    abi: EternalFarming
+    startBlock: {{START_BLOCK}}
+  mapping:
+    kind: ethereum/events
+    apiVersion: 0.0.6
+    language: wasm/assemblyscript
+    file: ./mappings/eternal-farming.ts
+    entities:
+      - EternalFarming
+      - Incentive
+      - Deposit
+    abis:
+      - name: EternalFarming
+        file: ../abis/EternalFarming.json
+      - name: ERC20
+        file: ../abis/ERC20.json
+    eventHandlers:
+      - event: IncentiveCreated(indexed address,indexed address,indexed uint256,uint256,address,uint256,uint256,uint256)
+        handler: handleIncentiveCreated
+      - event: IncentiveEnded(indexed uint256,uint256)
+        handler: handleIncentiveEnded
+      - event: DepositTransferred(indexed uint256,indexed address,indexed address)
+        handler: handleDepositTransferred
+      - event: TokenStaked(indexed uint256,indexed bytes32,uint128)
+        handler: handleTokenStaked
+      - event: TokenUnstaked(indexed uint256,indexed bytes32)
+        handler: handleTokenUnstaked
+      - event: RewardClaimed(indexed address,uint256)
+        handler: handleRewardClaimed

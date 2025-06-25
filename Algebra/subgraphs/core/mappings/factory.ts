@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
-import { WHITELIST_TOKENS } from './../utils/pricing'
-import { FACTORY_ADDRESS, ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from './../utils/constants'
+import { FACTORY_ADDRESS, WHITELIST_TOKENS} from '../utils/chain'
+import { ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from '../utils/constants'
 import { Factory } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { DefaultCommunityFee, CustomPool } from '../types/Factory/Factory'
@@ -68,14 +68,13 @@ function createPool(
 
   let token0 = Token.load(token0Address)
   let token1 = Token.load(token1Address)
-
   // fetch info if null
   if (token0 === null) {
     token0 = new Token(token0Address)
-    token0.symbol = fetchTokenSymbol(Address.fromHexString(token0Address))
-    token0.name = fetchTokenName(Address.fromHexString(token0Address))
-    token0.totalSupply = fetchTokenTotalSupply(Address.fromHexString(token0Address))
-    let decimals = fetchTokenDecimals(Address.fromHexString(token0Address))
+    token0.symbol = fetchTokenSymbol(Address.fromString(token0Address))
+    token0.name = fetchTokenName(Address.fromString(token0Address))
+    token0.totalSupply = fetchTokenTotalSupply(Address.fromString(token0Address))
+    let decimals = fetchTokenDecimals(Address.fromString(token0Address))
 
     // bail if we couldn't figure out the decimals
     if (decimals === null) {
@@ -96,13 +95,12 @@ function createPool(
     token0.poolCount = ZERO_BI
     token0.whitelistPools = []
   }
-
   if (token1 === null) {
     token1 = new Token(token1Address)
-    token1.symbol = fetchTokenSymbol(Address.fromHexString(token1Address))
-    token1.name = fetchTokenName(Address.fromHexString(token1Address))
-    token1.totalSupply = fetchTokenTotalSupply(Address.fromHexString(token1Address))
-    let decimals = fetchTokenDecimals(Address.fromHexString(token1Address))
+    token1.symbol = fetchTokenSymbol(Address.fromString(token1Address))
+    token1.name = fetchTokenName(Address.fromString(token1Address))
+    token1.totalSupply = fetchTokenTotalSupply(Address.fromString(token1Address))
+    let decimals = fetchTokenDecimals(Address.fromString(token1Address))
     // bail if we couldn't figure out the decimals
     if (decimals === null) {
       log.debug('mybug the decimal on token 0 was null', [])
@@ -171,9 +169,8 @@ function createPool(
   pool.collectedFeesToken1 = ZERO_BD
   pool.collectedFeesUSD = ZERO_BD
 
-  pool.save()
-  // create the tracked contract based on the template
-  PoolTemplate.create(Address.fromHexString(poolAddress))
+  pool.save()  // create the tracked contract based on the template
+  PoolTemplate.create(Address.fromString(poolAddress))
   token0.save()
   token1.save()
   factory.save()
@@ -202,6 +199,6 @@ export function handleNewCommunityFee(event: DefaultCommunityFee): void{
     bundle.maticPriceUSD = ZERO_BD
     bundle.save()
   }
-  factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee as i32)
+  factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee)
   factory.save()
 }

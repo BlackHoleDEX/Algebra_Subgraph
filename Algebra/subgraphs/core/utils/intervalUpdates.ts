@@ -11,8 +11,8 @@ import {
   Bundle,
   PoolHourData,
   FeeHourData
-} from './../types/schema'
-import { FACTORY_ADDRESS } from './constants'
+} from '../types/schema'
+import { FACTORY_ADDRESS } from './chain'
 import { ethereum, BigInt } from '@graphprotocol/graph-ts'
 
 
