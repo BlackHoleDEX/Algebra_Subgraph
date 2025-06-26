@@ -1,4 +1,5 @@
 {
   "network": "base-sepolia",
-  "startBlock": 23609151
+  "startBlock": 23609151,
+  "limitOrderStartBlock": 24259587
 }

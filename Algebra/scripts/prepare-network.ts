@@ -49,7 +49,12 @@ console.log(`📋 Found network configuration for: ${network}`);
 
 // Load network config.json
 const networkConfigPath = path.join(configDir, network, 'config.json');
-let networkConfig: { network: string; startBlock: number; description?: string } | null = null;
+let networkConfig: { 
+  network: string; 
+  startBlock: number; 
+  limitOrderStartBlock?: number;
+  description?: string;
+} | null = null;
 
 try {
   if (!fs.existsSync(networkConfigPath)) {
@@ -122,6 +127,7 @@ function extractConfigFromChainFile(chainFilePath: string): {
   nonfungiblePositionManagerAddress: string;
   eternalFarmingAddress?: string;
   farmingCenterAddress?: string;
+  limitOrderAddress?: string;
 } {
   try {
     const chainContent = fs.readFileSync(chainFilePath, 'utf8');
@@ -141,6 +147,10 @@ function extractConfigFromChainFile(chainFilePath: string): {
     const farmingCenterMatch = chainContent.match(/export const FARMING_CENTER_ADDRESS = '([^']+)'/);
     const farmingCenterAddress = farmingCenterMatch ? farmingCenterMatch[1] : undefined;
     
+    // Extract limit order address (optional)
+    const limitOrderMatch = chainContent.match(/export const LIMIT_ORDER_ADDRESS = '([^']+)'/);
+    const limitOrderAddress = limitOrderMatch ? limitOrderMatch[1] : undefined;
+    
     if (!factoryAddress || !nonfungiblePositionManagerAddress) {
       throw new Error('Could not extract required addresses from chain.ts');
     }
@@ -149,7 +159,8 @@ function extractConfigFromChainFile(chainFilePath: string): {
       factoryAddress, 
       nonfungiblePositionManagerAddress,
       eternalFarmingAddress,
-      farmingCenterAddress
+      farmingCenterAddress,
+      limitOrderAddress
     };
   } catch (error) {
     throw new Error(`Failed to parse chain.ts: ${(error as Error).message}`);
@@ -159,7 +170,12 @@ function extractConfigFromChainFile(chainFilePath: string): {
 // Function to process subgraph template for a specific subgraph
 function processSubgraphTemplate(
   subgraphName: string, 
-  networkConfig: { network: string; startBlock: number; description?: string }, 
+  networkConfig: { 
+    network: string; 
+    startBlock: number; 
+    limitOrderStartBlock?: number;
+    description?: string;
+  }, 
   addresses: ReturnType<typeof extractConfigFromChainFile>
 ): void {
   const subgraphDir = path.join(rootDir, 'subgraphs', subgraphName);
@@ -174,24 +190,35 @@ function processSubgraphTemplate(
   }
   
   try {
-    // Copy chain.ts to subgraph's utils directory
-    const chainUtilsDir = path.dirname(chainUtilsPath);
-    if (!fs.existsSync(chainUtilsDir)) {
-      fs.mkdirSync(chainUtilsDir, { recursive: true });
-    }
+    // Copy chain.ts to subgraph's utils directory only for subgraphs that need it
+    // Farming and limits subgraphs don't need chain.ts as they don't use network constants
+    const needsChainFile = ['core'].includes(subgraphName);
     
-    const chainContent = fs.readFileSync(networkChainPath, 'utf8');
-    const normalizedContent = normalizeAddresses(chainContent);
-    fs.writeFileSync(chainUtilsPath, normalizedContent);
+    if (needsChainFile) {
+      const chainUtilsDir = path.dirname(chainUtilsPath);
+      if (!fs.existsSync(chainUtilsDir)) {
+        fs.mkdirSync(chainUtilsDir, { recursive: true });
+      }
+      
+      const chainContent = fs.readFileSync(networkChainPath, 'utf8');
+      const normalizedContent = normalizeAddresses(chainContent);
+      fs.writeFileSync(chainUtilsPath, normalizedContent);
+    }
     
     // Process template
     const template = fs.readFileSync(templatePath, 'utf8');
+    
+    // Determine start block - use specific start block for limits subgraph if available
+    const startBlock = (subgraphName === 'limits' && networkConfig.limitOrderStartBlock) 
+      ? networkConfig.limitOrderStartBlock 
+      : networkConfig.startBlock;
+    
     let subgraphContent = template
       .replace(/{{NETWORK_NAME}}/g, network)
       .replace(/{{NETWORK}}/g, networkConfig.network)
       .replace(/{{FACTORY_ADDRESS}}/g, addresses.factoryAddress)
       .replace(/{{NONFUNGIBLE_POSITION_MANAGER_ADDRESS}}/g, addresses.nonfungiblePositionManagerAddress)
-      .replace(/{{START_BLOCK}}/g, networkConfig.startBlock.toString());
+      .replace(/{{START_BLOCK}}/g, startBlock.toString());
     
     // Replace farming-specific placeholders
     if (addresses.eternalFarmingAddress) {
@@ -201,9 +228,16 @@ function processSubgraphTemplate(
       subgraphContent = subgraphContent.replace(/{{FARMING_CENTER_ADDRESS}}/g, addresses.farmingCenterAddress);
     }
     
+    // Replace limit order placeholders
+    if (addresses.limitOrderAddress) {
+      subgraphContent = subgraphContent.replace(/{{LIMIT_ORDER_ADDRESS}}/g, addresses.limitOrderAddress);
+    }
+    
     fs.writeFileSync(outputPath, subgraphContent);
     console.log(`✅ Generated ${subgraphName}/subgraph.yaml from template`);
-    console.log(`✅ Copied chain.ts to ${subgraphName}/utils/`);
+    if (needsChainFile) {
+      console.log(`✅ Copied chain.ts to ${subgraphName}/utils/`);
+    }
   } catch (error) {
     console.error(`❌ Error processing ${subgraphName} subgraph: ${(error as Error).message}`);
   }
@@ -220,7 +254,7 @@ try {
   }
   
   // Process each subgraph
-  const subgraphs = ['core', 'farming', 'blocks'];
+  const subgraphs = ['core', 'farming', 'blocks', 'limits'];
   let processedCount = 0;
   
   for (const subgraphName of subgraphs) {
@@ -252,3 +286,4 @@ console.log(`💡 Next steps:`);
 console.log(`  cd subgraphs/core && yarn codegen && yarn build    # Build core subgraph`);
 console.log(`  cd subgraphs/farming && yarn codegen && yarn build # Build farming subgraph (if configured)`);
 console.log(`  cd subgraphs/blocks && yarn codegen && yarn build  # Build blocks subgraph (if configured)`);
+console.log(`  cd subgraphs/limits && yarn codegen && yarn build  # Build limits subgraph (if configured)`);

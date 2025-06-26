@@ -2,7 +2,7 @@
 import { BigDecimal} from '@graphprotocol/graph-ts'
 
 // Network: base-sepolia
-export const FACTORY_ADDRESS = '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
+export const FACTORY_ADDRESS = '0x5e4f01767a1068c5570c29fdf9bf743b0aa637d7'
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESS = '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
 
 export const REFERENCE_TOKEN = '0x4200000000000000000000000000000000000006' // Wrapped ETH
@@ -13,9 +13,9 @@ export const MINIMUM_NATIVE_LOCKED = BigDecimal.fromString('0')
 // Token lists for tracking volume and liquidity
 export const WHITELIST_TOKENS: string[] = [
   '0x4200000000000000000000000000000000000006',
-  '0xABAC6F23FDF1313FC2E9C9244F666157CCD32990', 
+  '0xabac6f23fdf1313fc2e9c9244f666157ccd32990', 
   '0x5aefba317baba46eaf98fd6f381d07673bca6467',
-  '0x49A390A3DFD2D01389F799965F3AF5961F87D228' 
+  '0x49a390a3dfd2d01389f799965f3af5961f87d228' 
 ]
 
 export const STABLE_COINS: string[] = [
@@ -28,4 +28,4 @@ export const ETERNAL_FARMING_ADDRESS = '0x...' // TODO: Add actual farming contr
 export const FARMING_CENTER_ADDRESS = '0x...' // TODO: Add actual farming center address
 
 // Limit order contract
-export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'
+export const LIMIT_ORDER_ADDRESS = '0x822ddb9eecc3794790b8316585feba5b8f7c7507'

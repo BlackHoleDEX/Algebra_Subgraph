@@ -3,7 +3,7 @@ subgraphs/*/subgraph.yaml
 subgraphs/*/utils/chain.ts
 
 # Generated files
-subgraphs/*/types/*
+subgraphs/*/src/types/*
 subgraphs/*/build/*
 build/
 node_modules/
