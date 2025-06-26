@@ -1,4 +1,4 @@
-type EternalFarming @entity {
+type EternalFarming @entity(immutable: false) {
   id: ID!
   rewardToken: Bytes!
   bonusRewardToken: Bytes!
@@ -13,7 +13,7 @@ type EternalFarming @entity {
   minRangeLength: BigInt!
 }
 
-type Deposit @entity {
+type Deposit @entity(immutable: false) {
   id: ID!
   owner: Bytes!
   pool: Bytes!
@@ -22,14 +22,14 @@ type Deposit @entity {
   rangeLength: BigInt!
 }
 
-type Reward @entity{
+type Reward @entity(immutable: false){
   id: ID!
   rewardAddress: Bytes!
   amount: BigInt!
   owner: Bytes!
 }
 
-type Token @entity{
+type Token @entity(immutable: true){
   id: ID!
   # token symbol
   symbol: String!

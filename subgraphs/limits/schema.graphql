@@ -1,4 +1,4 @@
-type Epoch @entity{
+type Epoch @entity(immutable: false){
   id: ID!
   pool: Bytes!
   filled: Boolean!
@@ -6,7 +6,7 @@ type Epoch @entity{
   fillTimestamp: BigInt!
 }
 
-type LimitOrder @entity{
+type LimitOrder @entity(immutable: false){
   id: ID!
   epoch: Epoch!
   owner: Bytes!

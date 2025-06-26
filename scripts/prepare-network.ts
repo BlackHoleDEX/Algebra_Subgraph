@@ -181,7 +181,7 @@ function processSubgraphTemplate(
   const subgraphDir = path.join(rootDir, 'subgraphs', subgraphName);
   const templatePath = path.join(subgraphDir, 'subgraph.template.yaml');
   const outputPath = path.join(subgraphDir, 'subgraph.yaml');
-  const chainUtilsPath = path.join(subgraphDir, 'utils', 'chain.ts');
+  const chainUtilsPath = path.join(subgraphDir, 'src', 'utils', 'chain.ts');
   
   // Skip if template doesn't exist
   if (!fs.existsSync(templatePath)) {
@@ -236,7 +236,7 @@ function processSubgraphTemplate(
     fs.writeFileSync(outputPath, subgraphContent);
     console.log(`✅ Generated ${subgraphName}/subgraph.yaml from template`);
     if (needsChainFile) {
-      console.log(`✅ Copied chain.ts to ${subgraphName}/utils/`);
+      console.log(`✅ Copied chain.ts to ${subgraphName}/src/utils/`);
     }
   } catch (error) {
     console.error(`❌ Error processing ${subgraphName} subgraph: ${(error as Error).message}`);
@@ -279,7 +279,7 @@ try {
 console.log('✅ Network preparation complete!');
 console.log('📁 Files updated:');
 console.log(`  - subgraphs/*/subgraph.yaml (generated from templates)`);
-console.log(`  - subgraphs/*/utils/chain.ts (copied and normalized from config/${network}/chain.ts)`);
+console.log(`  - subgraphs/*/src/utils/chain.ts (copied and normalized from config/${network}/chain.ts)`);
 console.log(`🔧 All token addresses normalized to lowercase`);
 console.log(`🚀 Ready to build for ${network}!`);
 console.log(`💡 Next steps:`);
