@@ -29,10 +29,46 @@ Create network configuration files in `config/<project-name-network>/`, e.g. 'cl
 }
 ```
 
-**config/network/chain.ts:**
+**config/project-name-network/chain.ts:**
 
-Update all contract addresses according to the deployed contracts
-Update the list of tokens that will be used for pricing 
+Update all analytics contract addresses 
+```typescript
+import { BigDecimal } from '@graphprotocol/graph-ts'
+
+export const FACTORY_ADDRESS = '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
+export const NONFUNGIBLE_POSITION_MANAGER_ADDRESS = '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
+```
+
+Update the list of tokens that will be used for pricing
+```typescript
+export const REFERENCE_TOKEN = '0x4200000000000000000000000000000000000006' // Wrapped ETH
+export const STABLE_TOKEN_POOL = '0x47e8ca40666102ac217286e51660a4e6e6d7f9a3' // USDC/WETH pool
+
+// Minimum reference token locked in pool for pricing calculations
+export const MINIMUM_NATIVE_LOCKED = BigDecimal.fromString('0')
+
+// Token lists for tracking volume and liquidity
+export const WHITELIST_TOKENS: string[] = [
+  '0x4200000000000000000000000000000000000006', // WETH
+  '0xABAC6F23FDF1313FC2E9C9244F666157CCD32990' // USDC
+]
+
+// Stable coins for USD pricing (tokens with stable $1 value)
+export const STABLE_COINS: string[] = [
+  '0xABAC6F23FDF1313FC2E9C9244F666157CCD32990' // USDC
+]
+```
+
+If you will use farming or limit orders also update
+```typescript
+// Addresses for farming subgraph
+// Farming contracts
+export const ETERNAL_FARMING_ADDRESS = '0x0000000000000000000000000000000000000000'  
+
+// Addresses for limit order subgraph
+// Limit order contract
+export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'
+```
 
 ### 3. Prepare Network Configuration
 

@@ -5,9 +5,10 @@ import { BigDecimal} from '@graphprotocol/graph-ts'
 export const FACTORY_ADDRESS = '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESS = '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
 
-export const REFERENCE_TOKEN = '0x4200000000000000000000000000000000000006' // Wrapped ETH
+export const REFERENCE_TOKEN = '0x4200000000000000000000000000000000000006' // Wrapped Native Token
 export const STABLE_TOKEN_POOL = '0x47e8ca40666102ac217286e51660a4e6e6d7f9a3' // USDC/WETH pool
 
+// Minimum reference token locked in pool for pricing calculations
 export const MINIMUM_NATIVE_LOCKED = BigDecimal.fromString('0')
 
 // Token lists for tracking volume and liquidity
@@ -18,8 +19,8 @@ export const WHITELIST_TOKENS: string[] = [
   '0x49A390A3DFD2D01389F799965F3AF5961F87D228' 
 ]
 
+// Stable coins for USD pricing (tokens with stable $1 value)
 export const STABLE_COINS: string[] = [
-  '0x4200000000000000000000000000000000000006',
   '0xabac6f23fdf1313fc2e9c9244f666157ccd32990'
 ]
 
