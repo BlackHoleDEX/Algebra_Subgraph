@@ -192,7 +192,7 @@ function processSubgraphTemplate(
   try {
     // Copy chain.ts to subgraph's utils directory only for subgraphs that need it
     // Farming and limits subgraphs don't need chain.ts as they don't use network constants
-    const needsChainFile = ['core'].includes(subgraphName);
+    const needsChainFile = ['analytics'].includes(subgraphName);
     
     if (needsChainFile) {
       const chainUtilsDir = path.dirname(chainUtilsPath);
@@ -254,7 +254,7 @@ try {
   }
   
   // Process each subgraph
-  const subgraphs = ['core', 'farming', 'blocks', 'limits'];
+  const subgraphs = ['analytics', 'farming', 'blocks', 'limits'];
   let processedCount = 0;
   
   for (const subgraphName of subgraphs) {
@@ -283,7 +283,7 @@ console.log(`  - subgraphs/*/utils/chain.ts (copied and normalized from config/$
 console.log(`🔧 All token addresses normalized to lowercase`);
 console.log(`🚀 Ready to build for ${network}!`);
 console.log(`💡 Next steps:`);
-console.log(`  cd subgraphs/core && yarn codegen && yarn build    # Build core subgraph`);
+console.log(`  cd subgraphs/analytics && yarn codegen && yarn build    # Build analytics subgraph`);
 console.log(`  cd subgraphs/farming && yarn codegen && yarn build # Build farming subgraph (if configured)`);
 console.log(`  cd subgraphs/blocks && yarn codegen && yarn build  # Build blocks subgraph (if configured)`);
 console.log(`  cd subgraphs/limits && yarn codegen && yarn build  # Build limits subgraph (if configured)`);

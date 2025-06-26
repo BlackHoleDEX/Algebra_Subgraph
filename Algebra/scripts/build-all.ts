@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = join(__filename, '..');
 
-const AVAILABLE_SUBGRAPHS = ['core', 'farming', 'blocks', 'limits'];
+const AVAILABLE_SUBGRAPHS = ['analytics', 'farming', 'blocks', 'limits'];
 
 function getNetworkFromSubgraph(subgraph: string): string | null {
   const subgraphDir = join(__dirname, '..', 'subgraphs', subgraph);
@@ -102,7 +102,7 @@ function main() {
 
 📝 Examples:
   yarn build-all                    # Build all subgraphs
-  yarn build-all core farming       # Build only core and farming subgraphs
+  yarn build-all analytics farming       # Build only analytics and farming subgraphs
   yarn build-all blocks              # Build only blocks subgraph
 
 💡 Networks will be automatically detected from existing subgraph.yaml files.

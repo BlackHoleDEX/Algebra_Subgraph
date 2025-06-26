@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = join(__filename, '..');
 
-const AVAILABLE_SUBGRAPHS = ['core', 'farming', 'blocks', 'limits'];
+const AVAILABLE_SUBGRAPHS = ['analytics', 'farming', 'blocks', 'limits'];
 
 function getNetworkFromSubgraph(subgraph: string): string | null {
   const subgraphDir = join(__dirname, '..', 'subgraphs', subgraph);
@@ -29,7 +29,11 @@ function getNetworkFromSubgraph(subgraph: string): string | null {
   }
 }
 
-function deploySubgraph(subgraph: string, subgraphName: string, accessToken?: string): boolean {
+function deploySubgraph(
+  subgraph: string, 
+  subgraphName: string, 
+  accessToken?: string
+): boolean {
   const subgraphDir = join(__dirname, '..', 'subgraphs', subgraph);
   
   if (!existsSync(subgraphDir)) {
@@ -54,7 +58,6 @@ function deploySubgraph(subgraph: string, subgraphName: string, accessToken?: st
   console.log(`🚀 Deploying ${subgraph} subgraph (network: ${network}) to ${subgraphName}...`);
 
   try {
-    // Set access token if provided
     if (accessToken) {
       console.log(`🔑 Setting access token...`);
       execSync(`graph auth --studio ${accessToken}`, { 
@@ -63,8 +66,7 @@ function deploySubgraph(subgraph: string, subgraphName: string, accessToken?: st
       });
     }
     
-    // Deploy subgraph
-    console.log(`📤 Deploying to ${subgraphName}...`);
+    console.log(`📤 Deploying to The Graph Studio...`);
     execSync(`graph deploy --studio ${subgraphName}`, { 
       stdio: 'inherit',
       cwd: subgraphDir
@@ -88,7 +90,7 @@ function main() {
 📋 Available subgraphs: ${AVAILABLE_SUBGRAPHS.join(', ')}
 
 📝 Examples:
-  yarn deploy-subgraph core algebra-core-base-sepolia
+  yarn deploy-subgraph analytics algebra-analytics-base-sepolia
   yarn deploy-subgraph farming algebra-farming-base-sepolia  
   yarn deploy-subgraph blocks algebra-blocks-base-sepolia YOUR_ACCESS_TOKEN
 

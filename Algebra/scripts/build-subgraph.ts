@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = join(__filename, '..');
 
-const AVAILABLE_SUBGRAPHS = ['core', 'farming', 'blocks', 'limits'];
+const AVAILABLE_SUBGRAPHS = ['analytics', 'farming', 'blocks', 'limits'];
 
 function getAvailableNetworks(): string[] {
   const configDir = join(__dirname, '..', 'config');
@@ -98,7 +98,7 @@ function main() {
 📋 Available subgraphs: ${AVAILABLE_SUBGRAPHS.join(', ')}
 
 📝 Examples:
-  yarn build-subgraph core
+  yarn build-subgraph analytics
   yarn build-subgraph farming  
   yarn build-subgraph blocks
   yarn build-subgraph limits
