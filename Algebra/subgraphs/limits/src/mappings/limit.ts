@@ -4,8 +4,8 @@ import {
     Kill,
     Place,
     Withdraw
-} from '../../generated/Limit/Limit';
-import { Epoch, LimitOrder } from '../../generated/schema';
+} from '../types/Limit/Limit';
+import { Epoch, LimitOrder } from '../types/schema';
 
 export function PlaceHandler(event: Place): void{
     let epoch = Epoch.load(event.params.epoch.toString());

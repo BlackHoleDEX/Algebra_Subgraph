@@ -4,7 +4,7 @@ import {
 
 import {
     Block
-} from "../../generated/schema"
+} from "../types/schema"
 
 export function handleBlock(block: ethereum.Block): void {
     let id = block.hash.toHex()

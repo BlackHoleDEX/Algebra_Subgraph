@@ -1,0 +1,9 @@
+{
+  "name": "@algebra/limits-subgraph",
+  "version": "1.0.0",
+  "description": "Algebra Limits Subgraph",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml"
+  }
+}

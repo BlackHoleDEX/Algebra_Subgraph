@@ -1,0 +1,9 @@
+{
+  "name": "@algebra/blocks-subgraph",
+  "version": "1.0.0",
+  "description": "Algebra Blocks Subgraph",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml"
+  }
+}

@@ -19,7 +19,7 @@ dataSources:
         - ConverterAddition
       abis:
         - name: Limit
-          file: ./abis/limit.json
+          file: ../../abis/limit.json
       eventHandlers:
         - event: Place(indexed address,indexed uint232,address,int24,int24,bool,uint128)
           handler: PlaceHandler
@@ -29,4 +29,4 @@ dataSources:
           handler: KillHandler
         - event: Withdraw(indexed address,indexed uint232,uint128)
           handler: WithdrawHandler
-      file: ./mappings/limit.ts
+      file: ./src/mappings/limit.ts

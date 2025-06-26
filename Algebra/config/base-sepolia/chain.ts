@@ -24,8 +24,8 @@ export const STABLE_COINS: string[] = [
 ]
 
 // Farming contracts
-export const ETERNAL_FARMING_ADDRESS = '0x...' // TODO: Add actual farming contract address
-export const FARMING_CENTER_ADDRESS = '0x...' // TODO: Add actual farming center address
+export const ETERNAL_FARMING_ADDRESS = '0x0000000000000000000000000000000000000000' 
+export const FARMING_CENTER_ADDRESS = '0x0000000000000000000000000000000000000000' 
 
 // Limit order contract
 export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'

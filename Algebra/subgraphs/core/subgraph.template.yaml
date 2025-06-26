@@ -20,15 +20,15 @@ dataSources:
         - Token
       abis:
         - name: Factory
-          file: ./abis/factory.json
+          file: ../../abis/factory.json
         - name: ERC20
-          file: ./abis/ERC20.json
+          file: ../../abis/ERC20.json
         - name: ERC20SymbolBytes
-          file: ./abis/ERC20SymbolBytes.json
+          file: ../../abis/ERC20SymbolBytes.json
         - name: ERC20NameBytes
-          file: ./abis/ERC20NameBytes.json
+          file: ../../abis/ERC20NameBytes.json
         - name: Pool
-          file: ./abis/pool.json
+          file: ../../abis/pool.json
       eventHandlers:
         - event: Pool(indexed address,indexed address,address)
           handler: handlePoolCreated
@@ -54,13 +54,13 @@ dataSources:
         - Deposit
       abis:
         - name: NonfungiblePositionManager
-          file: ./abis/NonfungiblePositionManager.json
+          file: ../../abis/NonfungiblePositionManager.json
         - name: Pool
-          file: ./abis/pool.json
+          file: ../../abis/pool.json
         - name: Factory
-          file: ./abis/factory.json
+          file: ../../abis/factory.json
         - name: ERC20
-          file: ./abis/ERC20.json
+          file: ../../abis/ERC20.json
       eventHandlers:
         - event: Collect(indexed uint256,address,uint256,uint256)
           handler: handleCollect
@@ -86,11 +86,11 @@ templates:
         - Token
       abis:
         - name: Pool
-          file: ./abis/pool.json
+          file: ../../abis/pool.json
         - name: Factory
-          file: ./abis/factory.json
+          file: ../../abis/factory.json
         - name: ERC20
-          file: ./abis/ERC20.json
+          file: ../../abis/ERC20.json
       eventHandlers:
         - event: Initialize(uint160,int24)
           handler: handleInitialize
