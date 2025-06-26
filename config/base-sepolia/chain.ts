@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { BigDecimal} from '@graphprotocol/graph-ts'
 
-// Network: base-sepolia
+// Addresses for analytics subgraph 
 export const FACTORY_ADDRESS = '0x5E4F01767A1068C5570c29fDF9bf743b0Aa637d7'
 export const NONFUNGIBLE_POSITION_MANAGER_ADDRESS = '0x9ea4459c8defbf561495d95414b9cf1e2242a3e2'
 
@@ -23,9 +23,10 @@ export const STABLE_COINS: string[] = [
   '0xabac6f23fdf1313fc2e9c9244f666157ccd32990'
 ]
 
+// Addresses for farming subgraph
 // Farming contracts
-export const ETERNAL_FARMING_ADDRESS = '0x0000000000000000000000000000000000000000' 
-export const FARMING_CENTER_ADDRESS = '0x0000000000000000000000000000000000000000' 
+export const ETERNAL_FARMING_ADDRESS = '0x0000000000000000000000000000000000000000'  
 
+// Addresses for limit order subgraph
 // Limit order contract
 export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'

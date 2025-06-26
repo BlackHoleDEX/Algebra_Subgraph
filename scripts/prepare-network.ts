@@ -126,7 +126,6 @@ function extractConfigFromChainFile(chainFilePath: string): {
   factoryAddress: string; 
   nonfungiblePositionManagerAddress: string;
   eternalFarmingAddress?: string;
-  farmingCenterAddress?: string;
   limitOrderAddress?: string;
 } {
   try {
@@ -144,9 +143,6 @@ function extractConfigFromChainFile(chainFilePath: string): {
     const eternalFarmingMatch = chainContent.match(/export const ETERNAL_FARMING_ADDRESS = '([^']+)'/);
     const eternalFarmingAddress = eternalFarmingMatch ? eternalFarmingMatch[1] : undefined;
     
-    const farmingCenterMatch = chainContent.match(/export const FARMING_CENTER_ADDRESS = '([^']+)'/);
-    const farmingCenterAddress = farmingCenterMatch ? farmingCenterMatch[1] : undefined;
-    
     // Extract limit order address (optional)
     const limitOrderMatch = chainContent.match(/export const LIMIT_ORDER_ADDRESS = '([^']+)'/);
     const limitOrderAddress = limitOrderMatch ? limitOrderMatch[1] : undefined;
@@ -159,7 +155,6 @@ function extractConfigFromChainFile(chainFilePath: string): {
       factoryAddress, 
       nonfungiblePositionManagerAddress,
       eternalFarmingAddress,
-      farmingCenterAddress,
       limitOrderAddress
     };
   } catch (error) {
@@ -223,9 +218,6 @@ function processSubgraphTemplate(
     // Replace farming-specific placeholders
     if (addresses.eternalFarmingAddress) {
       subgraphContent = subgraphContent.replace(/{{ETERNAL_FARMING_ADDRESS}}/g, addresses.eternalFarmingAddress);
-    }
-    if (addresses.farmingCenterAddress) {
-      subgraphContent = subgraphContent.replace(/{{FARMING_CENTER_ADDRESS}}/g, addresses.farmingCenterAddress);
     }
     
     // Replace limit order placeholders
