@@ -1,9 +1,0 @@
-{
-  "name": "@algebra/core-subgraph",
-  "version": "1.0.0",
-  "description": "Algebra Core Subgraph",
-  "scripts": {
-    "codegen": "graph codegen subgraph.yaml",
-    "build": "graph build subgraph.yaml"
-  }
-}
