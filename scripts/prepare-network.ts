@@ -52,7 +52,6 @@ const networkConfigPath = path.join(configDir, network, 'config.json');
 let networkConfig: { 
   network: string; 
   startBlock: number; 
-  limitOrderStartBlock?: number;
   description?: string;
 } | null = null;
 
@@ -168,7 +167,6 @@ function processSubgraphTemplate(
   networkConfig: { 
     network: string; 
     startBlock: number; 
-    limitOrderStartBlock?: number;
     description?: string;
   }, 
   addresses: ReturnType<typeof extractConfigFromChainFile>
@@ -203,10 +201,8 @@ function processSubgraphTemplate(
     // Process template
     const template = fs.readFileSync(templatePath, 'utf8');
     
-    // Determine start block - use specific start block for limits subgraph if available
-    const startBlock = (subgraphName === 'limits' && networkConfig.limitOrderStartBlock) 
-      ? networkConfig.limitOrderStartBlock 
-      : networkConfig.startBlock;
+    // Use the same start block for all subgraphs
+    const startBlock = networkConfig.startBlock;
     
     let subgraphContent = template
       .replace(/{{NETWORK_NAME}}/g, network)
