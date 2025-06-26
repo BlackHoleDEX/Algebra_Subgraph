@@ -102,7 +102,7 @@ First, create your subgraph at https://thegraph.com/studio/
 Then authenticate with The Graph Studio:
 ```bash
 # Authenticate with your deploy key
-yarn graph auth --studio <DEPLOY_KEY>
+yarn graph auth <DEPLOY_KEY>
 ```
 
 Then deploy your subgraph:
