@@ -29,7 +29,7 @@ function createPositionIfNeccessary(event: ethereum.Event, tokenId: BigInt, pool
     position.token0 = pool.token0
     position.token1 = pool.token1
     let transaction = loadTransaction(event)
-    let mint = Mint.load(transaction.id.toString() + '#' + pool.txCount.toString())!
+    let mint = Mint.load(transaction.id.toString() + '#' + pool.lastMintIndex.toString())!
     position.tickLower = position.pool.concat('#').concat(mint.tickLower.toString())
     position.tickUpper = position.pool.concat('#').concat(mint.tickUpper.toString())
     position.liquidity = ZERO_BI
