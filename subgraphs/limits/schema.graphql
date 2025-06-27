@@ -1,0 +1,23 @@
+type Epoch @entity(immutable: false){
+  id: ID!
+  pool: Bytes!
+  filled: Boolean!
+  totalLiquidity: BigInt!
+  fillTimestamp: BigInt!
+}
+
+type LimitOrder @entity(immutable: false){
+  id: ID!
+  epoch: Epoch!
+  owner: Bytes!
+  pool: Bytes!
+  placeTimestamp: BigInt!
+  closeTimestamp: BigInt!
+  initialLiquidity: BigInt!
+  killedLiquidity: BigInt!
+  killed: Boolean!
+  liquidity: BigInt!
+  tickLower: BigInt!
+  tickUpper: BigInt!
+  zeroToOne: Boolean!
+}

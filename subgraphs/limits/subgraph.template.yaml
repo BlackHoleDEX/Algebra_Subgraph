@@ -1,0 +1,32 @@
+specVersion: 0.0.4
+description: Algebra Limit Orders subgraph for {{NETWORK_NAME}}
+repository: https://github.com/cryptoalgebra
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Limit
+    network: {{NETWORK}}
+    source:
+      address: "{{LIMIT_ORDER_ADDRESS}}"
+      abi: Limit
+      startBlock: {{START_BLOCK}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - ConverterAddition
+      abis:
+        - name: Limit
+          file: ../../abis/limit.json
+      eventHandlers:
+        - event: Place(indexed address,indexed uint232,address,int24,int24,bool,uint128)
+          handler: PlaceHandler
+        - event: Fill(indexed uint232,int24,bool)
+          handler: FillHandler
+        - event: Kill(indexed address,indexed uint232,int24,bool,uint128)
+          handler: KillHandler
+        - event: Withdraw(indexed address,indexed uint232,uint128)
+          handler: WithdrawHandler
+      file: ./src/mappings/limit.ts
