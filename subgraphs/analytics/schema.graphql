@@ -466,6 +466,26 @@ type AlgebraDayData @entity(immutable: false) {
   tvlUSD: BigDecimal!
 }
 
+# Data accumulated and condensed into hour stats for all of Algebra
+type AlgebraHourData @entity(immutable: false) {
+  # timestamp rounded to current hour by dividing by 3600
+  id: ID!
+  # timestamp rounded to current hour by dividing by 3600
+  date: Int!
+  # total hour volume in Algebra derived in terms of Matic
+  volumeMatic: BigDecimal!
+  # total hour volume in Algebra derived in terms of USD
+  volumeUSD: BigDecimal!
+  # total hour volume in Algebra derived in terms of USD untracked
+  volumeUSDUntracked: BigDecimal!
+  # fees in USD
+  feesUSD: BigDecimal!
+  # number of hour transactions
+  txCount: BigInt!
+  # tvl in terms of USD
+  tvlUSD: BigDecimal!
+}
+
 # Data accumulated and condensed into day stats for each pool
 type PoolDayData @entity(immutable: false) {
   # timestamp rounded to current day by dividing by 86400

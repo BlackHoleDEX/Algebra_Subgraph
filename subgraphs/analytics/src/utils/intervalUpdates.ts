@@ -2,6 +2,7 @@ import { ZERO_BD, ZERO_BI, ONE_BI } from './constants'
 /* eslint-disable prefer-const */
 import {
   AlgebraDayData,
+  AlgebraHourData,
   Factory,
   Pool,
   PoolDayData,
@@ -40,6 +41,30 @@ export function updateAlgebraDayData(event: ethereum.Event): AlgebraDayData {
   return algebraDayData as AlgebraDayData
 }
 
+
+/**
+ * Tracks global aggregate data over hour windows
+ * @param event
+ */
+export function updateAlgebraHourData(event: ethereum.Event): AlgebraHourData {
+  let algebra = Factory.load(FACTORY_ADDRESS)!
+  let timestamp = event.block.timestamp.toI32()
+  let hourID = timestamp / 3600 // rounded
+  let hourStartTimestamp = hourID * 3600
+  let algebraHourData = AlgebraHourData.load(hourID.toString())
+  if (algebraHourData === null) {
+    algebraHourData = new AlgebraHourData(hourID.toString())
+    algebraHourData.date = hourStartTimestamp
+    algebraHourData.volumeMatic = ZERO_BD
+    algebraHourData.volumeUSD = ZERO_BD
+    algebraHourData.volumeUSDUntracked = ZERO_BD
+    algebraHourData.feesUSD = ZERO_BD
+  }
+  algebraHourData.tvlUSD = algebra.totalValueLockedUSD
+  algebraHourData.txCount = algebra.txCount
+  algebraHourData.save()
+  return algebraHourData as AlgebraHourData
+}
 
 export function updatePoolDayData(event: ethereum.Event): PoolDayData {
   let timestamp = event.block.timestamp.toI32()

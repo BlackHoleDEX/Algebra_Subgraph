@@ -24,6 +24,7 @@ import {
   updateTokenDayData,
   updateTokenHourData,
   updateAlgebraDayData,
+  updateAlgebraHourData,
   updateFeeHourData
 } from '../utils/intervalUpdates'
 import { createTick } from '../utils/tick'
@@ -466,6 +467,7 @@ export function handleSwap(event: SwapEvent): void {
 
   // interval data
   let algebraDayData = updateAlgebraDayData(event)
+  let algebraHourData = updateAlgebraHourData(event)
   let poolDayData = updatePoolDayData(event)
   let poolHourData = updatePoolHourData(event)
   let token0DayData = updateTokenDayData(token0 as Token, event)
@@ -487,6 +489,10 @@ export function handleSwap(event: SwapEvent): void {
   algebraDayData.volumeMatic = algebraDayData.volumeMatic.plus(amountTotalMaticTracked)
   algebraDayData.volumeUSD = algebraDayData.volumeUSD.plus(amountTotalUSDTracked)
   algebraDayData.feesUSD = algebraDayData.feesUSD.plus(feesUSD)
+
+  algebraHourData.volumeMatic = algebraHourData.volumeMatic.plus(amountTotalMaticTracked)
+  algebraHourData.volumeUSD = algebraHourData.volumeUSD.plus(amountTotalUSDTracked)
+  algebraHourData.feesUSD = algebraHourData.feesUSD.plus(feesUSD)
 
   poolDayData.volumeUSD = poolDayData.volumeUSD.plus(amountTotalUSDTracked)
   poolDayData.untrackedVolumeUSD = poolDayData.untrackedVolumeUSD.plus(amountTotalUSDUntracked)
