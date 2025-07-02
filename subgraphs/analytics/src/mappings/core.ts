@@ -320,7 +320,7 @@ export function handleBurn(event: BurnEvent): void {
 export function handleSwap(event: SwapEvent): void {
   let bundle = Bundle.load('1')!
   let factory = Factory.load(FACTORY_ADDRESS)!
-  let swapFeesCache = SwapFeeCache.load('1')!
+  let swapFeeCache = SwapFeeCache.load('1')!
   let pool = Pool.load(event.address.toHexString())!
 
   let token0 = Token.load(pool.token0)!
@@ -330,11 +330,11 @@ export function handleSwap(event: SwapEvent): void {
   let amount1 = convertTokenToDecimal(event.params.amount1, token1.decimals)
 
   let swapFee = pool.fee
-  if(swapFeesCache.overrideFee > ZERO_BI){
-    swapFee = swapFeesCache.overrideFee
+  if(swapFeeCache.overrideFee > ZERO_BI){
+    swapFee = swapFeeCache.overrideFee
   }  
 
-  let pluginFee = swapFeesCache.pluginFee
+  let pluginFee = swapFeeCache.pluginFee
 
  // need absolute amounts for volume
  let amount0Abs = amount0
@@ -627,10 +627,10 @@ export function handleBurnFee(event: BurnFee): void {
 }
 
 export function handleSwapFee(event: SwapFee): void {
-  let swapFeesCache = SwapFeeCache.load('1')!
-  swapFeesCache.overrideFee = BigInt.fromI32(event.params.overrideFee)
-  swapFeesCache.pluginFee = BigInt.fromI32(event.params.pluginFee)
-  swapFeesCache.save()
+  let swapFeeCache = SwapFeeCache.load('1')!
+  swapFeeCache.overrideFee = BigInt.fromI32(event.params.overrideFee)
+  swapFeeCache.pluginFee = BigInt.fromI32(event.params.pluginFee)
+  swapFeeCache.save()
 }
 
 export function handlePlugin(event: PluginEvent): void {

@@ -540,13 +540,13 @@ type PoolFeeData @entity(immutable: false){
   fee: BigInt!
 }
 
-type SwapFeeCache @entity {
+type SwapFeeCache @entity(immutable: false) {
   id: ID!
-  overrideFee: BigInt!Add commentMore actions
+  overrideFee: BigInt!
   pluginFee: BigInt!
 }
 
-type BurnFeeCache @entity {
+type BurnFeeCache @entity(immutable: false) {
   id: ID!
   pluginFee: BigInt!
 }

@@ -62,10 +62,10 @@ function createPool(
     burnFee.pluginFee = ZERO_BI
     burnFee.save()
 
-    let swapFees = new SwapFeesCache('1')
-    swapFees.pluginFee = ZERO_BI
-    swapFees.overrideFee = ZERO_BI
-    swapFees.save()
+    let swapFee = new SwapFeeCache('1')
+    swapFee.pluginFee = ZERO_BI
+    swapFee.overrideFee = ZERO_BI
+    swapFee.save()
 
     // create new bundle for tracking matic price
     let bundle = new Bundle('1')
