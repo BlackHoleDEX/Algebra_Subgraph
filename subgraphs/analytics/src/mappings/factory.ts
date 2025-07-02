@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { FACTORY_ADDRESS, WHITELIST_TOKENS} from '../utils/chain'
 import { ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from '../utils/constants'
-import { Factory } from '../types/schema'
+import { BurnFeeCache, Factory, SwapFeeCache } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { DefaultCommunityFee, CustomPool } from '../types/Factory/Factory'
 import { Pool, Token, Bundle } from '../types/schema'
@@ -56,6 +56,16 @@ function createPool(
     factory.totalValueLockedMaticUntracked = ZERO_BD
     factory.txCount = ZERO_BI
     factory.owner = ZERO_ADDRESS
+
+
+    let burnFee = new BurnFeeCache('1')
+    burnFee.pluginFee = ZERO_BI
+    burnFee.save()
+
+    let swapFees = new SwapFeesCache('1')
+    swapFees.pluginFee = ZERO_BI
+    swapFees.overrideFee = ZERO_BI
+    swapFees.save()
 
     // create new bundle for tracking matic price
     let bundle = new Bundle('1')

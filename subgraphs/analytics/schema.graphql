@@ -538,7 +538,17 @@ type PoolFeeData @entity(immutable: false){
   timestamp: BigInt!
 
   fee: BigInt!
+}
 
+type SwapFeeCache @entity {
+  id: ID!
+  overrideFee: BigInt!Add commentMore actions
+  pluginFee: BigInt!
+}
+
+type BurnFeeCache @entity {
+  id: ID!
+  pluginFee: BigInt!
 }
 
 # hourly stats tracker for pool
