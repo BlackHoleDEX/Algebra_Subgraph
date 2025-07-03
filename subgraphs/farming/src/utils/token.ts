@@ -1,6 +1,6 @@
 import { ERC20 } from '../types/EternalFarming/ERC20'
-import { ERC20SymbolBytes } from '../types/EternalFarming/ERC20SymbolBytes'
-import { ERC20NameBytes } from '../types/EternalFarming/ERC20NameBytes'
+import { ERC20SymbolBytes } from '../types/NonfungiblePositionManager/ERC20SymbolBytes'
+import { ERC20NameBytes } from '../types/NonfungiblePositionManager/ERC20NameBytes'
 import { StaticTokenDefinition } from './staticTokenDefinition'
 import { BigInt, Address } from '@graphprotocol/graph-ts'
 import { Token } from '../types/schema';
