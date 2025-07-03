@@ -5,11 +5,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: avalanche-testnet
+    network: avalanche
     source:
-      address: '0x44Ee3D2ec3C86F21c0C187c937375D3c20479388'
+      address: '0xd1b1aCD161f444A028CeCccB7Ee6e57f7ab48687'
       abi: Factory
-      startBlock: 40995881
+      startBlock: 64892897
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -38,11 +38,11 @@ dataSources:
           handler: handleNewCommunityFee
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: avalanche-testnet
+    network: avalanche
     source:
-      address: '0x2608360F32Accdd9aAdAF6A6d12D9c53E56c99A0'
+      address: '0x9a4B32048102fcE37d991a3021BbFCC171b982AE'
       abi: NonfungiblePositionManager
-      startBlock: 40995881
+      startBlock: 64892897
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: avalanche-testnet
+    network: avalanche
     source:
       abi: Pool
     mapping:
