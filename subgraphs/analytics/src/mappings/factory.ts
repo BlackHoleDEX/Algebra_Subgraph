@@ -57,7 +57,6 @@ function createPool(
     factory.txCount = ZERO_BI
     factory.owner = ZERO_ADDRESS
 
-
     let burnFee = new BurnFeeCache('1')
     burnFee.pluginFee = ZERO_BI
     burnFee.save()
@@ -209,7 +208,17 @@ export function handleNewCommunityFee(event: DefaultCommunityFee): void{
     let bundle = new Bundle('1')
     bundle.maticPriceUSD = ZERO_BD
     bundle.save()
+
+    let burnFee = new BurnFeeCache('1')
+    burnFee.pluginFee = ZERO_BI
+    burnFee.save()
+
+    let swapFee = new SwapFeeCache('1')
+    swapFee.pluginFee = ZERO_BI
+    swapFee.overrideFee = ZERO_BI
+    swapFee.save()
+
   }
   factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee)
   factory.save()
-}
+} 
