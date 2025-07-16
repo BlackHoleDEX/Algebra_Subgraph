@@ -125,6 +125,16 @@ yarn deploy-subgraph analytics custom your-subgraph-name \
   --access-token YOUR_TOKEN
 ```
 
+#### Deploy to Goldsky
+
+```bash
+# Deploy to goldsky
+goldsky subgraph deploy your-subgraph-name --path ./subgraph/analytics
+
+# Examples
+goldsky subgraph deploy blocks/v1.0.0 --path ./subgraph/blocks
+```
+
 ## Network Configuration Tips
 
 1. **Start Block**: Use the block number when the factory contract was deployed
