@@ -145,7 +145,7 @@ export function handleTransfer(event: Transfer): void {
   let position = getPosition(event.params.tokenId)
 
   let transferCache = PositionTransferCache.load('1')!
-  transferCache.owner = Address.fromHexString(ZERO_ADDRESS)
+  transferCache.owner = event.params.to
   transferCache.save()
 
   // position was not able to be fetched
