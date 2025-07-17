@@ -551,6 +551,11 @@ type BurnFeeCache @entity(immutable: false) {
   pluginFee: BigInt!
 }
 
+type PositionTransferCache @entity(immutable: false) {
+  id: ID!
+  owner: Bytes!
+}
+
 # hourly stats tracker for pool
 type PoolHourData @entity(immutable: false) {
   # format: <pool address>-<timestamp>

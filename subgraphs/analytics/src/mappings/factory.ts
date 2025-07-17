@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { FACTORY_ADDRESS, WHITELIST_TOKENS} from '../utils/chain'
 import { ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from '../utils/constants'
-import { BurnFeeCache, Factory, SwapFeeCache } from '../types/schema'
+import { BurnFeeCache, Factory, SwapFeeCache, PositionTransferCache } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { DefaultCommunityFee, CustomPool } from '../types/Factory/Factory'
 import { Pool, Token, Bundle } from '../types/schema'
@@ -65,6 +65,10 @@ function createPool(
     swapFee.pluginFee = ZERO_BI
     swapFee.overrideFee = ZERO_BI
     swapFee.save()
+
+    let transferCache = new PositionTransferCache('1')
+    transferCache.owner = Address.fromHexString(ZERO_ADDRESS)
+    transferCache.save()
 
     // create new bundle for tracking matic price
     let bundle = new Bundle('1')
@@ -217,6 +221,10 @@ export function handleNewCommunityFee(event: DefaultCommunityFee): void{
     swapFee.pluginFee = ZERO_BI
     swapFee.overrideFee = ZERO_BI
     swapFee.save()
+
+    let transferCache = new PositionTransferCache('1')
+    transferCache.owner = Address.fromHexString(ZERO_ADDRESS)
+    transferCache.save()
 
   }
   factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee)
