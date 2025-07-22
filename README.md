@@ -129,10 +129,10 @@ yarn deploy-subgraph analytics custom your-subgraph-name \
 
 ```bash
 # Deploy to goldsky
-goldsky subgraph deploy your-subgraph-name --path ./subgraph/analytics
+goldsky subgraph deploy your-subgraph-name --path ./subgraphs/analytics
 
 # Examples
-goldsky subgraph deploy blocks/v1.0.0 --path ./subgraph/blocks
+goldsky subgraph deploy blocks/v1.0.0 --path ./subgraphs/blocks
 ```
 
 ## Network Configuration Tips
