@@ -19,7 +19,6 @@ type Deposit @entity(immutable: false) {
   pool: Bytes!
   eternalFarming: Bytes 
   liquidity: BigInt!
-  rangeLength: BigInt!
 }
 
 type Reward @entity(immutable: false){
@@ -27,14 +26,4 @@ type Reward @entity(immutable: false){
   rewardAddress: Bytes!
   amount: BigInt!
   owner: Bytes!
-}
-
-type Token @entity(immutable: true){
-  id: ID!
-  # token symbol
-  symbol: String!
-  # token name
-  name: String!
-  # token decimals
-  decimals: BigInt!
 }

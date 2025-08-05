@@ -11,7 +11,6 @@ import {
   RewardsCollected
 } from '../types/EternalFarming/EternalFarming';
 import { Deposit, Reward, EternalFarming } from '../types/schema';
-import { createTokenEntity } from '../utils/token'
 
 export function handleIncentiveCreated(event: EternalFarmingCreated): void {
   let incentiveIdTuple: Array<ethereum.Value> = [
@@ -21,8 +20,6 @@ export function handleIncentiveCreated(event: EternalFarmingCreated): void {
     ethereum.Value.fromUnsignedBigInt(event.params.nonce)
   ];
 
-  createTokenEntity(event.params.rewardToken)
-  createTokenEntity(event.params.bonusRewardToken)
   
   let _incentiveTuple = changetype<ethereum.Tuple>(incentiveIdTuple);
 
