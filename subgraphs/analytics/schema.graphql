@@ -17,7 +17,7 @@ type Factory @entity(immutable: false) {
   untrackedVolumeUSD: BigDecimal!
   # TVL derived in USD
   totalValueLockedUSD: BigDecimal!
-  #
+  # default community fee percentage for pools
   defaultCommunityFee: BigInt!
   # TVL derived in Matic
   totalValueLockedMatic: BigDecimal!
@@ -84,11 +84,15 @@ type Pool @entity(immutable: false) {
   token0: Token!
   # token1
   token1: Token!
+  # plugin deploer, zero address for base pools
   deployer: Bytes!
+  # plugin address of pool
   plugin: Bytes!
+  # plugin config
   pluginConfig: Int!
   # fee amount
   fee: BigInt!
+  # community fee percentage
   communityFee: BigInt!
   # in range liquidity
   liquidity: BigInt!
@@ -114,7 +118,7 @@ type Pool @entity(immutable: false) {
   feesUSD: BigDecimal!
   # tick spacing
   tickSpacing: BigInt!
-  #
+  # untracked fees in USD
   untrackedFeesUSD: BigDecimal!
   # all time number of transactions
   txCount: BigInt!
@@ -124,13 +128,15 @@ type Pool @entity(immutable: false) {
   collectedFeesToken1: BigDecimal!
   # all time fees collected derived USD
   collectedFeesUSD: BigDecimal!
-  #
+  # last mint index for tracking mint operations
   lastMintIndex: BigInt! 
   # total token 0 across all ticks
   totalValueLockedToken0: BigDecimal!
   # total token 1 across all ticks
   totalValueLockedToken1: BigDecimal!
+  # fees collected in token0
   feesToken0: BigDecimal!
+  # fees collected in token1
   feesToken1: BigDecimal!
   # tvl derived Matic
   totalValueLockedMatic: BigDecimal!
@@ -196,11 +202,17 @@ type Tick @entity(immutable: false) {
 }
 
 type PoolPosition @entity(immutable: false) {
+  # unique identifier for pool position
   id: ID!
+  # pool
   pool: Pool!
+  # lower tick of position
   lowerTick: Tick!
+  # upper tick of position
   upperTick: Tick!
+  # owner address of the position
   owner: Bytes!
+  # amount of liquidity in position
   liquidity: BigInt!
 }
 
@@ -280,8 +292,9 @@ type Transaction @entity(immutable: false) {
   blockNumber: BigInt!
   # timestamp txn was confirmed
   timestamp: BigInt!
-  # gas used during txn execution
+  # transaction gas limit 
   gasLimit: BigInt!
+  # transaction gas price 
   gasPrice: BigInt!
   # derived values
   mints: [Mint!]! @derivedFrom(field: "transaction")
@@ -343,7 +356,7 @@ type Burn @entity(immutable: true) {
   owner: Bytes
   # txn origin
   origin: Bytes! # the EOA that initiated the txn
-  # amouny of liquidity burned
+  # amount of liquidity burned
   amount: BigInt!
   # amount of token 0 burned
   amount0: BigDecimal!
@@ -413,7 +426,7 @@ type Collect @entity(immutable: true) {
   amountUSD: BigDecimal
   # lower tick of position
   tickLower: BigInt!
-  # uppper tick of position
+  # upper tick of position
   tickUpper: BigInt!
   # index within the txn
   logIndex: BigInt
@@ -498,7 +511,7 @@ type PoolDayData @entity(immutable: false) {
   liquidity: BigInt!
   # current price tracker at end of period
   sqrtPrice: BigInt!
-  #
+  # untracked volume in USD for
   untrackedVolumeUSD: BigDecimal!
   # price of token0 - derived from sqrtPrice
   token0Price: BigDecimal!
@@ -508,7 +521,9 @@ type PoolDayData @entity(immutable: false) {
   tick: BigInt
   # tvl derived in USD at end of period
   tvlUSD: BigDecimal!
+  # fees in token0 during period
   feesToken0: BigDecimal!
+  # fees in token1 during period
   feesToken1: BigDecimal!
   # volume in token0
   volumeToken0: BigDecimal!
@@ -531,28 +546,36 @@ type PoolDayData @entity(immutable: false) {
 }
 
 type PoolFeeData @entity(immutable: false){
+  # unique identifier for fee data entry
   id: ID!
-
+  # pool address
   pool: String
-
+  # timestamp when fee was set
   timestamp: BigInt!
-
+  # fee value in basis points
   fee: BigInt!
 }
 
 type SwapFeeCache @entity(immutable: false) {
+  # unique identifier for swap fee cache
   id: ID!
+  # override fee for the swap
   overrideFee: BigInt!
+  # plugin fee for the swap
   pluginFee: BigInt!
 }
 
 type BurnFeeCache @entity(immutable: false) {
+  # unique identifier for burn fee cache
   id: ID!
+  # plugin fee for the burn operation
   pluginFee: BigInt!
 }
 
 type PositionTransferCache @entity(immutable: false) {
+  # unique identifier for position transfer cache
   id: ID!
+  # new owner after transfer
   owner: Bytes!
 }
 
@@ -584,8 +607,9 @@ type PoolHourData @entity(immutable: false) {
   volumeUSD: BigDecimal!
   # fees in USD
   feesUSD: BigDecimal!
-  # numebr of transactions during period
+  # number of transactions during period
   untrackedVolumeUSD: BigDecimal!
+  # number of transactions during period
   txCount: BigInt!
   # opening price of token0
   open: BigDecimal!
@@ -683,30 +707,35 @@ type TokenHourData @entity(immutable: false) {
 }
 
 type Plugin @entity(immutable: false) {
+  # plugin address
   id: ID!
+  # pool
   pool: Pool!
+  # fees collected by plugin in token0
   collectedFeesToken0: BigDecimal!
+  # fees collected by plugin in token1
   collectedFeesToken1: BigDecimal!
+  # fees collected by plugin in USD
   collectedFeesUSD: BigDecimal!
 }
 
 type FeeHourData @entity(immutable: false) {
-  #
+  # unique identifier for fee hour data
   id: ID!
-  #
+  # pool address for which fee data is tracked
   pool: String!
-  #
+  # average fee during the hour
   fee: BigInt!
-  #
+  # number of fee changes during the hour
   changesCount: BigInt!
-  #
+  # timestamp of the hour
   timestamp: BigInt!
-  #
+  # minimum fee during the hour
   minFee: BigInt!
-  #
+  # maximum fee during the hour
   maxFee: BigInt!
-  #
+  # fee at the start of the hour
   startFee: BigInt!
-  #
+  # fee at the end of the hour
   endFee: BigInt! 
 }
