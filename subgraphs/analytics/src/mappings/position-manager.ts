@@ -5,7 +5,7 @@ import {
   DecreaseLiquidity,
   Transfer
 } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
-import { Pool, Position, PositionSnapshot, Token, Mint} from '../types/schema'
+import { Pool, Position, PositionSnapshot, PositionTransferCache, Token, Mint} from '../types/schema'
 import { ZERO_ADDRESS, ZERO_BD, ZERO_BI} from '../utils/constants'
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
 import { convertTokenToDecimal, loadTransaction } from '../utils'
@@ -20,10 +20,10 @@ function getPosition(tokenId: BigInt): Position | null {
 function createPositionIfNeccessary(event: ethereum.Event, tokenId: BigInt, poolAddress: string): Position{
   let position = Position.load(tokenId.toString())
   if (position === null ) {
+    let transferCache = PositionTransferCache.load('1')!
 
     position = new Position(tokenId.toString())
-    // The owner gets correctly updated in the Transfer handler
-    position.owner = Address.fromString(ZERO_ADDRESS)
+    position.owner = transferCache.owner
     position.pool = poolAddress
     let pool = Pool.load(poolAddress)!
     position.token0 = pool.token0
@@ -143,6 +143,10 @@ export function handleCollect(event: Collect): void {
 
 export function handleTransfer(event: Transfer): void {
   let position = getPosition(event.params.tokenId)
+
+  let transferCache = PositionTransferCache.load('1')!
+  transferCache.owner = event.params.to
+  transferCache.save()
 
   // position was not able to be fetched
   if (position == null) {

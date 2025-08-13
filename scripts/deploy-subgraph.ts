@@ -77,11 +77,6 @@ function deploySubgraph(
           stdio: 'inherit',
           cwd: subgraphDir
         });
-      } else if (config.target === 'custom' && config.nodeUrl) {
-        execSync(`graph auth --product hosted-service --node ${config.nodeUrl} ${config.accessToken}`, { 
-          stdio: 'inherit',
-          cwd: subgraphDir
-        });
       }
     }
     
