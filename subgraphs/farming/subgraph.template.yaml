@@ -17,7 +17,6 @@ dataSources:
       file: ./src/mappings/position-manager.ts
       entities:
         - Deposit
-        - Token
         - Pool
         - Position
         - IncentiveReward
