@@ -76,13 +76,37 @@ function createPool(
     bundle.save()
   }
 
-  factory.poolCount = factory.poolCount.plus(ONE_BI)
-
-  let pool = new Pool(poolAddress) as Pool
+  // Check if pool already exists (might have been created by handleMint in same transaction)
+  let pool = Pool.load(poolAddress)
+  let poolAlreadyExists = pool !== null
+  
+  if (!poolAlreadyExists) {
+    // Only increment pool count if pool doesn't exist yet
+    factory.poolCount = factory.poolCount.plus(ONE_BI)
+    pool = new Pool(poolAddress) as Pool
+  } else {
+    // Pool already exists, update fields that might be missing or need updating
+    // Update deployer and creation info if they're still default values
+    if (pool !== null) {
+      if (pool.deployer.toHexString() == ZERO_ADDRESS && deployer != ZERO_ADDRESS) {
+        pool.deployer = Address.fromString(deployer)
+      }
+      if (pool.createdAtTimestamp.equals(ZERO_BI)) {
+        pool.createdAtTimestamp = timestamp
+        pool.createdAtBlockNumber = blockNumber
+      }
+    }
+  }
+  
+  // At this point, pool should never be null, but add safety check
+  if (pool === null) {
+    log.error('Failed to create or load pool', [])
+    return
+  }
 
   let token0 = Token.load(token0Address)
   let token1 = Token.load(token1Address)
-  // fetch info if null
+  // Only initialize tokens if they don't exist yet (don't reset existing token data)
   if (token0 === null) {
     token0 = new Token(token0Address)
     token0.symbol = fetchTokenSymbol(Address.fromString(token0Address))
@@ -134,57 +158,80 @@ function createPool(
     token1.whitelistPools = []
   }
 
-  // update white listed pools
+  // update white listed pools (only if not already added)
   if (WHITELIST_TOKENS.includes(token0.id)) {
-    let newPools = token1.whitelistPools
-    newPools.push(pool.id)
-    token1.whitelistPools = newPools
+    let whitelistPools = token1.whitelistPools
+    if (!whitelistPools.includes(pool.id)) {
+      whitelistPools.push(pool.id)
+      token1.whitelistPools = whitelistPools
+    }
   }
   if (WHITELIST_TOKENS.includes(token1.id)) {
-    let newPools = token0.whitelistPools
-    newPools.push(pool.id)
-    token0.whitelistPools = newPools
+    let whitelistPools = token0.whitelistPools
+    if (!whitelistPools.includes(pool.id)) {
+      whitelistPools.push(pool.id)
+      token0.whitelistPools = whitelistPools
+    }
   }
 
-  pool.deployer = Address.fromString(deployer)
-  pool.plugin = Address.fromString(ZERO_ADDRESS)
-  pool.token0 = token0.id
-  pool.token1 = token1.id
-  pool.fee = BigInt.fromI32(100)
-  pool.pluginConfig = 0
-  pool.createdAtTimestamp = timestamp
-  pool.createdAtBlockNumber = blockNumber
-  pool.liquidityProviderCount = ZERO_BI
-  pool.tickSpacing = BigInt.fromI32(60)
-  pool.tick = ZERO_BI
-  pool.txCount = ZERO_BI
-  pool.liquidity = ZERO_BI
-  pool.sqrtPrice = ZERO_BI
-  pool.communityFee = factory.defaultCommunityFee
-  pool.token0Price = ZERO_BD
-  pool.token1Price = ZERO_BD
-  pool.observationIndex = ZERO_BI
-  pool.totalValueLockedToken0 = ZERO_BD
-  pool.totalValueLockedToken1 = ZERO_BD
-  pool.totalValueLockedUSD = ZERO_BD
-  pool.lastMintIndex = ZERO_BI
-  pool.totalValueLockedMatic = ZERO_BD
-  pool.totalValueLockedUSDUntracked = ZERO_BD
-  pool.volumeToken0 = ZERO_BD
-  pool.volumeToken1 = ZERO_BD
-  pool.volumeUSD = ZERO_BD
-  pool.feesUSD = ZERO_BD
-  pool.feesToken0 = ZERO_BD
-  pool.feesToken1 = ZERO_BD
-  pool.untrackedVolumeUSD = ZERO_BD
-  pool.untrackedFeesUSD = ZERO_BD
+  // Only set fields if pool is new, or update specific fields if pool already exists
+  if (!poolAlreadyExists) {
+    // New pool - set all fields
+    pool.deployer = Address.fromString(deployer)
+    pool.plugin = Address.fromString(ZERO_ADDRESS)
+    pool.token0 = token0.id
+    pool.token1 = token1.id
+    pool.fee = BigInt.fromI32(100)
+    pool.pluginConfig = 0
+    pool.createdAtTimestamp = timestamp
+    pool.createdAtBlockNumber = blockNumber
+    pool.liquidityProviderCount = ZERO_BI
+    pool.tickSpacing = BigInt.fromI32(60)
+    pool.tick = ZERO_BI
+    pool.txCount = ZERO_BI
+    pool.liquidity = ZERO_BI
+    pool.sqrtPrice = ZERO_BI
+    pool.communityFee = factory.defaultCommunityFee
+    pool.token0Price = ZERO_BD
+    pool.token1Price = ZERO_BD
+    pool.observationIndex = ZERO_BI
+    pool.totalValueLockedToken0 = ZERO_BD
+    pool.totalValueLockedToken1 = ZERO_BD
+    pool.totalValueLockedUSD = ZERO_BD
+    pool.lastMintIndex = ZERO_BI
+    pool.totalValueLockedMatic = ZERO_BD
+    pool.totalValueLockedUSDUntracked = ZERO_BD
+    pool.volumeToken0 = ZERO_BD
+    pool.volumeToken1 = ZERO_BD
+    pool.volumeUSD = ZERO_BD
+    pool.feesUSD = ZERO_BD
+    pool.feesToken0 = ZERO_BD
+    pool.feesToken1 = ZERO_BD
+    pool.untrackedVolumeUSD = ZERO_BD
+    pool.untrackedFeesUSD = ZERO_BD
+    pool.collectedFeesToken0 = ZERO_BD
+    pool.collectedFeesToken1 = ZERO_BD
+    pool.collectedFeesUSD = ZERO_BD
+  } else {
+    // Pool already exists - only update fields that might be missing or need updating
+    if (pool.deployer.toHexString() == ZERO_ADDRESS && deployer != ZERO_ADDRESS) {
+      pool.deployer = Address.fromString(deployer)
+    }
+    // Ensure token references are correct (should already be set, but double-check)
+    if (pool.token0 != token0.id) {
+      pool.token0 = token0.id
+    }
+    if (pool.token1 != token1.id) {
+      pool.token1 = token1.id
+    }
+  }
 
-  pool.collectedFeesToken0 = ZERO_BD
-  pool.collectedFeesToken1 = ZERO_BD
-  pool.collectedFeesUSD = ZERO_BD
-
-  pool.save()  // create the tracked contract based on the template
+  pool.save()
+  
+  // Create template - if pool already exists, it was created by handleMint which doesn't create templates
+  // Template creation is idempotent, so safe to call in both cases
   PoolTemplate.create(Address.fromString(poolAddress))
+  
   token0.save()
   token1.save()
   factory.save()

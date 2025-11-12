@@ -15,7 +15,7 @@ import {
   PoolFeeData 
 } from '../types/schema'
 import { PluginConfig, Pool as PoolABI } from '../types/Factory/Pool'
-import { BigDecimal, BigInt} from '@graphprotocol/graph-ts'
+import { BigDecimal, BigInt, Address, ethereum} from '@graphprotocol/graph-ts'
 import {
   Burn as BurnEvent,
   Collect,
@@ -30,8 +30,9 @@ import {
   SwapFee
 } from '../types/templates/Pool/Pool'
 import { convertTokenToDecimal, loadTransaction, safeDiv } from '../utils'
-import { ONE_BI, ZERO_BD, ZERO_BI, FEE_DENOMINATOR} from '../utils/constants'
-import { FACTORY_ADDRESS } from '../utils/chain'
+import { ONE_BI, ZERO_BD, ZERO_BI, FEE_DENOMINATOR, ZERO_ADDRESS} from '../utils/constants'
+import { FACTORY_ADDRESS, WHITELIST_TOKENS } from '../utils/chain'
+import { fetchTokenSymbol, fetchTokenName, fetchTokenTotalSupply, fetchTokenDecimals } from '../utils/token'
 import { findEthPerToken, getEthPriceInUSD, getTrackedAmountUSD, priceToTokenPrices } from '../utils/pricing'
 import {
   updatePoolDayData,
@@ -43,6 +44,158 @@ import {
   updateFeeHourData
 } from '../utils/intervalUpdates'
 import { createTick } from '../utils/tick'
+import { log } from '@graphprotocol/graph-ts'
+
+// Helper function to ensure pool exists, creating it if necessary
+function ensurePoolExists(poolAddress: string, event: ethereum.Event): Pool | null {
+  let pool = Pool.load(poolAddress)
+  
+  if (pool === null) {
+    // Pool doesn't exist yet, query the pool contract directly
+    let poolContract = PoolABI.bind(Address.fromString(poolAddress))
+    let token0Result = poolContract.try_token0()
+    let token1Result = poolContract.try_token1()
+    
+    if (token0Result.reverted || token1Result.reverted) {
+      // If we can't query the contract, we can't create the pool
+      log.warning('Could not query pool contract for token addresses', [])
+      return null
+    }
+    
+    let token0Address = token0Result.value.toHexString()
+    let token1Address = token1Result.value.toHexString()
+    
+    // Load or create factory
+    let factory = Factory.load(FACTORY_ADDRESS)
+    if (factory == null) {
+      factory = new Factory(FACTORY_ADDRESS)
+      factory.poolCount = ZERO_BI
+      factory.totalVolumeMatic = ZERO_BD
+      factory.totalVolumeUSD = ZERO_BD
+      factory.untrackedVolumeUSD = ZERO_BD
+      factory.totalFeesUSD = ZERO_BD
+      factory.totalFeesMatic = ZERO_BD
+      factory.defaultCommunityFee = ZERO_BI
+      factory.totalValueLockedMatic = ZERO_BD
+      factory.totalValueLockedUSD = ZERO_BD
+      factory.totalValueLockedUSDUntracked = ZERO_BD
+      factory.totalValueLockedMaticUntracked = ZERO_BD
+      factory.txCount = ZERO_BI
+      factory.owner = ZERO_ADDRESS
+      factory.save()
+    }
+    
+    factory.poolCount = factory.poolCount.plus(ONE_BI)
+    
+    // Load or create tokens
+    let token0 = Token.load(token0Address)
+    if (token0 === null) {
+      token0 = new Token(token0Address)
+      token0.symbol = fetchTokenSymbol(Address.fromString(token0Address))
+      token0.name = fetchTokenName(Address.fromString(token0Address))
+      token0.totalSupply = fetchTokenTotalSupply(Address.fromString(token0Address))
+      let decimals = fetchTokenDecimals(Address.fromString(token0Address))
+      if (decimals === null) {
+        log.warning('Could not fetch decimals for token0', [])
+        return null
+      }
+      token0.decimals = decimals
+      token0.derivedMatic = ZERO_BD
+      token0.volume = ZERO_BD
+      token0.volumeUSD = ZERO_BD
+      token0.feesUSD = ZERO_BD
+      token0.untrackedVolumeUSD = ZERO_BD
+      token0.totalValueLocked = ZERO_BD
+      token0.totalValueLockedUSD = ZERO_BD
+      token0.totalValueLockedUSDUntracked = ZERO_BD
+      token0.txCount = ZERO_BI
+      token0.poolCount = ZERO_BI
+      token0.whitelistPools = []
+    }
+    
+    let token1 = Token.load(token1Address)
+    if (token1 === null) {
+      token1 = new Token(token1Address)
+      token1.symbol = fetchTokenSymbol(Address.fromString(token1Address))
+      token1.name = fetchTokenName(Address.fromString(token1Address))
+      token1.totalSupply = fetchTokenTotalSupply(Address.fromString(token1Address))
+      let decimals = fetchTokenDecimals(Address.fromString(token1Address))
+      if (decimals === null) {
+        log.warning('Could not fetch decimals for token1', [])
+        return null
+      }
+      token1.decimals = decimals
+      token1.derivedMatic = ZERO_BD
+      token1.volume = ZERO_BD
+      token1.volumeUSD = ZERO_BD
+      token1.untrackedVolumeUSD = ZERO_BD
+      token1.feesUSD = ZERO_BD
+      token1.totalValueLocked = ZERO_BD
+      token1.totalValueLockedUSD = ZERO_BD
+      token1.totalValueLockedUSDUntracked = ZERO_BD
+      token1.txCount = ZERO_BI
+      token1.poolCount = ZERO_BI
+      token1.whitelistPools = []
+    }
+    
+    // Update whitelist pools
+    if (WHITELIST_TOKENS.includes(token0.id)) {
+      let newPools = token1.whitelistPools
+      newPools.push(poolAddress)
+      token1.whitelistPools = newPools
+    }
+    if (WHITELIST_TOKENS.includes(token1.id)) {
+      let newPools = token0.whitelistPools
+      newPools.push(poolAddress)
+      token0.whitelistPools = newPools
+    }
+    
+    // Create pool entity with minimal required fields
+    pool = new Pool(poolAddress)
+    pool.deployer = Address.fromString(ZERO_ADDRESS)
+    pool.plugin = Address.fromString(ZERO_ADDRESS)
+    pool.token0 = token0.id
+    pool.token1 = token1.id
+    pool.fee = BigInt.fromI32(100)
+    pool.pluginConfig = 0
+    pool.createdAtTimestamp = event.block.timestamp
+    pool.createdAtBlockNumber = event.block.number
+    pool.liquidityProviderCount = ZERO_BI
+    pool.tickSpacing = BigInt.fromI32(60)
+    pool.tick = ZERO_BI
+    pool.txCount = ZERO_BI
+    pool.liquidity = ZERO_BI
+    pool.sqrtPrice = ZERO_BI
+    pool.communityFee = factory.defaultCommunityFee
+    pool.token0Price = ZERO_BD
+    pool.token1Price = ZERO_BD
+    pool.observationIndex = ZERO_BI
+    pool.totalValueLockedToken0 = ZERO_BD
+    pool.totalValueLockedToken1 = ZERO_BD
+    pool.totalValueLockedUSD = ZERO_BD
+    pool.lastMintIndex = ZERO_BI
+    pool.totalValueLockedMatic = ZERO_BD
+    pool.totalValueLockedUSDUntracked = ZERO_BD
+    pool.volumeToken0 = ZERO_BD
+    pool.volumeToken1 = ZERO_BD
+    pool.volumeUSD = ZERO_BD
+    pool.feesUSD = ZERO_BD
+    pool.feesToken0 = ZERO_BD
+    pool.feesToken1 = ZERO_BD
+    pool.untrackedVolumeUSD = ZERO_BD
+    pool.untrackedFeesUSD = ZERO_BD
+    pool.collectedFeesToken0 = ZERO_BD
+    pool.collectedFeesToken1 = ZERO_BD
+    pool.collectedFeesUSD = ZERO_BD
+    
+    pool.save()
+    token0.save()
+    token1.save()
+    factory.save()
+  }
+  
+  return pool
+}
 
 export function handleInitialize(event: Initialize): void {
   let pool = Pool.load(event.address.toHexString())!
@@ -71,7 +224,14 @@ export function handleInitialize(event: Initialize): void {
 export function handleMint(event: MintEvent): void {
   let bundle = Bundle.load('1')!
   let poolAddress = event.address.toHexString()
-  let pool = Pool.load(poolAddress)!
+  
+  // Ensure pool exists (handle edge case where pool created in same transaction)
+  let pool = ensurePoolExists(poolAddress, event)
+  if (pool === null) {
+    // If we can't create the pool, we can't process the mint
+    return
+  }
+  
   let factory = Factory.load(FACTORY_ADDRESS)!
 
 
