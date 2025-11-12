@@ -45,7 +45,8 @@ import {
 import { createTick } from '../utils/tick'
 
 export function handleInitialize(event: Initialize): void {
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString());
+  if(pool == null) return;
 
   pool.sqrtPrice = event.params.price
   pool.tick = BigInt.fromI32(event.params.tick)
@@ -71,7 +72,8 @@ export function handleInitialize(event: Initialize): void {
 export function handleMint(event: MintEvent): void {
   let bundle = Bundle.load('1')!
   let poolAddress = event.address.toHexString()
-  let pool = Pool.load(poolAddress)!
+  let pool = Pool.load(poolAddress)
+  if(pool == null) return;
   let factory = Factory.load(FACTORY_ADDRESS)!
 
 
@@ -202,7 +204,8 @@ export function handleMint(event: MintEvent): void {
 export function handleBurn(event: BurnEvent): void {
   let bundle = Bundle.load('1')!
   let poolAddress = event.address.toHexString()
-  let pool = Pool.load(poolAddress)!
+  let pool = Pool.load(poolAddress)
+  if(pool == null) return;
   let burnFeeCache = BurnFeeCache.load('1')!
   let plugin = Plugin.load(pool.plugin.toHexString())
   let factory = Factory.load(FACTORY_ADDRESS)!
@@ -321,7 +324,8 @@ export function handleSwap(event: SwapEvent): void {
   let bundle = Bundle.load('1')!
   let factory = Factory.load(FACTORY_ADDRESS)!
   let swapFeeCache = SwapFeeCache.load('1')!
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString())
+  if(pool == null) return;
 
   let token0 = Token.load(pool.token0)!
   let token1 = Token.load(pool.token1)!
@@ -570,7 +574,8 @@ export function handleSetCommunityFee(event: CommunityFee): void {
 export function handleCollect(event: Collect): void {
 
   let poolAddress = event.address.toHexString()
-  let pool = Pool.load(poolAddress)!
+  let pool = Pool.load(poolAddress)
+  if(pool == null) return;
   let factory = Factory.load(FACTORY_ADDRESS)!
  
  
@@ -598,14 +603,16 @@ export function handleCollect(event: Collect): void {
 
 
 export function handleSetTickSpacing(event: TickSpacing): void {
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString())
+  if(pool == null) return;
   pool.tickSpacing = BigInt.fromI32(event.params.newTickSpacing as i32)
   pool.save()
 }
 
 export function handleChangeFee(event: ChangeFee): void {
 
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString())
+  if(pool == null) return;
   pool.fee = BigInt.fromI32(event.params.fee as i32)
   pool.save()
 
@@ -637,7 +644,8 @@ export function handleSwapFee(event: SwapFee): void {
 }
 
 export function handlePlugin(event: PluginEvent): void {
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString())
+  if(pool == null) return;
   pool.plugin = event.params.newPluginAddress
   pool.save()
 
@@ -654,7 +662,8 @@ export function handlePlugin(event: PluginEvent): void {
 }
 
 export function handlePluginConfig(event: PluginConfig): void {
-  let pool = Pool.load(event.address.toHexString())!
+  let pool = Pool.load(event.address.toHexString())
+  if(pool == null) return;
   pool.pluginConfig = event.params.newPluginConfig
   pool.save()
 }

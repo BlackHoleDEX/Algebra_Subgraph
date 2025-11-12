@@ -68,6 +68,9 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
 }
 
 export function handleIncreaseLiquidity(event: IncreaseLiquidity): void {
+  
+  let pool = Pool.load(event.params.pool.toHexString());
+  if(pool == null) return;
 
   let position = createPositionIfNeccessary(event, event.params.tokenId, event.params.pool.toHexString())
 
