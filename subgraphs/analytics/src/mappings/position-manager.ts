@@ -9,6 +9,9 @@ import { Pool, Position, PositionSnapshot, PositionTransferCache, Token, Mint} f
 import { ZERO_ADDRESS, ZERO_BD, ZERO_BI} from '../utils/constants'
 import { Address, BigInt, ethereum } from '@graphprotocol/graph-ts'
 import { convertTokenToDecimal, loadTransaction } from '../utils'
+import { Pool as PoolABI } from '../types/Factory/Pool'
+import { NonfungiblePositionManager } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
+import { NONFUNGIBLE_POSITION_MANAGER_ADDRESS } from '../utils/chain'
 
 
 
@@ -25,13 +28,83 @@ function createPositionIfNeccessary(event: ethereum.Event, tokenId: BigInt, pool
     position = new Position(tokenId.toString())
     position.owner = transferCache.owner
     position.pool = poolAddress
-    let pool = Pool.load(poolAddress)!
-    position.token0 = pool.token0
-    position.token1 = pool.token1
+    
+    // Handle edge case where pool might not exist yet (created in same transaction)
+    let pool = Pool.load(poolAddress)
+    let token0Address: string
+    let token1Address: string
+    let lastMintIndex: BigInt = ZERO_BI
+    
+    if (pool === null) {
+      // Pool doesn't exist yet, query the pool contract directly
+      let poolContract = PoolABI.bind(Address.fromString(poolAddress))
+      let token0Result = poolContract.try_token0()
+      let token1Result = poolContract.try_token1()
+      
+      if (token0Result.reverted || token1Result.reverted) {
+        // If pool contract query fails, try to get tokens from position manager as fallback
+        let positionManager = NonfungiblePositionManager.bind(Address.fromString(NONFUNGIBLE_POSITION_MANAGER_ADDRESS))
+        let positionResult = positionManager.try_positions(tokenId)
+        
+        if (positionResult.reverted) {
+          // If we can't query either contract, we can't create the position properly
+          // This should not happen in practice, but handle gracefully
+          return position
+        }
+        
+        // Get token addresses from position manager (value2 is token0, value3 is token1)
+        token0Address = positionResult.value.value2.toHexString()
+        token1Address = positionResult.value.value3.toHexString()
+      } else {
+        token0Address = token0Result.value.toHexString()
+        token1Address = token1Result.value.toHexString()
+      }
+    } else {
+      // Pool exists, use it
+      token0Address = pool.token0
+      token1Address = pool.token1
+      lastMintIndex = pool.lastMintIndex
+    }
+    
+    position.token0 = token0Address
+    position.token1 = token1Address
+    
     let transaction = loadTransaction(event)
-    let mint = Mint.load(transaction.id.toString() + '#' + pool.lastMintIndex.toString())!
-    position.tickLower = position.pool.concat('#').concat(mint.tickLower.toString())
-    position.tickUpper = position.pool.concat('#').concat(mint.tickUpper.toString())
+    // Try to load the mint - it might not exist if pool was just created
+    let mint = Mint.load(transaction.id.toString() + '#' + lastMintIndex.toString())
+    
+    if (mint === null && pool !== null) {
+      // Mint doesn't exist yet, try to find it by checking txCount (which equals lastMintIndex when mint happens)
+      mint = Mint.load(transaction.id.toString() + '#' + pool.txCount.toString())
+    }
+    
+    let tickLower: BigInt
+    let tickUpper: BigInt
+    
+    if (mint !== null) {
+      // Use tick values from the mint
+      tickLower = mint.tickLower
+      tickUpper = mint.tickUpper
+    } else {
+      // Mint doesn't exist yet (edge case: position created before mint is processed)
+      // Query the position manager contract directly for tick values
+      let positionManager = NonfungiblePositionManager.bind(Address.fromString(NONFUNGIBLE_POSITION_MANAGER_ADDRESS))
+      let positionResult = positionManager.try_positions(tokenId)
+      
+      if (positionResult.reverted) {
+        // If we can't query the contract, we can't create the position properly
+        // This should not happen in practice, but handle gracefully
+        return position
+      }
+      
+      // Extract tick values from position result (indices 5 and 6 are tickLower and tickUpper)
+      tickLower = BigInt.fromI32(positionResult.value.value5)
+      tickUpper = BigInt.fromI32(positionResult.value.value6)
+    }
+    
+    position.tickLower = position.pool.concat('#').concat(tickLower.toString())
+    position.tickUpper = position.pool.concat('#').concat(tickUpper.toString())
+    
     position.liquidity = ZERO_BI
     position.depositedToken0 = ZERO_BD
     position.depositedToken1 = ZERO_BD
