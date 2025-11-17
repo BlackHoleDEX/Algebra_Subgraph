@@ -2,6 +2,8 @@ specVersion: 0.0.4
 description: Algebra Farming subgraph for {{NETWORK_NAME}}
 schema:
   file: ./schema.graphql
+# {{FEATURES_SECTION}}
+# {{GRAFT_SECTION}}
 dataSources:
 - kind: ethereum/contract
   name: NonfungiblePositionManager

@@ -2,6 +2,8 @@ specVersion: 0.0.4
 description: Algebra is a decentralized protocol for automated token exchange on {{NETWORK_NAME}}.
 schema:
   file: ./schema.graphql
+# {{FEATURES_SECTION}}
+# {{GRAFT_SECTION}}
 dataSources:
   - kind: ethereum/contract
     name: Factory
