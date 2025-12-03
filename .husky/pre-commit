@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Check if any dependency files are being committed
+if git diff --cached --name-only | grep -qE '(package\.json|pnpm-lock\.yaml|yarn\.lock|package-lock\.json)'; then
+  echo "📦 Dependency files changed, running security scan..."
+  pnpm precommit
+else
+  echo "✅ No dependency files changed, skipping security scan"
+fi
