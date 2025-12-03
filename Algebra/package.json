@@ -1,4 +1,3 @@
-
 {
   "name": "algebra-subgraph",
   "version": "1.0.0",
@@ -15,13 +14,21 @@
     "create": "graph create cryptoalgebra/info --node https://api.thegraph.com/create/"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "0.64.0",
-    "@graphprotocol/graph-ts": "0.32.0",
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.2.2",
-    "eslint-config-prettier": "^6.1.0",
-    "prettier": "^1.18.2",
-    "typescript": "^3.5.2"
+    "@graphprotocol/graph-cli": "0.97.1",
+    "@graphprotocol/graph-ts": "0.38.2",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.2",
+    "prettier": "3.7.3",
+    "typescript": "5.9.3"
+  },
+  "resolutions": {
+    "axios": "1.13.2",
+    "semver": "7.7.3",
+    "cross-spawn": "7.0.6",
+    "glob": "11.1.0",
+    "ejs": "3.1.10",
+    "js-yaml": "4.1.1"
   }
 }
