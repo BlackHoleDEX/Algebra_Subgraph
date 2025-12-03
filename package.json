@@ -2,7 +2,7 @@
   "name": "algebra-subgraph",
   "version": "1.2.1",
   "repository": "https://github.com/graphprotocol/algebra-subgraph",
-  "license": "GPL-3.0-or-later",  
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "codegen": "graph codegen --output-dir src/types",
     "build": "graph build",
@@ -13,21 +13,24 @@
     "build-all": "tsx scripts/build-all.ts",
     "test": "graph test",
     "lint": "eslint . --ext .ts,.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "command -v vet >/dev/null 2>&1 && vet scan -D . --filter 'vulns.critical.exists(p, true)' --filter-fail || (command -v vet >/dev/null 2>&1 || (echo '\n⚠️  vet is not installed. Please run: yarn install-vet\n' && exit 1))",
+    "install-vet": "command -v vet >/dev/null 2>&1 && echo '✅ vet is already installed:' && vet version || (echo '📦 Installing vet...' && curl -sSfL https://raw.githubusercontent.com/safedep/vet/main/scripts/install.sh | sh -s -- -b /usr/local/bin)"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.97.1",
-    "@graphprotocol/graph-ts": "^0.38.1",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3",
-    "mustache": "^4.2.0",
-    "cross-env": "^7.0.3",
-    "tsx": "^4.19.2",
-    "@types/node": "^22.9.0",
-    "@types/mustache": "^4.2.5"
+    "@graphprotocol/graph-cli": "0.97.1",
+    "@graphprotocol/graph-ts": "0.38.1",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.0",
+    "prettier": "3.6.1",
+    "typescript": "5.8.3",
+    "mustache": "4.2.0",
+    "cross-env": "7.0.3",
+    "tsx": "4.20.3",
+    "@types/node": "22.15.33",
+    "snyk": "1.1301.0",
+    "@types/mustache": "4.2.6"
   }
 }
