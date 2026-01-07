@@ -110,6 +110,12 @@ type Pool @entity(immutable: false) {
   volumeToken0: BigDecimal!
   # all time token1 swapped
   volumeToken1: BigDecimal!
+  # volume during epoch in token units
+  volumeToken0InEpoch: BigDecimal!
+  # volume during epoch in derived USD
+  volumeToken1InEpoch: BigDecimal!
+  #epochFlip Timestamp
+  epochFlipTimestamp: BigInt!
   # all time USD swapped
   volumeUSD: BigDecimal!
   # all time USD swapped, unfiltered for unreliable USD pools

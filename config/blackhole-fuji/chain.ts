@@ -31,3 +31,5 @@ export const ETERNAL_FARMING_ADDRESS = '0x1C5E8C41B5B119dc8fc5ac8e53692E323a6D78
 // Addresses for limit order subgraph
 // Limit order contract
 export const LIMIT_ORDER_ADDRESS = '0x05F9E353559da6f2Bfe9A0980D5C3e84eA5d4238'
+
+export const EPOCH_FLIP_DURATION = 86400

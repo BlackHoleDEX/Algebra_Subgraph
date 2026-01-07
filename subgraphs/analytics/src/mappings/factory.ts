@@ -1,11 +1,11 @@
 /* eslint-disable prefer-const */
-import { FACTORY_ADDRESS, WHITELIST_TOKENS} from '../utils/chain'
-import { ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS} from '../utils/constants'
+import { EPOCH_FLIP_DURATION, FACTORY_ADDRESS, WHITELIST_TOKENS } from '../utils/chain'
+import { ZERO_BI, ONE_BI, ZERO_BD, ZERO_ADDRESS } from '../utils/constants'
 import { BurnFeeCache, Factory, SwapFeeCache, PositionTransferCache } from '../types/schema'
 import { Pool as PoolEvent } from '../types/Factory/Factory'
 import { DefaultCommunityFee, CustomPool } from '../types/Factory/Factory'
 import { Pool, Token, Bundle } from '../types/schema'
-import { Pool as PoolTemplate} from '../types/templates'
+import { Pool as PoolTemplate } from '../types/templates'
 import { fetchTokenSymbol, fetchTokenName, fetchTokenTotalSupply, fetchTokenDecimals } from '../utils/token'
 import { log, BigInt, Address } from '@graphprotocol/graph-ts'
 
@@ -32,12 +32,12 @@ export function handleCustomPoolCreated(event: CustomPool): void {
 }
 
 function createPool(
-  poolAddress: string, 
-  token0Address: string, 
-  token1Address: string, 
-  deployer: string, 
-  timestamp: BigInt, 
-  blockNumber: BigInt
+  poolAddress: string,
+  token0Address: string,
+  token1Address: string,
+  deployer: string,
+  timestamp: BigInt,
+  blockNumber: BigInt,
 ): void {
   // load factory
   let factory = Factory.load(FACTORY_ADDRESS)
@@ -79,7 +79,7 @@ function createPool(
   // Check if pool already exists (might have been created by handleMint in same transaction)
   let pool = Pool.load(poolAddress)
   let poolAlreadyExists = pool !== null
-  
+
   if (!poolAlreadyExists) {
     // Only increment pool count if pool doesn't exist yet
     factory.poolCount = factory.poolCount.plus(ONE_BI)
@@ -97,7 +97,7 @@ function createPool(
       }
     }
   }
-  
+
   // At this point, pool should never be null, but add safety check
   if (pool === null) {
     log.error('Failed to create or load pool', [])
@@ -203,6 +203,9 @@ function createPool(
     pool.totalValueLockedUSDUntracked = ZERO_BD
     pool.volumeToken0 = ZERO_BD
     pool.volumeToken1 = ZERO_BD
+    pool.volumeToken0InEpoch = ZERO_BD
+    pool.volumeToken1InEpoch = ZERO_BD
+    pool.epochFlipTimestamp = BigInt.fromU64((timestamp.toU64() / EPOCH_FLIP_DURATION) * EPOCH_FLIP_DURATION)
     pool.volumeUSD = ZERO_BD
     pool.feesUSD = ZERO_BD
     pool.feesToken0 = ZERO_BD
@@ -227,18 +230,17 @@ function createPool(
   }
 
   pool.save()
-  
+
   // Create template - if pool already exists, it was created by handleMint which doesn't create templates
   // Template creation is idempotent, so safe to call in both cases
   PoolTemplate.create(Address.fromString(poolAddress))
-  
+
   token0.save()
   token1.save()
   factory.save()
-
 }
 
-export function handleNewCommunityFee(event: DefaultCommunityFee): void{
+export function handleNewCommunityFee(event: DefaultCommunityFee): void {
   let factory = Factory.load(FACTORY_ADDRESS)
   if (factory == null) {
     factory = new Factory(FACTORY_ADDRESS)
@@ -272,8 +274,7 @@ export function handleNewCommunityFee(event: DefaultCommunityFee): void{
     let transferCache = new PositionTransferCache('1')
     transferCache.owner = Address.fromHexString(ZERO_ADDRESS)
     transferCache.save()
-
   }
   factory.defaultCommunityFee = BigInt.fromI32(event.params.newDefaultCommunityFee)
   factory.save()
-} 
+}
