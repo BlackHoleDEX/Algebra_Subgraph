@@ -575,11 +575,11 @@ export function handleSwap(event: SwapEvent): void {
   pool.volumeToken0 = pool.volumeToken0.plus(amount0Abs)
   pool.volumeToken1 = pool.volumeToken1.plus(amount1Abs)
   if (currEpochFlipTimestamp.equals(pool.epochFlipTimestamp)) {
-    pool.volumeToken0InEpoch = pool.volumeToken0InEpoch.plus(amount0Abs)
-    pool.volumeToken1InEpoch = pool.volumeToken1InEpoch.plus(amount1Abs)
+    pool.volumeToken0InEpoch = pool.volumeToken0InEpoch.plus(amount0.gt(ZERO_BD) ? amount0Abs : ZERO_BD)
+    pool.volumeToken1InEpoch = pool.volumeToken1InEpoch.plus(amount1.gt(ZERO_BD) ? amount1Abs : ZERO_BD)
   } else {
-    pool.volumeToken0InEpoch = amount0Abs
-    pool.volumeToken1InEpoch = amount1Abs
+    pool.volumeToken0InEpoch = amount0.gt(ZERO_BD) ? amount0Abs : ZERO_BD
+    pool.volumeToken1InEpoch = amount1.gt(ZERO_BD) ? amount1Abs : ZERO_BD
     pool.epochFlipTimestamp = currEpochFlipTimestamp
   }
   pool.volumeUSD = pool.volumeUSD.plus(amountTotalUSDTracked)
