@@ -3,7 +3,8 @@ import {
   Collect,
   IncreaseLiquidity,
   DecreaseLiquidity,
-  Transfer
+  Transfer,
+  LiquidityUnlockTimeUpdated
 } from '../types/NonfungiblePositionManager/NonfungiblePositionManager'
 import { Pool, Position, PositionSnapshot, PositionTransferCache, Token, Mint} from '../types/schema'
 import { ZERO_ADDRESS, ZERO_BD, ZERO_BI} from '../utils/constants'
@@ -134,6 +135,7 @@ function savePositionSnapshot(position: Position, event: ethereum.Event): void {
   positionSnapshot.withdrawnToken1 = position.withdrawnToken1
   positionSnapshot.collectedFeesToken0 = position.collectedFeesToken0
   positionSnapshot.collectedFeesToken1 = position.collectedFeesToken1
+  positionSnapshot.liquidityUnlockTime = position.liquidityUnlockTime
   positionSnapshot.transaction = loadTransaction(event).id
 
 
@@ -227,6 +229,20 @@ export function handleTransfer(event: Transfer): void {
   }
 
   position.owner = event.params.to
+  position.save()
+
+  savePositionSnapshot(position, event)
+}
+
+export function handleLiquidityUnlockTimeUpdated(event: LiquidityUnlockTimeUpdated): void {
+  let position = getPosition(event.params.tokenId)
+
+  // position was not able to be fetched
+  if (position == null) {
+    return
+  }
+
+  position.liquidityUnlockTime = event.params.liquidityUnlockTime
   position.save()
 
   savePositionSnapshot(position, event)
