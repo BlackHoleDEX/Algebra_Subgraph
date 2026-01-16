@@ -242,7 +242,7 @@ export function handleLiquidityUnlockTimeUpdated(event: LiquidityUnlockTimeUpdat
     return
   }
 
-  position.liquidityUnlockTime = event.params.liquidityUnlockTime
+  position.liquidityUnlockTime = event.params.unlockTime
   position.save()
 
   savePositionSnapshot(position, event)
