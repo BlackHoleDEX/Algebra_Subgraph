@@ -14,7 +14,7 @@ This repository contains subgraphs for the Algebra Protocol, supporting multi-ne
 ### 1. Install Dependencies
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ### 2. Configure Network
@@ -70,11 +70,16 @@ export const ETERNAL_FARMING_ADDRESS = '0x00000000000000000000000000000000000000
 export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'
 ```
 
+**_NOTE_**: Please make sure you add and edit the data for **EPOCH_FLIP_DURATION**
+```typescript
+export const EPOCH_FLIP_DURATION = 86400
+```
+
 ### 3. Prepare Network Configuration
 
 ```bash
 # Prepare configuration
-yarn prepare-network '<project-name-network>'
+pnpm prepare-network '<project-name-network>'
 ```
 
 This will:
@@ -87,10 +92,10 @@ This will:
 Build subgraphs:
 ```bash
 # Build specific subgraph
-yarn build-subgraph analytics
+pnpm build-subgraph analytics
 
 # Or build all subgraphs
-yarn build-all
+pnpm build-all
 ```
 
 ### 5. Deploy Subgraphs
@@ -102,24 +107,24 @@ First, create your subgraph at https://thegraph.com/studio/
 Then authenticate with The Graph Studio:
 ```bash
 # Authenticate with your deploy key
-yarn graph auth <DEPLOY_KEY>
+pnpm graph auth <DEPLOY_KEY>
 ```
 
 Then deploy your subgraph:
 ```bash
 # Deploy subgraph (use the subgraph name from Studio)
-yarn deploy-subgraph analytics studio your-subgraph-name --access-token YOUR_ACCESS_TOKEN
+pnpm deploy-subgraph analytics studio your-subgraph-name --access-token YOUR_ACCESS_TOKEN
 
 # Examples
-yarn deploy-subgraph analytics studio algebra-analytics-polygon
-yarn deploy-subgraph farming studio algebra-farming-polygon --access-token YOUR_TOKEN
+pnpm deploy-subgraph analytics studio algebra-analytics-polygon
+pnpm deploy-subgraph farming studio algebra-farming-polygon --access-token YOUR_TOKEN
 ```
 
 #### Deploy to Custom Graph Node
 
 ```bash
 # Deploy to custom endpoint
-yarn deploy-subgraph analytics custom your-subgraph-name \
+pnpm deploy-subgraph analytics custom your-subgraph-name \
   --node http://your-graph-node:8020 \
   --ipfs http://your-ipfs:5001 \
   --access-token YOUR_TOKEN

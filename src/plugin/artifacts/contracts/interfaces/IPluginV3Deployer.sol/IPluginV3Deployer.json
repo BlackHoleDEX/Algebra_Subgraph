@@ -1,0 +1,97 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IPluginV3Deployer",
+  "sourceName": "contracts/interfaces/IPluginV3Deployer.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "pool",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "algebraFactory",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "pluginFactory",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint16",
+              "name": "alpha1",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "alpha2",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint32",
+              "name": "beta1",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint32",
+              "name": "beta2",
+              "type": "uint32"
+            },
+            {
+              "internalType": "uint16",
+              "name": "gamma1",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "gamma2",
+              "type": "uint16"
+            },
+            {
+              "internalType": "uint16",
+              "name": "baseFee",
+              "type": "uint16"
+            }
+          ],
+          "internalType": "struct AlgebraFeeConfiguration",
+          "name": "defaultFeeConfiguration",
+          "type": "tuple"
+        },
+        {
+          "internalType": "address",
+          "name": "reflexRouter",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "reflexConfigId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "feeDiscountRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "deployPlugin",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "plugin",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

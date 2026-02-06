@@ -1,0 +1,181 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "NftPosManagerMock",
+  "sourceName": "contracts/test/NftPosManagerMock.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "farmingCenter",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "int256",
+          "name": "liquidityDelta",
+          "type": "int256"
+        }
+      ],
+      "name": "applyLiquidityDeltaInFC",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "poolDeployer",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "positions",
+      "outputs": [
+        {
+          "internalType": "uint88",
+          "name": "nonce",
+          "type": "uint88"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint80",
+          "name": "poolId",
+          "type": "uint80"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        },
+        {
+          "internalType": "uint128",
+          "name": "liquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthInside0LastX128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeGrowthInside1LastX128",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "tokensOwed0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "tokensOwed1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "components": [
+            {
+              "internalType": "uint88",
+              "name": "nonce",
+              "type": "uint88"
+            },
+            {
+              "internalType": "address",
+              "name": "operator",
+              "type": "address"
+            },
+            {
+              "internalType": "uint80",
+              "name": "poolId",
+              "type": "uint80"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickLower",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickUpper",
+              "type": "int24"
+            },
+            {
+              "internalType": "uint128",
+              "name": "liquidity",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeGrowthInside0LastX128",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "feeGrowthInside1LastX128",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint128",
+              "name": "tokensOwed0",
+              "type": "uint128"
+            },
+            {
+              "internalType": "uint128",
+              "name": "tokensOwed1",
+              "type": "uint128"
+            }
+          ],
+          "internalType": "struct NftPosManagerMock.Position",
+          "name": "_position",
+          "type": "tuple"
+        }
+      ],
+      "name": "setPosition",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610693806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80633119049a1461005157806372904d5b1461009b57806399fbab88146100b0578063e74d70f61461021d575b600080fd5b6001546100719073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020015b60405180910390f35b6100ae6100a9366004610301565b610230565b005b6101846100be366004610336565b60006020819052908152604090208054600182015460028084015460038501546004909501546affffffffffffffffffffff8516956b01000000000000000000000090950473ffffffffffffffffffffffffffffffffffffffff169469ffffffffffffffffffff8516946a01000000000000000000008104850b946d01000000000000000000000000008204900b93700100000000000000000000000000000000918290046fffffffffffffffffffffffffffffffff908116949193928183169204168a565b604080516affffffffffffffffffffff909b168b5273ffffffffffffffffffffffffffffffffffffffff90991660208b015269ffffffffffffffffffff90971697890197909752600294850b60608901529290930b60808701526fffffffffffffffffffffffffffffffff90811660a087015260c086019290925260e08501529182166101008401521661012082015261014001610092565b6100ae61022b36600461034f565b6102bc565b6040517f06e65c90000000000000000000000000000000000000000000000000000000008152600481018390526024810182905273ffffffffffffffffffffffffffffffffffffffff8416906306e65c9090604401600060405180830381600087803b15801561029f57600080fd5b505af11580156102b3573d6000803e3d6000fd5b50505050505050565b600082815260208190526040902081906102d68282610428565b50505050565b73ffffffffffffffffffffffffffffffffffffffff811681146102fe57600080fd5b50565b60008060006060848603121561031657600080fd5b8335610321816102dc565b95602085013595506040909401359392505050565b60006020828403121561034857600080fd5b5035919050565b60008082840361016081121561036457600080fd5b833592506101407fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe08201121561039957600080fd5b506020830190509250929050565b600081356affffffffffffffffffffff811681146103c457600080fd5b92915050565b600081356103c4816102dc565b6000813569ffffffffffffffffffff811681146103c457600080fd5b600081358060020b81146103c457600080fd5b600081356fffffffffffffffffffffffffffffffff811681146103c457600080fd5b61046d610434836103a7565b82547fffffffffffffffffffffffffffffffffffffffffff0000000000000000000000166affffffffffffffffffffff91909116178255565b6104cc61047c602084016103ca565b82547fff0000000000000000000000000000000000000000ffffffffffffffffffffff1660589190911b7effffffffffffffffffffffffffffffffffffffff000000000000000000000016178255565b600181016105176104df604085016103d7565b82547fffffffffffffffffffffffffffffffffffffffffffff000000000000000000001669ffffffffffffffffffff91909116178255565b610567610526606085016103f3565b8280548260501b6cffffff00000000000000000000167fffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffff8216178255505050565b6105ba610576608085016103f3565b8280548260681b6fffffff00000000000000000000000000167fffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffff8216178255505050565b61060a6105c960a08501610406565b82546fffffffffffffffffffffffffffffffff1660809190911b7fffffffffffffffffffffffffffffffff0000000000000000000000000000000016178255565b5060c0820135600282015560e08201356003820155600481016106716106336101008501610406565b82547fffffffffffffffffffffffffffffffff00000000000000000000000000000000166fffffffffffffffffffffffffffffffff91909116178255565b6106816105c96101208501610406565b50505056fea164736f6c6343000814000a",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80633119049a1461005157806372904d5b1461009b57806399fbab88146100b0578063e74d70f61461021d575b600080fd5b6001546100719073ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020015b60405180910390f35b6100ae6100a9366004610301565b610230565b005b6101846100be366004610336565b60006020819052908152604090208054600182015460028084015460038501546004909501546affffffffffffffffffffff8516956b01000000000000000000000090950473ffffffffffffffffffffffffffffffffffffffff169469ffffffffffffffffffff8516946a01000000000000000000008104850b946d01000000000000000000000000008204900b93700100000000000000000000000000000000918290046fffffffffffffffffffffffffffffffff908116949193928183169204168a565b604080516affffffffffffffffffffff909b168b5273ffffffffffffffffffffffffffffffffffffffff90991660208b015269ffffffffffffffffffff90971697890197909752600294850b60608901529290930b60808701526fffffffffffffffffffffffffffffffff90811660a087015260c086019290925260e08501529182166101008401521661012082015261014001610092565b6100ae61022b36600461034f565b6102bc565b6040517f06e65c90000000000000000000000000000000000000000000000000000000008152600481018390526024810182905273ffffffffffffffffffffffffffffffffffffffff8416906306e65c9090604401600060405180830381600087803b15801561029f57600080fd5b505af11580156102b3573d6000803e3d6000fd5b50505050505050565b600082815260208190526040902081906102d68282610428565b50505050565b73ffffffffffffffffffffffffffffffffffffffff811681146102fe57600080fd5b50565b60008060006060848603121561031657600080fd5b8335610321816102dc565b95602085013595506040909401359392505050565b60006020828403121561034857600080fd5b5035919050565b60008082840361016081121561036457600080fd5b833592506101407fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe08201121561039957600080fd5b506020830190509250929050565b600081356affffffffffffffffffffff811681146103c457600080fd5b92915050565b600081356103c4816102dc565b6000813569ffffffffffffffffffff811681146103c457600080fd5b600081358060020b81146103c457600080fd5b600081356fffffffffffffffffffffffffffffffff811681146103c457600080fd5b61046d610434836103a7565b82547fffffffffffffffffffffffffffffffffffffffffff0000000000000000000000166affffffffffffffffffffff91909116178255565b6104cc61047c602084016103ca565b82547fff0000000000000000000000000000000000000000ffffffffffffffffffffff1660589190911b7effffffffffffffffffffffffffffffffffffffff000000000000000000000016178255565b600181016105176104df604085016103d7565b82547fffffffffffffffffffffffffffffffffffffffffffff000000000000000000001669ffffffffffffffffffff91909116178255565b610567610526606085016103f3565b8280548260501b6cffffff00000000000000000000167fffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffff8216178255505050565b6105ba610576608085016103f3565b8280548260681b6fffffff00000000000000000000000000167fffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffff8216178255505050565b61060a6105c960a08501610406565b82546fffffffffffffffffffffffffffffffff1660809190911b7fffffffffffffffffffffffffffffffff0000000000000000000000000000000016178255565b5060c0820135600282015560e08201356003820155600481016106716106336101008501610406565b82547fffffffffffffffffffffffffffffffff00000000000000000000000000000000166fffffffffffffffffffffffffffffffff91909116178255565b6106816105c96101208501610406565b50505056fea164736f6c6343000814000a",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

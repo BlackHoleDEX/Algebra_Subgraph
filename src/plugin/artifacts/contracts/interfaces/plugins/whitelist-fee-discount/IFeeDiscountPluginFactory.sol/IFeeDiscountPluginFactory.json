@@ -1,0 +1,50 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IFeeDiscountPluginFactory",
+  "sourceName": "contracts/interfaces/plugins/whitelist-fee-discount/IFeeDiscountPluginFactory.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newFeeDiscountRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "FeeDiscountRegistry",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "feeDiscountRegistry",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newFeeDiscountRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeDiscountRegistry",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

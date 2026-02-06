@@ -1,0 +1,4142 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraCommunityVault.sol": {
+      "lastModificationDate": 1767790847907,
+      "contentHash": "e326373fed6f1a2c544a9ee3ff6314f5",
+      "sourceName": "contracts/AlgebraCommunityVault.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./libraries/SafeTransfer.sol",
+        "./libraries/FullMath.sol",
+        "./interfaces/IAlgebraFactory.sol",
+        "./interfaces/vault/IAlgebraCommunityVault.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraCommunityVault"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/SafeTransfer.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "74efa6cb300b78dd0c303ce27a014dfc",
+      "sourceName": "contracts/libraries/SafeTransfer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "SafeTransfer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/IAlgebraFactory.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "dc393e58ba43d83b9700693b64652d56",
+      "sourceName": "contracts/interfaces/IAlgebraFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./plugin/IAlgebraPluginFactory.sol",
+        "./vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/vault/IAlgebraCommunityVault.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "a91061463697a7d0730c2a7d16b548ec",
+      "sourceName": "contracts/interfaces/vault/IAlgebraCommunityVault.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraCommunityVault"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/FullMath.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "30e12a652e146df2976aa0190df3f91f",
+      "sourceName": "contracts/libraries/FullMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "FullMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolErrors.sol": {
+      "lastModificationDate": 1767790847911,
+      "contentHash": "3bfa3ea5d1f095fc1fa028f5ecd8f8b5",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolErrors.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPoolErrors"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/plugin/IAlgebraPluginFactory.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "f625550f20c606a7debe5ad461c1ff1f",
+      "sourceName": "contracts/interfaces/plugin/IAlgebraPluginFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPluginFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/vault/IAlgebraVaultFactory.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "e16b26245f12e67c96b8afb242dc9a00",
+      "sourceName": "contracts/interfaces/vault/IAlgebraVaultFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraVaultFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraVaultFactory.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "9478c8d17f8542d0fc468d8b7b88ee33",
+      "sourceName": "contracts/AlgebraVaultFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./AlgebraCommunityVault.sol",
+        "./interfaces/vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraVaultFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/MockTimeAlgebraPoolDeployer.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "87cfb23f6e1ed7793c36617122066947",
+      "sourceName": "contracts/test/MockTimeAlgebraPoolDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAlgebraPoolDeployer.sol",
+        "../interfaces/IAlgebraFactory.sol",
+        "../interfaces/vault/IAlgebraVaultFactory.sol",
+        "./MockTimeAlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "MockTimeAlgebraPoolDeployer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/IAlgebraPoolDeployer.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "97f5df49b8e5282c817cad64018408d9",
+      "sourceName": "contracts/interfaces/IAlgebraPoolDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolDeployer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/MockTimeAlgebraPool.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "4e809c49b1fabd231963f079fad552cd",
+      "sourceName": "contracts/test/MockTimeAlgebraPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../AlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "MockTimeAlgebraPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/AlgebraPoolBase.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "0ca9c2109ff36e019641ad3aa7ead404",
+      "sourceName": "contracts/base/AlgebraPoolBase.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/callback/IAlgebraMintCallback.sol",
+        "../interfaces/callback/IAlgebraFlashCallback.sol",
+        "../interfaces/plugin/IAlgebraDynamicFeePlugin.sol",
+        "../interfaces/IAlgebraPool.sol",
+        "../interfaces/IAlgebraFactory.sol",
+        "../interfaces/IAlgebraPoolDeployer.sol",
+        "../interfaces/IERC20Minimal.sol",
+        "../libraries/TickManagement.sol",
+        "../libraries/SafeTransfer.sol",
+        "../libraries/Constants.sol",
+        "../libraries/Plugins.sol",
+        "./common/Timestamp.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraPoolBase"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/ReentrancyGuard.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "896d1b9b8f0b689f25f91b6b18ac8dc4",
+      "sourceName": "contracts/base/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./AlgebraPoolBase.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/Positions.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "78e3876af34c12fa320f3bb730c63b82",
+      "sourceName": "contracts/base/Positions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/LiquidityMath.sol",
+        "../libraries/TickManagement.sol",
+        "./AlgebraPoolBase.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "Positions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/SwapCalculation.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "14aeeadf78458a69fcccd428e6d0e648",
+      "sourceName": "contracts/base/SwapCalculation.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/PriceMovementMath.sol",
+        "../libraries/LowGasSafeMath.sol",
+        "../libraries/SafeCast.sol",
+        "./AlgebraPoolBase.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "SwapCalculation"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/ReservesManager.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "61642d232d422cf9d3eb950a86f2089e",
+      "sourceName": "contracts/base/ReservesManager.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/SafeCast.sol",
+        "../libraries/Plugins.sol",
+        "./AlgebraPoolBase.sol",
+        "../interfaces/plugin/IAlgebraPlugin.sol",
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "ReservesManager"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/TickStructure.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "a4e3c2a0b189069ccec0911b1da4c583",
+      "sourceName": "contracts/base/TickStructure.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickManagement.sol",
+        "../libraries/TickTree.sol",
+        "./AlgebraPoolBase.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickStructure"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/Constants.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "8944a52638c5ab7f781fa6bd6e6ab7b6",
+      "sourceName": "contracts/libraries/Constants.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Constants"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/SafeCast.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "d68395ed2a287ea96db871a11913395b",
+      "sourceName": "contracts/libraries/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/TickMath.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "e39a578029867fde8fd1c5c4483e7f70",
+      "sourceName": "contracts/libraries/TickMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "TickMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/LiquidityMath.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "dc88e99167d952fc3cea9a22206a0614",
+      "sourceName": "contracts/libraries/LiquidityMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./TokenDeltaMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "LiquidityMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/Plugins.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "c080db0e5ba5daa591cd232c4f831b78",
+      "sourceName": "contracts/libraries/Plugins.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "Plugins"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/plugin/IAlgebraPlugin.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "2b6b79066f37665a7153cc591dd4920f",
+      "sourceName": "contracts/interfaces/plugin/IAlgebraPlugin.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPlugin"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/callback/IAlgebraSwapCallback.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "c2a72c84b683e1c3130b16d40d2f5857",
+      "sourceName": "contracts/interfaces/callback/IAlgebraSwapCallback.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraSwapCallback"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/callback/IAlgebraMintCallback.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "354cebb067018db1da00412e1bac9629",
+      "sourceName": "contracts/interfaces/callback/IAlgebraMintCallback.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraMintCallback"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/callback/IAlgebraFlashCallback.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "a5af0dd3f2827c0c7b46d52d40de5c6c",
+      "sourceName": "contracts/interfaces/callback/IAlgebraFlashCallback.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraFlashCallback"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/IAlgebraPool.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "b9f08e35da7b4f4c81a3fc5460ea75f1",
+      "sourceName": "contracts/interfaces/IAlgebraPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./pool/IAlgebraPoolImmutables.sol",
+        "./pool/IAlgebraPoolState.sol",
+        "./pool/IAlgebraPoolActions.sol",
+        "./pool/IAlgebraPoolPermissionedActions.sol",
+        "./pool/IAlgebraPoolEvents.sol",
+        "./pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/plugin/IAlgebraDynamicFeePlugin.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "3a8cdd6c7f85b98cd496a7c8bb68277e",
+      "sourceName": "contracts/interfaces/plugin/IAlgebraDynamicFeePlugin.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraDynamicFeePlugin"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/TickManagement.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "8debf7647039424fd6bab20a25e92627",
+      "sourceName": "contracts/libraries/TickManagement.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./LiquidityMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickManagement"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/IERC20Minimal.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "fa0b363e9db6b33414c02c348643118c",
+      "sourceName": "contracts/interfaces/IERC20Minimal.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IERC20Minimal"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/base/common/Timestamp.sol": {
+      "lastModificationDate": 1767790847909,
+      "contentHash": "eaad30114d2a5c28bc1e9eb61923fffb",
+      "sourceName": "contracts/base/common/Timestamp.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Timestamp"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolImmutables.sol": {
+      "lastModificationDate": 1767790847911,
+      "contentHash": "39638ba188c590f27f90aec7395111dd",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolImmutables.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolImmutables"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolState.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "8d4dc30db00370e7859585b5426691e4",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolState.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolState"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolActions.sol": {
+      "lastModificationDate": 1767790847911,
+      "contentHash": "91ad558027fab3f139590712b84c4eba",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol": {
+      "lastModificationDate": 1767790847911,
+      "contentHash": "8621e01ef6391f0d72390c2e8b4d4d28",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolPermissionedActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/pool/IAlgebraPoolEvents.sol": {
+      "lastModificationDate": 1767790847911,
+      "contentHash": "e3645b4c17ac691e32bfbfbd1f9bef3a",
+      "sourceName": "contracts/interfaces/pool/IAlgebraPoolEvents.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolEvents"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/TokenDeltaMath.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "78c12040e361b9f801af7d671a720640",
+      "sourceName": "contracts/libraries/TokenDeltaMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeCast.sol",
+        "./FullMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TokenDeltaMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/PriceMovementMath.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "4665e92e996b5cd8fdbd2bca507be6f8",
+      "sourceName": "contracts/libraries/PriceMovementMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./FullMath.sol",
+        "./LowGasSafeMath.sol",
+        "./TokenDeltaMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PriceMovementMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/LowGasSafeMath.sol": {
+      "lastModificationDate": 1767790847912,
+      "contentHash": "e9ee08df4446b3c242a7a0358ef52c3d",
+      "sourceName": "contracts/libraries/LowGasSafeMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LowGasSafeMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/libraries/TickTree.sol": {
+      "lastModificationDate": 1767790847913,
+      "contentHash": "d5b8a61560e62092d4d067988ba2a253",
+      "sourceName": "contracts/libraries/TickTree.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTree"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/PoolMockEchidna/PoolMockEchidna.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "60e9902c87c9499949ad6270cd3f66a6",
+      "sourceName": "contracts/test/echidna/PoolMockEchidna/PoolMockEchidna.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../../AlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PoolMockEchidna"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/PoolMockEchidna/PropReservesEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "513cc9c74f09fcaef31d39731634d249",
+      "sourceName": "contracts/test/echidna/PoolMockEchidna/PropReservesEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./PoolMockEchidna.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PropReservesEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/PoolMockEchidna/PropBalancesEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "7ea0130bf4a955fa6fbb2f4a63e74d9b",
+      "sourceName": "contracts/test/echidna/PoolMockEchidna/PropBalancesEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./PoolMockEchidna.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PropBalancesEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/PoolMockEchidna/AssertSwapEchidnaTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "2394b80943471982a76925a347858055",
+      "sourceName": "contracts/test/echidna/PoolMockEchidna/AssertSwapEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./PoolMockEchidna.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AssertSwapEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/TickTreeSearchEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "ca6b0b034804f90d829bd9b9433df9f5",
+      "sourceName": "contracts/test/echidna/TickTreeSearchEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickTree.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTreeSearchEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/TickTreeEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "07f78a8769d7cb2af31b2b8432f69d09",
+      "sourceName": "contracts/test/echidna/TickTreeEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickTree.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTreeEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/BitMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "0d0c823c14851bdb525d170785f24680",
+      "sourceName": "contracts/test/echidna/BitMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickTree.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "BitMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TickTreeTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "ceb2bda76ed4283a38c11e698cd7c9ae",
+      "sourceName": "contracts/test/TickTreeTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickTree.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTreeTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/BitMathTest.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "defd222ee5de7d6b73fed19590fbe0c5",
+      "sourceName": "contracts/test/BitMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickTree.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "BitMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/TickMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "a3b1c4f11484952321fc2726c154f375",
+      "sourceName": "contracts/test/echidna/TickMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/PriceMovementMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "295e92b165c9bcdff92addcbbeb7bd09",
+      "sourceName": "contracts/test/echidna/PriceMovementMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/PriceMovementMath.sol",
+        "../../libraries/TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PriceMovementMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/TokenDeltaMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847919,
+      "contentHash": "924b560323dcc3cb091220169fec14f9",
+      "sourceName": "contracts/test/echidna/TokenDeltaMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/FullMath.sol",
+        "../../libraries/TokenDeltaMath.sol",
+        "../../libraries/PriceMovementMath.sol",
+        "../../libraries/Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TokenDeltaMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/LiquidityAmounts.sol": {
+      "lastModificationDate": 1767788841511,
+      "contentHash": "02c53b11f16f505440524a1f0846fc4d",
+      "sourceName": "contracts/test/LiquidityAmounts.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/FullMath.sol",
+        "../libraries/Constants.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "LiquidityAmounts"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TestAlgebraCallee.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "1bc910aad21027c1cf99b613a8202372",
+      "sourceName": "contracts/test/TestAlgebraCallee.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IERC20Minimal.sol",
+        "../libraries/SafeCast.sol",
+        "../libraries/TickMath.sol",
+        "../interfaces/callback/IAlgebraMintCallback.sol",
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/callback/IAlgebraFlashCallback.sol",
+        "../interfaces/IAlgebraPool.sol",
+        "./LiquidityAmounts.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestAlgebraCallee"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TestAlgebraSwapPay.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "6ea227fe171cfe80ecba2b8ec8162215",
+      "sourceName": "contracts/test/TestAlgebraSwapPay.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IERC20Minimal.sol",
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/callback/IAlgebraMintCallback.sol",
+        "../interfaces/IAlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestAlgebraSwapPay"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TestAlgebraRouter.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "acd2ccb781a6007a610e0274543da442",
+      "sourceName": "contracts/test/TestAlgebraRouter.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/SafeCast.sol",
+        "../libraries/TickMath.sol",
+        "../interfaces/IERC20Minimal.sol",
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/IAlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestAlgebraRouter"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TestERC20.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "d81e97141319cd65d7a4887b677044d1",
+      "sourceName": "contracts/test/TestERC20.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IERC20Minimal.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestERC20"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/MockPoolPlugin.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "b184815cbff03a766da926bd52a9b461",
+      "sourceName": "contracts/test/MockPoolPlugin.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/plugin/IAlgebraPlugin.sol",
+        "../interfaces/plugin/IAlgebraDynamicFeePlugin.sol",
+        "../interfaces/IAlgebraPool.sol",
+        "../libraries/Plugins.sol",
+        "./TestERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "MockPoolPlugin"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/TickOverflowSafetyEchidnaTest.sol": {
+      "lastModificationDate": 1767790847918,
+      "contentHash": "c210cfdc849cbf56a8acd20ea264f58c",
+      "sourceName": "contracts/test/echidna/TickOverflowSafetyEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickManagement.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickOverflowSafetyEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TickTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "fc62c3245f16ae952f250958c472a124",
+      "sourceName": "contracts/test/TickTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickManagement.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/LiquidityMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "ef1831dc71ecbf1583d03fefeab02448",
+      "sourceName": "contracts/test/echidna/LiquidityMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/TickMath.sol",
+        "../../libraries/LiquidityMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "LiquidityMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/LiquidityMathTest.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "de1642b6f77b77344eacc46dd9cdf902",
+      "sourceName": "contracts/test/LiquidityMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/LiquidityMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "LiquidityMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TokenDeltaMathTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "2a688adddcfee4b6a9a9dd1fe0a86be7",
+      "sourceName": "contracts/test/TokenDeltaMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TokenDeltaMath.sol",
+        "../libraries/PriceMovementMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TokenDeltaMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/SafeMathTest.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "22f657d6c0cea4d1f03e77bb5f7fb857",
+      "sourceName": "contracts/test/SafeMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/LowGasSafeMath.sol",
+        "../libraries/SafeCast.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "SafeMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/LowGasSafeMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "431a8b04bf2b14c2bf838863d8274811",
+      "sourceName": "contracts/test/echidna/LowGasSafeMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/LowGasSafeMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "LowGasSafeMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/UnsafeMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847919,
+      "contentHash": "7189cc9c80ca712179c863b7018f9dc6",
+      "sourceName": "contracts/test/echidna/UnsafeMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/FullMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "UnsafeMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/echidna/FullMathEchidnaTest.sol": {
+      "lastModificationDate": 1767790847917,
+      "contentHash": "dc3c37fb7887643b6b762c50c35b29c9",
+      "sourceName": "contracts/test/echidna/FullMathEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../libraries/FullMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "FullMathEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/FullMathTest.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "17be5b0ac59d43117ed7ed90419b5ddf",
+      "sourceName": "contracts/test/FullMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/FullMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "FullMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/MockDefaultPluginFactory.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "805823424f0045781c28802e51e7747b",
+      "sourceName": "contracts/test/MockDefaultPluginFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/plugin/IAlgebraPluginFactory.sol",
+        "./MockPoolPlugin.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "MockDefaultPluginFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/MockCustomPoolCreator.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "d41ec7f5bf23617ec89a4ec0597fb3ad",
+      "sourceName": "contracts/test/MockCustomPoolCreator.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAlgebraFactory.sol",
+        "../interfaces/plugin/IAlgebraPluginFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "MockCustomPoolCreator"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TestAlgebraReentrantCallee.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "0f48ad6011ff107d1d69f3c3a931647d",
+      "sourceName": "contracts/test/TestAlgebraReentrantCallee.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickMath.sol",
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/IAlgebraPool.sol",
+        "../interfaces/IAlgebraFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestAlgebraReentrantCallee"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/AccessControlEnumerable.sol": {
+      "lastModificationDate": 1767792015640,
+      "contentHash": "b6d9b165dc57e9ad8153bdca05c783a4",
+      "sourceName": "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAccessControlEnumerable.sol",
+        "./AccessControl.sol",
+        "../utils/structs/EnumerableSet.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AccessControlEnumerable"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/AccessControl.sol": {
+      "lastModificationDate": 1767792015639,
+      "contentHash": "a2b1ec38a8dad325a596f926890772b8",
+      "sourceName": "@openzeppelin/contracts/access/AccessControl.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAccessControl.sol",
+        "../utils/Context.sol",
+        "../utils/Strings.sol",
+        "../utils/introspection/ERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AccessControl"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/IAccessControlEnumerable.sol": {
+      "lastModificationDate": 1767792015656,
+      "contentHash": "4e71cc90682e109e999ce2bd329f6572",
+      "sourceName": "@openzeppelin/contracts/access/IAccessControlEnumerable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAccessControl.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAccessControlEnumerable"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/structs/EnumerableSet.sol": {
+      "lastModificationDate": 1767792015645,
+      "contentHash": "e029f029abc1fd2d85d54fd69086f076",
+      "sourceName": "@openzeppelin/contracts/utils/structs/EnumerableSet.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "EnumerableSet"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/IAccessControl.sol": {
+      "lastModificationDate": 1767792015656,
+      "contentHash": "57c84298234411cea19c7c284d86be8b",
+      "sourceName": "@openzeppelin/contracts/access/IAccessControl.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAccessControl"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1767792015642,
+      "contentHash": "f07feb4a44b1a4872370da5aa70e8e46",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1767792015671,
+      "contentHash": "48686fc32a22a3754b8e63321857dd2a",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./math/Math.sol",
+        "./math/SignedMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1767792015647,
+      "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC165"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/math/SignedMath.sol": {
+      "lastModificationDate": 1767792015669,
+      "contentHash": "9488ebd4daacfee8ad04811600d7d061",
+      "sourceName": "@openzeppelin/contracts/utils/math/SignedMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SignedMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/math/Math.sol": {
+      "lastModificationDate": 1767792015666,
+      "contentHash": "fe63409d8a06818b926cf89e0ea88b1b",
+      "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Math"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1767792015658,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1767792015667,
+      "contentHash": "5a20b2cad87ddb61c7a3a6af21289e28",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/access/Ownable2Step.sol": {
+      "lastModificationDate": 1767792015667,
+      "contentHash": "42f84a0a50cb6b19dcfc4c9a973c9f15",
+      "sourceName": "@openzeppelin/contracts/access/Ownable2Step.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable2Step"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+      "lastModificationDate": 1767792015668,
+      "contentHash": "1535f8c0c68463f8c1b5239f7584e71f",
+      "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ReentrancyGuard"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/AlgebraPoolSwapTest.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "269c4383d1a694ca40fa13da843a2548",
+      "sourceName": "contracts/test/AlgebraPoolSwapTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IERC20Minimal.sol",
+        "../interfaces/callback/IAlgebraSwapCallback.sol",
+        "../interfaces/IAlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraPoolSwapTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/interfaces/IAlgebraPoolLegacy.sol": {
+      "lastModificationDate": 1767790847910,
+      "contentHash": "f4118c3c0dc150c583311131a3553e50",
+      "sourceName": "contracts/interfaces/IAlgebraPoolLegacy.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./pool/IAlgebraPoolImmutables.sol",
+        "./pool/IAlgebraPoolState.sol",
+        "./pool/IAlgebraPoolActions.sol",
+        "./pool/IAlgebraPoolPermissionedActions.sol",
+        "./pool/IAlgebraPoolEvents.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolLegacy"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/PriceMovementMathTest.sol": {
+      "lastModificationDate": 1767790847915,
+      "contentHash": "05a4aab726963582abd5c3df6248937b",
+      "sourceName": "contracts/test/PriceMovementMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/PriceMovementMath.sol",
+        "../libraries/TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PriceMovementMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/TickMathTest.sol": {
+      "lastModificationDate": 1767790847916,
+      "contentHash": "1e8a477ccb51b9a679cb5fe95aa2b80b",
+      "sourceName": "contracts/test/TickMathTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickMathTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/test/FaultyVaultFactoryStub.sol": {
+      "lastModificationDate": 1767790847914,
+      "contentHash": "3cae9ed874fe80cb4c6bc56a8f0b4378",
+      "sourceName": "contracts/test/FaultyVaultFactoryStub.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "FaultyVaultFactoryStub"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraVaultFactoryStub.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "dce666942414bcdf4ee473c6be67fd93",
+      "sourceName": "contracts/AlgebraVaultFactoryStub.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 800
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraVaultFactoryStub"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraPool.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "7b0a2d72b4b50230c5bdd62eb105115a",
+      "sourceName": "contracts/AlgebraPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 0
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./base/AlgebraPoolBase.sol",
+        "./base/ReentrancyGuard.sol",
+        "./base/Positions.sol",
+        "./base/SwapCalculation.sol",
+        "./base/ReservesManager.sol",
+        "./base/TickStructure.sol",
+        "./libraries/FullMath.sol",
+        "./libraries/Constants.sol",
+        "./libraries/SafeCast.sol",
+        "./libraries/TickMath.sol",
+        "./libraries/LiquidityMath.sol",
+        "./libraries/Plugins.sol",
+        "./interfaces/plugin/IAlgebraPlugin.sol",
+        "./interfaces/IAlgebraFactory.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraPoolDeployer.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "a0ea20fe1797d57e1e8ff4f54a31c30d",
+      "sourceName": "contracts/AlgebraPoolDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 0
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IAlgebraPoolDeployer.sol",
+        "./AlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraPoolDeployer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/core/contracts/AlgebraFactory.sol": {
+      "lastModificationDate": 1767790847908,
+      "contentHash": "c5f9fb2c843a582ccc61693a40a355d3",
+      "sourceName": "contracts/AlgebraFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./libraries/Constants.sol",
+        "./interfaces/IAlgebraFactory.sol",
+        "./interfaces/IAlgebraPool.sol",
+        "./interfaces/IAlgebraPoolDeployer.sol",
+        "./interfaces/vault/IAlgebraVaultFactory.sol",
+        "./interfaces/plugin/IAlgebraPluginFactory.sol",
+        "./AlgebraCommunityVault.sol",
+        "@openzeppelin/contracts/access/Ownable2Step.sol",
+        "@openzeppelin/contracts/access/AccessControlEnumerable.sol",
+        "@openzeppelin/contracts/security/ReentrancyGuard.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraFactory"
+      ]
+    }
+  }
+}

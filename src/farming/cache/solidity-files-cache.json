@@ -1,0 +1,3561 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/FarmingCenter.sol": {
+      "lastModificationDate": 1767790847933,
+      "contentHash": "581eba30a52a7d3db1aa6dc16268de18",
+      "sourceName": "contracts/FarmingCenter.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/IPositionFollower.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol",
+        "@cryptoalgebra/integral-periphery/contracts/base/Multicall.sol",
+        "@cryptoalgebra/integral-periphery/contracts/libraries/PoolAddress.sol",
+        "@cryptoalgebra/integral-base-plugin/contracts/interfaces/plugins/IFarmingPlugin.sol",
+        "./interfaces/IFarmingCenter.sol",
+        "./libraries/IncentiveId.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "FarmingCenter"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/interfaces/IFarmingCenter.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "47dda740223f13453c5b5932c745554a",
+      "sourceName": "contracts/interfaces/IFarmingCenter.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/IMulticall.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol",
+        "@cryptoalgebra/integral-base-plugin/contracts/interfaces/plugins/IFarmingPlugin.sol",
+        "../base/IncentiveKey.sol",
+        "../interfaces/IAlgebraEternalFarming.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6"
+      ],
+      "artifacts": [
+        "IFarmingCenter"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/libraries/IncentiveId.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "6b2a054e02ee499f494e89fec9a67e70",
+      "sourceName": "contracts/libraries/IncentiveId.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../base/IncentiveKey.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6"
+      ],
+      "artifacts": [
+        "IncentiveId"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/INonfungiblePositionManager.sol": {
+      "lastModificationDate": 1769511781550,
+      "contentHash": "768827c9b8d7cf59f2633210c8f47408",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+        "./IPoolInitializer.sol",
+        "./IERC721Permit.sol",
+        "./IPeripheryPayments.sol",
+        "./IPeripheryImmutableState.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.5"
+      ],
+      "artifacts": [
+        "INonfungiblePositionManager"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IPositionFollower.sol": {
+      "lastModificationDate": 1767790847944,
+      "contentHash": "7c393dcae28eda0e135fcfbc2594d5e6",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IPositionFollower.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IPositionFollower"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/libraries/PoolAddress.sol": {
+      "lastModificationDate": 1767790847947,
+      "contentHash": "1b1c1d7022a718ca0c079b748e39e9c0",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/libraries/PoolAddress.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "PoolAddress"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/base/Multicall.sol": {
+      "lastModificationDate": 1767790847941,
+      "contentHash": "96240834617b98dd1cc39b22ef3da263",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/base/Multicall.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IMulticall.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "Multicall"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol": {
+      "lastModificationDate": 1767792032356,
+      "contentHash": "b9f08e35da7b4f4c81a3fc5460ea75f1",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./pool/IAlgebraPoolImmutables.sol",
+        "./pool/IAlgebraPoolState.sol",
+        "./pool/IAlgebraPoolActions.sol",
+        "./pool/IAlgebraPoolPermissionedActions.sol",
+        "./pool/IAlgebraPoolEvents.sol",
+        "./pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol": {
+      "lastModificationDate": 1767792032358,
+      "contentHash": "fa0b363e9db6b33414c02c348643118c",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IERC20Minimal"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/plugin/contracts/interfaces/plugins/IFarmingPlugin.sol": {
+      "lastModificationDate": 1767790847968,
+      "contentHash": "730d7de920153bb682f838640b954b92",
+      "sourceName": "@cryptoalgebra/integral-base-plugin/contracts/interfaces/plugins/IFarmingPlugin.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IFarmingPlugin"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/base/IncentiveKey.sol": {
+      "lastModificationDate": 1767790847933,
+      "contentHash": "0b5c2e218e05385732aea4353b11cc4c",
+      "sourceName": "contracts/base/IncentiveKey.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6"
+      ],
+      "artifacts": []
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/interfaces/IAlgebraEternalFarming.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "56bb61ab64893381807c3fa5a7775fff",
+      "sourceName": "contracts/interfaces/IAlgebraEternalFarming.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol",
+        "../base/IncentiveKey.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraEternalFarming"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IMulticall.sol": {
+      "lastModificationDate": 1767788841524,
+      "contentHash": "a2e56a9714654fdbdf3a7bd35ad4ebd1",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IMulticall.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.5"
+      ],
+      "artifacts": [
+        "IMulticall"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolErrors.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "3bfa3ea5d1f095fc1fa028f5ecd8f8b5",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolErrors.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPoolErrors"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolImmutables.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "39638ba188c590f27f90aec7395111dd",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolImmutables.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolImmutables"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolActions.sol": {
+      "lastModificationDate": 1767792032356,
+      "contentHash": "91ad558027fab3f139590712b84c4eba",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolEvents.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "fa9b2cd56d1754b351bcfebdd09d6ff4",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolEvents.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolEvents"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "8621e01ef6391f0d72390c2e8b4d4d28",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolPermissionedActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolState.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "8d4dc30db00370e7859585b5426691e4",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolState.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolState"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IPoolInitializer.sol": {
+      "lastModificationDate": 1767790847943,
+      "contentHash": "a8b0eb0b15728dc53e2ee69679acc1f4",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IPoolInitializer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.5"
+      ],
+      "artifacts": [
+        "IPoolInitializer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IERC721Permit.sol": {
+      "lastModificationDate": 1767790847943,
+      "contentHash": "c01ec419780272b88380c2185653fdae",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IERC721Permit.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.5"
+      ],
+      "artifacts": [
+        "IERC721Permit"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IPeripheryPayments.sol": {
+      "lastModificationDate": 1767790847943,
+      "contentHash": "c03b3747914be9fa7e214aefebd704fa",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IPeripheryPayments.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.5"
+      ],
+      "artifacts": [
+        "IPeripheryPayments"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/interfaces/IPeripheryImmutableState.sol": {
+      "lastModificationDate": 1767790847943,
+      "contentHash": "d0caa7e84b44a7fe64a29ee40cd669c0",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/interfaces/IPeripheryImmutableState.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IPeripheryImmutableState"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1767792032342,
+      "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
+      "lastModificationDate": 1767792032342,
+      "contentHash": "f4dd06783f321aa26179bc2b6e361c29",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Enumerable"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1767792032341,
+      "contentHash": "48de4c9a3a4ae5ef66a2aa620843413f",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1767792032336,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/libraries/NFTPositionInfo.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "f80630bfe600724e2b3f837336322fcb",
+      "sourceName": "contracts/libraries/NFTPositionInfo.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol",
+        "@cryptoalgebra/integral-periphery/contracts/libraries/PoolAddress.sol"
+      ],
+      "versionPragmas": [
+        ">=0.7.6"
+      ],
+      "artifacts": [
+        "NFTPositionInfo"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol": {
+      "lastModificationDate": 1767792032357,
+      "contentHash": "97f5df49b8e5282c817cad64018408d9",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolDeployer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/LiquidityMath.sol": {
+      "lastModificationDate": 1767792032358,
+      "contentHash": "dc88e99167d952fc3cea9a22206a0614",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/LiquidityMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./TokenDeltaMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "LiquidityMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol": {
+      "lastModificationDate": 1767792032360,
+      "contentHash": "e39a578029867fde8fd1c5c4483e7f70",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "TickMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TokenDeltaMath.sol": {
+      "lastModificationDate": 1767792032360,
+      "contentHash": "78c12040e361b9f801af7d671a720640",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TokenDeltaMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeCast.sol",
+        "./FullMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TokenDeltaMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/SafeCast.sol": {
+      "lastModificationDate": 1767792032359,
+      "contentHash": "d68395ed2a287ea96db871a11913395b",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/Constants.sol": {
+      "lastModificationDate": 1767792032355,
+      "contentHash": "2bb717d8973e68d42391bab11c47a3e5",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/Constants.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Constants"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol": {
+      "lastModificationDate": 1767792032355,
+      "contentHash": "30e12a652e146df2976aa0190df3f91f",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "FullMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/TestVirtualPool.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "5425343f61decddf4edca280e40c788f",
+      "sourceName": "contracts/test/TestVirtualPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../farmings/EternalVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestVirtualPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/base/VirtualTickStructure.sol": {
+      "lastModificationDate": 1767790847933,
+      "contentHash": "88eec1b0d57ba33ef6234e1885ca3a4f",
+      "sourceName": "contracts/base/VirtualTickStructure.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/libraries/TickTree.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol",
+        "../interfaces/IAlgebraEternalVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "VirtualTickStructure"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol": {
+      "lastModificationDate": 1767792032360,
+      "contentHash": "8debf7647039424fd6bab20a25e92627",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./LiquidityMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickManagement"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/base/common/Timestamp.sol": {
+      "lastModificationDate": 1767792032360,
+      "contentHash": "eaad30114d2a5c28bc1e9eb61923fffb",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/base/common/Timestamp.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Timestamp"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/interfaces/IAlgebraEternalVirtualPool.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "d04be40ef22fd4e0a2752241297e8291",
+      "sourceName": "contracts/interfaces/IAlgebraEternalVirtualPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-base-plugin/contracts/interfaces/IAlgebraVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraEternalVirtualPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickTree.sol": {
+      "lastModificationDate": 1767792032360,
+      "contentHash": "d5b8a61560e62092d4d067988ba2a253",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickTree.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTree"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/plugin/contracts/interfaces/IAlgebraVirtualPool.sol": {
+      "lastModificationDate": 1767790847964,
+      "contentHash": "b35ab8c769b83c37123386e554a74a89",
+      "sourceName": "@cryptoalgebra/integral-base-plugin/contracts/interfaces/IAlgebraVirtualPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraVirtualPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/echidna/EternalVirtualPoolEchidnaTest.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "daad4a428fef8d8b6d4463dab5352e4c",
+      "sourceName": "contracts/test/echidna/EternalVirtualPoolEchidnaTest.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./../TestVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "EternalVirtualPoolEchidnaTest"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/PoolMock.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "5d89e6b274c8e6afb89e06f6bab11d4a",
+      "sourceName": "contracts/test/PoolMock.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAlgebraEternalVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "PoolMock"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/NftPosManagerMock.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "c6c9f951a5a0ad5c18a9b2d15edcf623",
+      "sourceName": "contracts/test/NftPosManagerMock.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAlgebraEternalVirtualPool.sol",
+        "@cryptoalgebra/integral-periphery/contracts/interfaces/IPositionFollower.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "NftPosManagerMock"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/periphery/contracts/libraries/TransferHelper.sol": {
+      "lastModificationDate": 1767790847947,
+      "contentHash": "1945c6c248206f433d9a8c438f30c2cb",
+      "sourceName": "@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0"
+      ],
+      "artifacts": [
+        "TransferHelper"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@openzeppelin+contracts@4.9.6/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1767792032337,
+      "contentHash": "df36f7051335cd1e748b1b6463b7fdd3",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/libraries/LowGasSafeMath.sol": {
+      "lastModificationDate": 1767792032358,
+      "contentHash": "e9ee08df4446b3c242a7a0358ef52c3d",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/LowGasSafeMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LowGasSafeMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraFactory.sol": {
+      "lastModificationDate": 1767792032355,
+      "contentHash": "dc393e58ba43d83b9700693b64652d56",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./plugin/IAlgebraPluginFactory.sol",
+        "./vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/plugin/IAlgebraPluginFactory.sol": {
+      "lastModificationDate": 1767792032356,
+      "contentHash": "f625550f20c606a7debe5ad461c1ff1f",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/plugin/IAlgebraPluginFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPluginFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/.pnpm/@cryptoalgebra+integral-core@1.2.9/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/vault/IAlgebraVaultFactory.sol": {
+      "lastModificationDate": 1767792032358,
+      "contentHash": "e16b26245f12e67c96b8afb242dc9a00",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/vault/IAlgebraVaultFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraVaultFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/TestERC20.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "9b6cd61c2026538665457ff77413fd28",
+      "sourceName": "contracts/test/TestERC20.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestERC20"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/TestERC20Reentrant.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "74d090d6fcf3b9bcfb4269869b90206d",
+      "sourceName": "contracts/test/TestERC20Reentrant.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAlgebraEternalFarming.sol",
+        "../base/IncentiveKey.sol",
+        "./TestERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestERC20Reentrant"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/test/TestIncentiveId.sol": {
+      "lastModificationDate": 1767790847935,
+      "contentHash": "8610055349fe7570fd7ed02607060b9f",
+      "sourceName": "contracts/test/TestIncentiveId.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../libraries/IncentiveId.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TestIncentiveId"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/farmings/EternalVirtualPool.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "59f371a8fd24cc326188d7bc99329304",
+      "sourceName": "contracts/farmings/EternalVirtualPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 10000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/base/common/Timestamp.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/Constants.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/LiquidityMath.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolErrors.sol",
+        "../base/VirtualTickStructure.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "EternalVirtualPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/contracts/farmings/AlgebraEternalFarming.sol": {
+      "lastModificationDate": 1767790847934,
+      "contentHash": "4ebdc16aaf6a96bc044c5152285bb0b6",
+      "sourceName": "contracts/farmings/AlgebraEternalFarming.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 10000
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraFactory.sol",
+        "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/SafeCast.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/Constants.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol",
+        "@cryptoalgebra/integral-core/contracts/libraries/LowGasSafeMath.sol",
+        "@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol",
+        "@cryptoalgebra/integral-base-plugin/contracts/interfaces/plugins/IFarmingPlugin.sol",
+        "../interfaces/IAlgebraEternalFarming.sol",
+        "../interfaces/IAlgebraEternalVirtualPool.sol",
+        "../interfaces/IFarmingCenter.sol",
+        "../libraries/IncentiveId.sol",
+        "../libraries/NFTPositionInfo.sol",
+        "./EternalVirtualPool.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "AlgebraEternalFarming"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol": {
+      "lastModificationDate": 1767792625396,
+      "contentHash": "fa0b363e9db6b33414c02c348643118c",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IERC20Minimal.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IERC20Minimal"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol": {
+      "lastModificationDate": 1767792625387,
+      "contentHash": "b9f08e35da7b4f4c81a3fc5460ea75f1",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./pool/IAlgebraPoolImmutables.sol",
+        "./pool/IAlgebraPoolState.sol",
+        "./pool/IAlgebraPoolActions.sol",
+        "./pool/IAlgebraPoolPermissionedActions.sol",
+        "./pool/IAlgebraPoolEvents.sol",
+        "./pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPool"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolErrors.sol": {
+      "lastModificationDate": 1767792625389,
+      "contentHash": "3bfa3ea5d1f095fc1fa028f5ecd8f8b5",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolErrors.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.4"
+      ],
+      "artifacts": [
+        "IAlgebraPoolErrors"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolState.sol": {
+      "lastModificationDate": 1767792625392,
+      "contentHash": "8d4dc30db00370e7859585b5426691e4",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolState.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolState"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol": {
+      "lastModificationDate": 1767792625390,
+      "contentHash": "8621e01ef6391f0d72390c2e8b4d4d28",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolPermissionedActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolPermissionedActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolEvents.sol": {
+      "lastModificationDate": 1767792625389,
+      "contentHash": "fa9b2cd56d1754b351bcfebdd09d6ff4",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolEvents.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolEvents"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolImmutables.sol": {
+      "lastModificationDate": 1767792625389,
+      "contentHash": "39638ba188c590f27f90aec7395111dd",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolImmutables.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolImmutables"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolActions.sol": {
+      "lastModificationDate": 1767792625387,
+      "contentHash": "91ad558027fab3f139590712b84c4eba",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/pool/IAlgebraPoolActions.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolActions"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1767792625191,
+      "contentHash": "136c64eca25bcb8a68f43ac6605559f9",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol": {
+      "lastModificationDate": 1767792625190,
+      "contentHash": "09d80d577d5abfc679455e7b67c5b537",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC721Enumerable"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1767792625189,
+      "contentHash": "f62e11dbd302e17a5621a1438f4e054c",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.2"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1767792625176,
+      "contentHash": "7074c93b1ea0a122063f26ddd1db1032",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.16"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol": {
+      "lastModificationDate": 1767792625388,
+      "contentHash": "97f5df49b8e5282c817cad64018408d9",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPoolDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPoolDeployer"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol": {
+      "lastModificationDate": 1767792625398,
+      "contentHash": "e39a578029867fde8fd1c5c4483e7f70",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "TickMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/LiquidityMath.sol": {
+      "lastModificationDate": 1767792625394,
+      "contentHash": "dc88e99167d952fc3cea9a22206a0614",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/LiquidityMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./TokenDeltaMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.4 <0.9.0"
+      ],
+      "artifacts": [
+        "LiquidityMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TokenDeltaMath.sol": {
+      "lastModificationDate": 1767792625401,
+      "contentHash": "78c12040e361b9f801af7d671a720640",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TokenDeltaMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./SafeCast.sol",
+        "./FullMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TokenDeltaMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/SafeCast.sol": {
+      "lastModificationDate": 1767792625397,
+      "contentHash": "d68395ed2a287ea96db871a11913395b",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol": {
+      "lastModificationDate": 1767792625378,
+      "contentHash": "30e12a652e146df2976aa0190df3f91f",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/FullMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "FullMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/Constants.sol": {
+      "lastModificationDate": 1767792625377,
+      "contentHash": "2bb717d8973e68d42391bab11c47a3e5",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/Constants.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Constants"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol": {
+      "lastModificationDate": 1767792625398,
+      "contentHash": "8debf7647039424fd6bab20a25e92627",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickManagement.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/pool/IAlgebraPoolErrors.sol",
+        "./TickMath.sol",
+        "./LiquidityMath.sol",
+        "./Constants.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickManagement"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/base/common/Timestamp.sol": {
+      "lastModificationDate": 1767792625401,
+      "contentHash": "eaad30114d2a5c28bc1e9eb61923fffb",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/base/common/Timestamp.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Timestamp"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/TickTree.sol": {
+      "lastModificationDate": 1767792625399,
+      "contentHash": "d5b8a61560e62092d4d067988ba2a253",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/TickTree.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./TickMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.8.20"
+      ],
+      "artifacts": [
+        "TickTree"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/libraries/LowGasSafeMath.sol": {
+      "lastModificationDate": 1767792625396,
+      "contentHash": "e9ee08df4446b3c242a7a0358ef52c3d",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/libraries/LowGasSafeMath.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "LowGasSafeMath"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1767792625182,
+      "contentHash": "9261adf6457863de3e9892f51317ec89",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.16"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraFactory.sol": {
+      "lastModificationDate": 1767792625382,
+      "contentHash": "dc393e58ba43d83b9700693b64652d56",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./plugin/IAlgebraPluginFactory.sol",
+        "./vault/IAlgebraVaultFactory.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/plugin/IAlgebraPluginFactory.sol": {
+      "lastModificationDate": 1767792625387,
+      "contentHash": "f625550f20c606a7debe5ad461c1ff1f",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/plugin/IAlgebraPluginFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraPluginFactory"
+      ]
+    },
+    "/Users/Lokendra_1/Documents/WorkPlace/crypto/expAlgebra/src/farming/node_modules/@cryptoalgebra/integral-core/contracts/interfaces/vault/IAlgebraVaultFactory.sol": {
+      "lastModificationDate": 1767792625393,
+      "contentHash": "e16b26245f12e67c96b8afb242dc9a00",
+      "sourceName": "@cryptoalgebra/integral-core/contracts/interfaces/vault/IAlgebraVaultFactory.sol",
+      "solcConfig": {
+        "version": "0.8.20",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": true,
+            "runs": 99999999
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IAlgebraVaultFactory"
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "algebra-subgraph",
+  "version": "1.0.0",
+  "repository": "https://github.com/graphprotocol/algebra-subgraph",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "build": "graph build",
+    "create-local": "graph create cryptoalgebra/algebra --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy cryptoalgebra/algebra --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ --access-token  iliaazhel/integral-core subgraph.yaml",
+    "deploy-dev": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/  --access-token a3f47169869d4585a475d0d1d10a4062 iliaazhel/fuzzyswap subgraph.yaml",
+    "deploy-goldsky": "goldsky subgraph deploy poap-subgraph-core/mainnet-1.0.1 --path .",
+    "create": "graph create cryptoalgebra/info --node https://api.thegraph.com/create/"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "0.97.1",
+    "@graphprotocol/graph-ts": "0.38.2",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.2",
+    "prettier": "3.7.3",
+    "typescript": "5.9.3"
+  },
+  "resolutions": {
+    "axios": "1.13.2",
+    "semver": "7.7.3",
+    "cross-spawn": "7.0.6",
+    "glob": "11.1.0",
+    "ejs": "3.1.10",
+    "js-yaml": "4.1.1"
+  }
+}

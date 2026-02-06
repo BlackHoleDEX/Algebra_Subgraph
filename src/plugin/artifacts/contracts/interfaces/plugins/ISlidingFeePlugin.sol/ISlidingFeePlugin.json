@@ -1,0 +1,63 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ISlidingFeePlugin",
+  "sourceName": "contracts/interfaces/plugins/ISlidingFeePlugin.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint16",
+          "name": "baseFee",
+          "type": "uint16"
+        }
+      ],
+      "name": "BaseFee",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "priceChangeFactor",
+          "type": "uint256"
+        }
+      ],
+      "name": "PriceChangeFactor",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "newBaseFee",
+          "type": "uint16"
+        }
+      ],
+      "name": "setBaseFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "newPriceChangeFactor",
+          "type": "uint16"
+        }
+      ],
+      "name": "setPriceChangeFactor",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
