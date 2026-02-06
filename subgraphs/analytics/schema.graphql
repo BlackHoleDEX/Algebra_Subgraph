@@ -256,6 +256,8 @@ type Position @entity(immutable: false) {
   collectedFeesToken0: BigDecimal!
   # all time collected fees in token1
   collectedFeesToken1: BigDecimal!
+  # liquidity unlock time for the position
+  liquidityUnlockTime: BigInt
   # tx in which the position was initialized
   transaction: Transaction!
 }
@@ -287,6 +289,8 @@ type PositionSnapshot @entity(immutable: true){
   collectedFeesToken0: BigDecimal!
   # all time collected fees in token1
   collectedFeesToken1: BigDecimal!
+  # liquidity unlock time for the position at snapshot time
+  liquidityUnlockTime: BigInt
   # tx in which the snapshot was initialized
   transaction: Transaction!
 }
