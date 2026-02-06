@@ -70,6 +70,11 @@ export const ETERNAL_FARMING_ADDRESS = '0x00000000000000000000000000000000000000
 export const LIMIT_ORDER_ADDRESS = '0x822ddb9EECc3794790B8316585FebA5b8F7C7507'
 ```
 
+**_NOTE_**: Please make sure you add and edit the data for **EPOCH_FLIP_DURATION**
+```typescript
+export const EPOCH_FLIP_DURATION = 86400
+```
+
 ### 3. Prepare Network Configuration
 
 ```bash
