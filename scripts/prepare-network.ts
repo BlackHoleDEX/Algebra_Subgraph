@@ -124,6 +124,7 @@ console.log(`📋 Using chain configuration from: ${networkChainPath}`);
 function extractConfigFromChainFile(chainFilePath: string): { 
   factoryAddress: string; 
   nonfungiblePositionManagerAddress: string;
+  gaugeManagerAddress?: string;
   eternalFarmingAddress?: string;
   limitOrderAddress?: string;
 } {
@@ -137,6 +138,10 @@ function extractConfigFromChainFile(chainFilePath: string): {
     // Extract NONFUNGIBLE_POSITION_MANAGER_ADDRESS
     const nftManagerMatch = chainContent.match(/export const NONFUNGIBLE_POSITION_MANAGER_ADDRESS = '([^']+)'/);
     const nonfungiblePositionManagerAddress = nftManagerMatch ? nftManagerMatch[1] : '';
+    
+    // Extract gauge manager address (optional)
+    const gaugeManagerMatch = chainContent.match(/export const GAUGE_MANAGER_ADDRESS = '([^']+)'/);
+    const gaugeManagerAddress = gaugeManagerMatch ? gaugeManagerMatch[1] : undefined;
     
     // Extract farming addresses (optional)
     const eternalFarmingMatch = chainContent.match(/export const ETERNAL_FARMING_ADDRESS = '([^']+)'/);
@@ -153,6 +158,7 @@ function extractConfigFromChainFile(chainFilePath: string): {
     return { 
       factoryAddress, 
       nonfungiblePositionManagerAddress,
+      gaugeManagerAddress,
       eternalFarmingAddress,
       limitOrderAddress
     };
@@ -210,6 +216,11 @@ function processSubgraphTemplate(
       .replace(/{{FACTORY_ADDRESS}}/g, addresses.factoryAddress)
       .replace(/{{NONFUNGIBLE_POSITION_MANAGER_ADDRESS}}/g, addresses.nonfungiblePositionManagerAddress)
       .replace(/{{START_BLOCK}}/g, startBlock.toString());
+    
+    // Replace gauge manager placeholder (optional)
+    if (addresses.gaugeManagerAddress) {
+      subgraphContent = subgraphContent.replace(/{{GAUGE_MANAGER_ADDRESS}}/g, addresses.gaugeManagerAddress);
+    }
     
     // Replace farming-specific placeholders
     if (addresses.eternalFarmingAddress) {

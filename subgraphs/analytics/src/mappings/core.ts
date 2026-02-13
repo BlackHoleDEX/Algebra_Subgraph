@@ -192,6 +192,7 @@ function ensurePoolExists(poolAddress: string, event: ethereum.Event): Pool | nu
     pool.collectedFeesToken0 = ZERO_BD
     pool.collectedFeesToken1 = ZERO_BD
     pool.collectedFeesUSD = ZERO_BD
+    pool.lastRewardTimestamp = ZERO_BI
 
     pool.save()
     token0.save()
