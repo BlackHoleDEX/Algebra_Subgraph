@@ -152,6 +152,10 @@ type Pool @entity(immutable: false) {
   totalValueLockedUSDUntracked: BigDecimal!
   # Fields used to help derived relationship
   liquidityProviderCount: BigInt! # used to detect new exchanges
+  # gauge address for the pool
+  gauge: Bytes
+  # timestamp of last reward added
+  lastRewardTimestamp: BigInt!
   # hourly snapshots of pool data
   poolHourData: [PoolHourData!]! @derivedFrom(field: "pool")
   # daily snapshots of pool data
