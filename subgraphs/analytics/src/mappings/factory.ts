@@ -215,6 +215,7 @@ function createPool(
     pool.collectedFeesToken0 = ZERO_BD
     pool.collectedFeesToken1 = ZERO_BD
     pool.collectedFeesUSD = ZERO_BD
+    pool.lastRewardTimestamp = ZERO_BI
   } else {
     // Pool already exists - only update fields that might be missing or need updating
     if (pool.deployer.toHexString() == ZERO_ADDRESS && deployer != ZERO_ADDRESS) {

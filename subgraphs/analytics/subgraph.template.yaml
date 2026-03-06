@@ -70,7 +70,49 @@ dataSources:
           handler: handleIncreaseLiquidity
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
+  - kind: ethereum/contract
+    name: GaugeManager
+    network: {{NETWORK}}
+    source:
+      address: '{{GAUGE_MANAGER_ADDRESS}}'
+      abi: GaugeManager
+      startBlock: {{START_BLOCK}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/gauge-manager.ts
+      entities:
+        - Pool
+      abis:
+        - name: GaugeManager
+          file: ../../abis/gaugeManager.json
+        - name: Pool
+          file: ../../abis/pool.json
+      eventHandlers:
+        - event: GaugeCreated(indexed address,address,address,indexed address,indexed address)
+          handler: handleGaugeCreated
 templates:
+  - kind: ethereum/contract
+    name: Gauge
+    network: {{NETWORK}}
+    source:
+      abi: GaugeCL
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mappings/gauge.ts
+      entities:
+        - Pool
+      abis:
+        - name: GaugeCL
+          file: ../../abis/gaugeCL.json
+        - name: Pool
+          file: ../../abis/pool.json
+      eventHandlers:
+        - event: RewardAdded(uint256)
+          handler: handleRewardAdded
   - kind: ethereum/contract
     name: Pool
     network: {{NETWORK}}
