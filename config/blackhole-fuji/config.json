@@ -1,4 +1,6 @@
 {
   "network": "avalanche-testnet",
-  "startBlock": 47605642
+  "startBlock": 47605642,
+  "graftBase": "QmarcPcurrGbzbuPL54qVnzHfZAmwhJzExjtErcr3Go6sf",
+  "graftBlock": 47650773
 }

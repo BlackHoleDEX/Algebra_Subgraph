@@ -1,4 +1,6 @@
 {
   "network": "avalanche",
-  "startBlock": 64920000
+  "startBlock": 64920000,
+  "graftBase": "QmeQ6yUMvdVrcaMoY8PZFhTvbUL6SU1G2mZ1Nkgw7BQV3d",
+  "graftBlock": 72125593
 }

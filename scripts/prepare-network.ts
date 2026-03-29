@@ -49,11 +49,17 @@ console.log(`📋 Found network configuration for: ${network}`);
 
 // Load network config.json
 const networkConfigPath = path.join(configDir, network, 'config.json');
-let networkConfig: { 
-  network: string; 
-  startBlock: number; 
+const FEATURES_PLACEHOLDER = '# {{FEATURES_SECTION}}';
+const GRAFT_PLACEHOLDER = '# {{GRAFT_SECTION}}';
+interface NetworkConfig {
+  network: string;
+  startBlock: number;
   description?: string;
-} | null = null;
+  graftBase?: string;
+  graftBlock?: number;
+}
+
+let networkConfig: NetworkConfig | null = null;
 
 try {
   if (!fs.existsSync(networkConfigPath)) {
@@ -70,10 +76,17 @@ try {
     throw new Error('Missing required fields: network and/or startBlock');
   }
   
-  console.log(`📋 Network config loaded:`, {
+  const configLog: Record<string, unknown> = {
     network: networkConfig.network,
     startBlock: networkConfig.startBlock
-  });
+  };
+
+  if (networkConfig.graftBase && networkConfig.graftBlock !== undefined) {
+    configLog.graftBase = networkConfig.graftBase;
+    configLog.graftBlock = networkConfig.graftBlock;
+  }
+
+  console.log(`📋 Network config loaded:`, configLog);
   
 } catch (error) {
   console.error(`❌ Error reading config.json: ${(error as Error).message}`);
@@ -170,11 +183,7 @@ function extractConfigFromChainFile(chainFilePath: string): {
 // Function to process subgraph template for a specific subgraph
 function processSubgraphTemplate(
   subgraphName: string, 
-  networkConfig: { 
-    network: string; 
-    startBlock: number; 
-    description?: string;
-  }, 
+  networkConfig: NetworkConfig, 
   addresses: ReturnType<typeof extractConfigFromChainFile>
 ): void {
   const subgraphDir = path.join(rootDir, 'subgraphs', subgraphName);
@@ -210,12 +219,27 @@ function processSubgraphTemplate(
     // Use the same start block for all subgraphs
     const startBlock = networkConfig.startBlock;
     
+    const hasGraftConfig = Boolean(
+      networkConfig.graftBase && 
+      typeof networkConfig.graftBlock === 'number' && 
+      Number.isFinite(networkConfig.graftBlock)
+    );
+
+    const featuresSection = hasGraftConfig ? 'features:\n  - grafting\n' : '';
+    const graftBase = hasGraftConfig ? networkConfig.graftBase! : '';
+    const graftBlockValue = hasGraftConfig ? networkConfig.graftBlock! : 0;
+    const graftSection = hasGraftConfig
+      ? `graft:\n  base: ${graftBase}\n  block: ${graftBlockValue}\n`
+      : '';
+
     let subgraphContent = template
       .replace(/{{NETWORK_NAME}}/g, network)
       .replace(/{{NETWORK}}/g, networkConfig.network)
       .replace(/{{FACTORY_ADDRESS}}/g, addresses.factoryAddress)
       .replace(/{{NONFUNGIBLE_POSITION_MANAGER_ADDRESS}}/g, addresses.nonfungiblePositionManagerAddress)
-      .replace(/{{START_BLOCK}}/g, startBlock.toString());
+      .replace(/{{START_BLOCK}}/g, startBlock.toString())
+      .replace(FEATURES_PLACEHOLDER, featuresSection)
+      .replace(GRAFT_PLACEHOLDER, graftSection);
     
     // Replace gauge manager placeholder (optional)
     if (addresses.gaugeManagerAddress) {

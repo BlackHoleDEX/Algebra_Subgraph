@@ -3,6 +3,8 @@ description: Algebra Block indexing subgraph for {{NETWORK_NAME}} network
 repository: https://github.com/cryptoalgebra
 schema:
   file: ./schema.graphql
+# {{FEATURES_SECTION}}
+# {{GRAFT_SECTION}}
 dataSources:
   - kind: ethereum/contract
     name: ConverterRegistryContract
